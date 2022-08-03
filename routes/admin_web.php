@@ -18,5 +18,10 @@ Route::name('admin.')
 ->prefix('/admin')
 ->middleware('auth:admin_user')
 ->group(function () {
-    Route::get('/', [App\Http\Controllers\Backend\Admin\DashboardController::class, 'index']);
+    Route::get('/', [App\Http\Controllers\Backend\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+    // User
+    Route::get('/user', [App\Http\Controllers\Backend\Admin\UserController::class, 'index'])->name('user');
+    // End User
+
 });

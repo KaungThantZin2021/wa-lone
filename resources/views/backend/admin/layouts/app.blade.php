@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -44,13 +44,32 @@
 
 <body>
     <div id="app">
-        @if (auth()->guard('admin_user')->check())
-            @include('backend.admin.layouts.navbar')
-        @endif
+        <div class="container-scroller">
+    
+            <!-- partial:partials/_sidebar.html -->
+            @include('backend.admin.layouts.sidebar')
+            <!-- partial -->
+        
+            <div class="container-fluid page-body-wrapper">
 
-        <main class="">
-            @yield('content')
-        </main>
+                @if (auth()->guard('admin_user')->check())
+                    @include('backend.admin.layouts.navbar')
+                @endif
+
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <!-- partial -->
+                        @yield('content')
+                        <!-- main-panel ends -->
+                    </div>
+                
+                    <!-- partial:partials/_footer.html -->
+                    @include('backend.admin.layouts.footer')
+                    <!-- partial -->
+                </div>
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
     </div>
 
     {{-- Corona Template --}}
