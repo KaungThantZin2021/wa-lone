@@ -22,29 +22,17 @@
                 <div class="card-body">
                     <h4 class="card-title">Users</h4>
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="users-table">
                             <thead>
                                 <tr class="bg-primary">
+                                    <th class="text-light">ID</th>
                                     <th class="text-light">Name</th>
                                     <th class="text-light">Email</th>
                                     <th class="text-light">Created At</th>
                                     <th class="text-light">Updated At</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @forelse ($users as $user)
-                                <tr>
-                                    <td class="text-light">{{ $user->name }}</td>
-                                    <td class="text-light">{{ $user->email }}</td>
-                                    <td class="text-light">{{ $user->created_at }}</td>
-                                    <td class="text-light">{{ $user->updated_at }}</td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td class="text-light" colspan="4"><label class="badge badge-danger">No data...!</label></td>
-                                </tr>
-                                @endforelse
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -52,4 +40,26 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+
+<script>
+    $(document).ready(function () {
+        $('#users-table').DataTable({
+            processing: true,
+            serverSide: true,
+            mark: true,
+            ajax: "{{ route('admin.user.index') }}",
+            columns: [
+                { data: 'id', name: 'id' },
+                { data: 'name', name: 'name' },
+                { data: 'email', name: 'email' },
+                { data: 'created_at', name: 'created_at' },
+                { data: 'updated_at', name: 'updated_at' }
+            ]
+        });
+    });
+</script>
+
 @endsection

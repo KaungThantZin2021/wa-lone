@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Backend\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::get();
-        return view('backend.admin.users.index', compact('users'));
+        if ($request->ajax()) {
+            return Datatables::of(User::query())->make();
+        }
+        return view('backend.admin.users.index');
     }
 
     public function create()

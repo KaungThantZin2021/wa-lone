@@ -66,15 +66,13 @@
     @yield('script')
 
     <script>
-        // $(document).ready(function(){
-        //     $(document).on('#previous-btn', 'click', function () {
-        //         alert(123);
-        //     });
-        // });
-
         document.getElementById('previous-btn').onclick = function () {
             window.history.back();
         };
+
+        // $.extend(true, $.fn.dataTable.defaults, {
+        //     mark: true
+        // });
     </script>
 </body>
 
