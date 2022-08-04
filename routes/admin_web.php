@@ -12,7 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// use App\Http\Controllers\Backend\Admin;
+Route::name('admin.')
+        ->prefix('/admin')
+        ->namespace('App\Http\Controllers\Backend\Auth')
+        ->group(function () {
+            Route::get('/login', 'AdminLoginController@showLoginForm')->name('login');
+            Route::post('/login', 'AdminLoginController@login')->name('login');
+            Route::post('/logout', 'AdminLoginController@logout')->name('logout');
+        });
 
 Route::name('admin.')
     ->prefix('/admin')

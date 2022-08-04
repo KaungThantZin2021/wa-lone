@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Backend\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,7 +47,7 @@ class AdminLoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.admin_login');
+        return view('backend.auth.admin_login');
     }
 
     // public function login(Request $request)
