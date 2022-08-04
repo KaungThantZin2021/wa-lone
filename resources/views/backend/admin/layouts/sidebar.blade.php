@@ -73,7 +73,7 @@
             </a>
         </li>
         <li class="nav-item menu-items @yield('user-active')">
-            <a class="nav-link" href="{{ route('admin.user') }}">
+            <a class="nav-link" href="{{ route('admin.user.index') }}">
                 <span class="menu-icon">
                     <i class="fas fa-users"></i>
                 </span>

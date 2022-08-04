@@ -12,16 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// use App\Http\Controllers\Backend\Admin;
 
 Route::name('admin.')
-->prefix('/admin')
-->middleware('auth:admin_user')
-->group(function () {
-    Route::get('/', [App\Http\Controllers\Backend\Admin\DashboardController::class, 'index'])->name('dashboard');
-
-    // User
-    Route::get('/user', [App\Http\Controllers\Backend\Admin\UserController::class, 'index'])->name('user');
-    // End User
+    ->prefix('/admin')
+    ->middleware('auth:admin_user')
+    ->namespace('App\Http\Controllers\Backend\Admin')
+    ->group(function () {
+        Route::get('/', 'DashboardController@index')->name('dashboard');
+    
+        // User
+        Route::resource('/user', 'UserController');
+        // End User
 
 });

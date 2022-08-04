@@ -22,34 +22,21 @@
 
 
     {{-- Corona Template --}}
-    <!-- plugins:css -->
-    <link rel="stylesheet" href={{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/vendors/css/vendor.bundle.base.css') }}>
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href={{ asset('assets/vendors/jvectormap/jquery-jvectormap.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/vendors/flag-icon-css/css/flag-icon.min.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/vendors/owl-carousel-2/owl.carousel.min.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/vendors/owl-carousel-2/owl.theme.default.min.css') }}>
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href={{ asset('assets/css/style.css') }}>
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href={{ asset('assets/images/favicon.png') }} />
-    {{--End Corona Template --}}
+    @include('backend.admin.layouts._partials.css')
+    {{-- End Corona Template --}}
+
+    @yield('css')
 
 </head>
 
 <body>
     <div id="app">
         <div class="container-scroller">
-    
+
             <!-- partial:partials/_sidebar.html -->
             @include('backend.admin.layouts.sidebar')
             <!-- partial -->
-        
+
             <div class="container-fluid page-body-wrapper">
 
                 @if (auth()->guard('admin_user')->check())
@@ -62,7 +49,7 @@
                         @yield('content')
                         <!-- main-panel ends -->
                     </div>
-                
+
                     <!-- partial:partials/_footer.html -->
                     @include('backend.admin.layouts.footer')
                     <!-- partial -->
@@ -73,28 +60,22 @@
     </div>
 
     {{-- Corona Template --}}
-    <!-- plugins:js -->
-    <script src={{ asset('assets/vendors/js/vendor.bundle.base.js') }}></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src={{ asset('assets/vendors/chart.js/Chart.min.js') }}></script>
-    <script src={{ asset('assets/vendors/progressbar.js/progressbar.min.js') }}></script>
-    <script src={{ asset('assets/vendors/jvectormap/jquery-jvectormap.min.js') }}></script>
-    <script src={{ asset('assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js') }}></script>
-    <script src={{ asset('assets/vendors/owl-carousel-2/owl.carousel.min.js') }}></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src={{ asset('assets/js/off-canvas.js') }}></script>
-    <script src={{ asset('assets/js/hoverable-collapse.js') }}></script>
-    <script src={{ asset('assets/js/misc.js') }}></script>
-    <script src={{ asset('assets/js/settings.js') }}></script>
-    <script src={{ asset('assets/js/todolist.js') }}></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src={{ asset('assets/js/dashboard.js') }}></script>
-    <!-- End custom js for this page -->
-    {{--End Corona Template --}}
+    @include('backend.admin.layouts._partials.script')
+    {{-- End Corona Template --}}
 
+    @yield('script')
+
+    <script>
+        // $(document).ready(function(){
+        //     $(document).on('#previous-btn', 'click', function () {
+        //         alert(123);
+        //     });
+        // });
+
+        document.getElementById('previous-btn').onclick = function () {
+            window.history.back();
+        };
+    </script>
 </body>
 
 </html>
