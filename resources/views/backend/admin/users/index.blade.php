@@ -46,10 +46,26 @@
 
 <script>
     $(document).ready(function () {
-        $('#users-table').DataTable({
+        var table = $('#users-table').DataTable({
             processing: true,
             serverSide: true,
             mark: true,
+            dom: 'Blfrtip',
+            buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="fas fa-file-pdf"></i> PDF',
+                    className: 'btn btn-info',
+                    filename: 'Users Report',
+                },
+                {
+                    extend: 'pageLength'
+                }
+            ],
+            lengthMenu: [
+                [10, 25, 50, 100],
+                ['10 rows', '25 rows', '50 rows', '100 rows']
+            ],
             ajax: "{{ route('admin.user.index') }}",
             columns: [
                 { data: 'id', name: 'id' },
@@ -59,7 +75,9 @@
                 { data: 'updated_at', name: 'updated_at' }
             ]
         });
+        // console.log(table);
     });
+
 </script>
 
 @endsection
