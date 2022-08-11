@@ -20,12 +20,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    {{-- Default --}}
+    <link href="{{ asset('backend/css/default.css') }}" rel="stylesheet">
 
     {{-- Corona Template --}}
     @include('backend.admin.layouts._partials.css')
     {{-- End Corona Template --}}
 
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.css"/> --}}
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('backend/datatable/css/datatables.min.css') }}"/> --}}
 
 
     @yield('css')
@@ -65,27 +67,36 @@
     {{-- Corona Template --}}
     @include('backend.admin.layouts._partials.script')
     {{-- End Corona Template --}}
-
-    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap5.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.js"></script> --}}
+ 
+    {{-- <script type="text/javascript" src="{{ asset('backend/datatable/js/pdfmake.min.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('backend/datatable/js/vfs_fonts.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('backend/datatable/js/datatables.min.js') }}"></script> --}}
 
     @yield('script')
 
     <script>
-        document.getElementById('previous-btn').onclick = function () {
+        $(() => {
+            document.getElementById('previous-btn').onclick = function () {
             window.history.back();
-        };
+            };
 
-        // $.extend(true, $.fn.dataTable.defaults, {
-        //     mark: true
-        // });
+        });
+
+
+        $(document).ready(function () {
+
+            console.log($.fn);
+            console.log($.fn.DataTable.ext);
+
+            // $.fn.dataTable.ext.buttons.refresh = {
+            //     text: '<i class="fa fa-sync"></i>',
+            //     attr: { class: 'btn btn-success'},
+            //     action: function ( e, dt, node, config ) {
+            //         dt.clear().draw();
+            //         dt.ajax.reload();
+            //     }
+            // };
+        });
     </script>
 </body>
 

@@ -16,6 +16,14 @@ window.$ = window.jQuery = require('jquery');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+// window.JSZip = require( 'jszip' );
+// require( 'pdfmake' );
+// require( 'datatables.net-bs5' );
+// require( 'datatables.net-buttons-bs5' );
+// require( 'datatables.net-buttons/js/buttons.colVis.js' );
+// require( 'datatables.net-buttons/js/buttons.html5.js' );
+// require( 'datatables.net-buttons/js/buttons.print.js' );
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

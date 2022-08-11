@@ -1,0 +1,29 @@
+/* .button-page-length {
+    color: black !important;
+} */
+
+
+.dropdown-item :hover {
+    color: whitesmoke !important;
+}
+
+div.dt-button-collection {
+    background-color: #22252f !important;
+}
+
+/* a.dt-button.dropdown-item.button-page-length :hover {
+    background-color: blueviolet !important;
+} */
+
+div.dt-button-collection .dt-button:hover{
+    background-color: #007bff !important;
+
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    color: whitesmoke !important;
+}
+
+#users-table_filter {
+    float: right !important;
+}

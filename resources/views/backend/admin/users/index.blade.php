@@ -50,17 +50,25 @@
             processing: true,
             serverSide: true,
             mark: true,
-            dom: 'Blfrtip',
+            dom: 'Bfrtip',
             buttons: [
+                // {
+                //     extend: 'refresh'
+                // },
                 {
                     extend: 'pdfHtml5',
                     text: '<i class="fas fa-file-pdf"></i> PDF',
-                    className: 'btn btn-info',
+                    className: 'btn btn-secondary',
                     filename: 'Users Report',
                 },
                 {
-                    extend: 'pageLength'
-                }
+                    extend: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel"></i> Excel',
+                    className: 'btn btn-outline-success bg-dark border border-success',
+                    filename: 'Users Report',
+                },
+                {
+                    extend: 'pageLength',                }
             ],
             lengthMenu: [
                 [10, 25, 50, 100],
@@ -75,7 +83,6 @@
                 { data: 'updated_at', name: 'updated_at' }
             ]
         });
-        // console.log(table);
     });
 
 </script>

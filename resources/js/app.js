@@ -2,16 +2,15 @@ require('./bootstrap');
 import 'datatables.net-bs5';
 import 'datatables.mark.js/dist/datatables.mark.es6';
 
-import 'jszip';
+import jsZip from 'jszip';
+window.JSZip = jsZip;
+
 import 'pdfmake';
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 import 'datatables.net-buttons-bs5';
 import 'datatables.net-buttons/js/buttons.colVis';
 import 'datatables.net-buttons/js/buttons.html5';
 import 'datatables.net-buttons/js/buttons.print';
 
-// require( 'jszip' );
-// require( 'pdfmake' );
-// require( 'datatables.net-buttons-bs5' )();
-// require( 'datatables.net-buttons/js/buttons.colVis.js' )();
-// require( 'datatables.net-buttons/js/buttons.html5.js' )();
-// require( 'datatables.net-buttons/js/buttons.print.js' )();
