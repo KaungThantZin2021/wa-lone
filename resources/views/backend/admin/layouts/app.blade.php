@@ -72,32 +72,36 @@
     {{-- <script type="text/javascript" src="{{ asset('backend/datatable/js/vfs_fonts.js') }}"></script> --}}
     {{-- <script type="text/javascript" src="{{ asset('backend/datatable/js/datatables.min.js') }}"></script> --}}
 
-    @yield('script')
-
     <script>
         $(() => {
             document.getElementById('previous-btn').onclick = function () {
-            window.history.back();
+                window.history.back();
+            };
+
+            $.extend( true, $.fn.dataTable.defaults, {
+                "language": {
+                    "processing": "<span class='fa-stack fa-lg'>\n\
+                                        <i class='fa fa-spinner fa-spin fa-stack-2x fa-fw'></i>\n\
+                                </span>&emsp;Processing ...",
+                }
+            });
+
+            console.log($.fn);
+
+            $.fn.dataTable.ext.buttons.refresh = {
+            text: '<i class="fa fa-sync text-light"></i>',
+            className: 'bg-success',
+                action: function ( e, dt, node, config ) {
+                    dt.clear().draw();
+                    dt.ajax.reload();
+                }
             };
 
         });
-
-
-        $(document).ready(function () {
-
-            console.log($.fn);
-            console.log($.fn.DataTable.ext);
-
-            // $.fn.dataTable.ext.buttons.refresh = {
-            //     text: '<i class="fa fa-sync"></i>',
-            //     attr: { class: 'btn btn-success'},
-            //     action: function ( e, dt, node, config ) {
-            //         dt.clear().draw();
-            //         dt.ajax.reload();
-            //     }
-            // };
-        });
     </script>
+
+@yield('script')
+
 </body>
 
 </html>

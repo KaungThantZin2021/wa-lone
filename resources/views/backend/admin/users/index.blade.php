@@ -45,16 +45,16 @@
 @section('script')
 
 <script>
-    $(document).ready(function () {
+    $(() => {
         var table = $('#users-table').DataTable({
             processing: true,
             serverSide: true,
             mark: true,
             dom: 'Bfrtip',
             buttons: [
-                // {
-                //     extend: 'refresh'
-                // },
+                {
+                    extend: 'refresh'
+                },
                 {
                     extend: 'pdfHtml5',
                     text: '<i class="fas fa-file-pdf"></i> PDF',
@@ -68,7 +68,8 @@
                     filename: 'Users Report',
                 },
                 {
-                    extend: 'pageLength',                }
+                    extend: 'pageLength',               
+                }
             ],
             lengthMenu: [
                 [10, 25, 50, 100],
@@ -84,7 +85,6 @@
             ]
         });
     });
-
 </script>
 
 @endsection
