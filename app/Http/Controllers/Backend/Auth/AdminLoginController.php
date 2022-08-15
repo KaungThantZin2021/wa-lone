@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend\Auth;
 
+use Carbon\Carbon;
+use App\Models\AdminUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -30,6 +33,8 @@ class AdminLoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::ADMIN;
 
+    // protected $otp = env('OTP_KEY', 'otp');
+    
     /**
      * Create a new controller instance.
      *
@@ -50,26 +55,118 @@ class AdminLoginController extends Controller
         return view('backend.auth.admin_login');
     }
 
-    // public function login(Request $request)
-    // {
-    //     $this->validate($request, [
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
+    public function login(Request $request)
+    {
 
-    //     if(auth()->guard('admin')->attempt([
-    //         'email' => $request->email,
-    //         'password' => $request->password,
-    //     ])) {
-    //         $user = auth()->user();
+        // $this->validateLogin($request);
 
-    //         dd($user);
+        // if ($request->otp == null) {
+        //     return 'kdd';
+        // }
 
-    //         return redirect()->intended(url('/admin/dashboard'));
-    //     } else {
-    //         return redirect()->back()->withError('Credentials doesn\'t match.');
-    //     }
-    // }
+        // if ($request->all()) {
+        //     dd($request->all());
+        // }
+        
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'otp' => 'required|numeric|digits:6'
+        ]);
+        dd('vgddddddddddd');
+
+
+        if ($request->otp != 123123) {
+            return redirect()->back()->withError('OTP doesn\'t match.');
+        }
+
+        $session_array = session()->get(config('otp.key'));
+
+        $session = (object) $session_array;
+
+        if ($request->email != $session->email || $request->password != $session->password) {
+            dd('vgdsh');
+            return redirect()->back()->withError('Invalid Data!');
+        }
+
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            if ($request->hasSession()) {
+                $request->session()->put('auth.password_confirmed_at', time());
+            }
+
+            return $this->sendLoginResponse($request);
+        }
+
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    public function showOtpForm(Request $request)
+    {
+        $this->validateLogin($request);
+
+        $admin_user = AdminUser::where('email', $request->email)->first();
+
+        if (!is_null($admin_user)) {
+            if (Hash::check($request->password, $admin_user->password)) {
+    
+                session()->put(config('otp.key'), [
+                    'email' => $admin_user->email,
+                    'password' => $request->password
+                ]);
+
+                $session_array = session()->get(config('otp.key'));
+
+                $session = (object) $session_array;
+    
+                // return redirect()->route('admin.otp');
+                return view('backend.auth.admin_otp', compact('session'));
+
+            }
+        }
+
+        return redirect()->back()->withError('Credentials doesn\'t match.');
+
+        
+        // if ($request->otp != 123123) {
+        //     return redirect()->back()->withError('OTP doesn\'t match.');
+        // }
+
+        // $session_array = session()->get(config('otp.key'));
+
+        // $session = (object) $session_array;
+
+        // if ($request->email != $session->email || $request->password != $session->password) {
+        //     return redirect()->back()->withError('Invalid Data!');
+        // }
+
+        // dd($request->all());
+
+        // if (!session(config('otp.key'))) {
+        //     return redirect()->back('Invalid data.');
+        // }
+
+        // $session_array = session()->get(config('otp.key'));
+
+        // $session = (object) $session_array;
+
+        // $admin_user = AdminUser::where('email', $session->email)->first();
+
+        // if (is_null($admin_user)) {
+        //     return redirect()->back()->withError('Invalid data.');
+        // }
+        
+        // return view('backend.auth.admin_otp', compact('session'));
+
+    }
 
     protected function authenticated(Request $request, $user)
     {
