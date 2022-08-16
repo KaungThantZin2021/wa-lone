@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Auth;
 
 use Carbon\Carbon;
+use App\Rules\OtpRule;
 use App\Models\AdminUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -60,7 +61,7 @@ class AdminLoginController extends Controller
         $this->validateLogin($request);
         
         $request->validate([
-            'otp' => 'required|numeric|digits:6'
+            'otp' => ['required', 'numeric', 'digits:6', new OtpRule]
         ]);
 
         if ($request->otp != 123123) {
@@ -72,7 +73,7 @@ class AdminLoginController extends Controller
         $session = (object) $session_array;
 
         if ($request->email != $session->email || $request->password != $session->password) {
-            return redirect()->back()->withError('Invalid Data!');
+            return redirect()->back()->with('error', 'Invalid Data!');
         }
 
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
