@@ -76,6 +76,39 @@
     <!-- End custom js for this page -->
     {{--End Corona Template --}}
 
+    {{-- <script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.1.0/dist/flasher.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher-toastr@1.1.0/dist/flasher-toastr.min.js"></script> --}}
+
+    <script>
+        $(() => {
+
+            if ("{{ session()->has('error') }}") {
+                toastr.error("{{ session()->get('error') }}");
+                // toastr.options.progressBar = true;
+            }
+
+            // toastr.options = {
+            //     "closeButton": true,
+            //     "debug": false,
+            //     "newestOnTop": false,
+            //     "progressBar": true,
+            //     "positionClass": "toast-bottom-right",
+            //     "preventDuplicates": false,
+            //     "onclick": null,
+            //     "showDuration": "300",
+            //     "hideDuration": "1000",
+            //     "timeOut": "5000",
+            //     "extendedTimeOut": "1000",
+            //     "showEasing": "swing",
+            //     "hideEasing": "linear",
+            //     "showMethod": "fadeIn",
+            //     "hideMethod": "fadeOut",
+            //     "tapToDismiss": false
+            // }
+
+        })
+    </script>
+
 </body>
 
 </html>

@@ -8,7 +8,7 @@
                 <div class="card-header">Admin Login</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.otp') }}">
+                    <form method="POST" action="{{ route('admin.two-step-otp') }}">
                         @csrf
 
                         <div class="row mb-3">

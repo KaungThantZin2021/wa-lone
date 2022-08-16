@@ -12,8 +12,8 @@
                     <form method="POST" action="{{ route('admin.login') }}">
                         @csrf
 
-                        <input type="hidden" class="form-control text-light @error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="email">
-                        <input type="hidden" class="form-control text-light @error('password') is-invalid @enderror" name="password" value="{{ $session->password }}" required autocomplete="current-password">
+                        <input type="hidden" class="form-control text-light @error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="off">
+                        <input type="hidden" class="form-control text-light @error('password') is-invalid @enderror" name="password" value="{{ $session->password }}" required autocomplete="off">
 
                         @error('email')
                                     <span class="invalid-feedback" role="alert">

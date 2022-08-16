@@ -17,8 +17,8 @@ Route::name('admin.')
         ->namespace('App\Http\Controllers\Backend\Auth')
         ->group(function () {
             Route::get('/login', 'AdminLoginController@showLoginForm')->name('login');
-            Route::post('/otp', 'AdminLoginController@showOtpForm')->name('otp');
-            // Route::get('/otp', 'AdminLoginController@showOtpForm')->name('otp');
+            Route::post('/two-step-otp', 'AdminLoginController@twoStepOtp')->name('two-step-otp');
+            Route::get('/otp', 'AdminLoginController@showOtpForm')->name('otp');
             Route::post('/login', 'AdminLoginController@login')->name('login');
             Route::post('/logout', 'AdminLoginController@logout')->name('logout');
         });

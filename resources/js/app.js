@@ -14,3 +14,6 @@ import 'datatables.net-buttons/js/buttons.colVis';
 import 'datatables.net-buttons/js/buttons.html5';
 import 'datatables.net-buttons/js/buttons.print';
 
+import toastr from 'toastr';
+window.toastr = toastr;
+
