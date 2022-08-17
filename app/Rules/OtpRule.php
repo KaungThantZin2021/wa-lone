@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\OTPCode;
 use Illuminate\Contracts\Validation\Rule;
 
 class OtpRule implements Rule
@@ -25,7 +26,9 @@ class OtpRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $value == 123123;
+        $session = (object) session()->get(config('otp.key'));
+        $otp = OTPCode::latestOtpWithEmail($session->email);
+        return $value == $otp;
     }
 
     /**
