@@ -112,6 +112,8 @@ class AdminLoginController extends Controller
                 $otp = MessageService::otpGenerate();
                 MessageService::otpStore($request->email, $otp);
 
+                MessageService::sendEmail($request->email, $otp);
+
                 session()->put(config('otp.key'), [
                     'email' => $admin_user->email,
                     'password' => $request->password
