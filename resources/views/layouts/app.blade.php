@@ -21,7 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
-    {{-- Corona Template --}}
+    <!-- Corona Template -->
     <!-- plugins:css -->
     <link rel="stylesheet" href={{ asset('backend/assets/vendors/mdi/css/materialdesignicons.min.css') }}>
     <link rel="stylesheet" href={{ asset('backend/assets/vendors/css/vendor.bundle.base.css') }}>
@@ -38,7 +38,7 @@
     <link rel="stylesheet" href={{ asset('backend/assets/css/style.css') }}>
     <!-- End layout styles -->
     <link rel="shortcut icon" href={{ asset('backend/assets/images/favicon.png') }} />
-    {{--End Corona Template --}}
+    <!-- End Corona Template -->
 
 </head>
 
@@ -53,7 +53,7 @@
         </main>
     </div>
 
-    {{-- Corona Template --}}
+    <!-- Corona Template -->
     <!-- plugins:js -->
     <script src={{ asset('backend/assets/vendors/js/vendor.bundle.base.js') }}></script>
     <!-- endinject -->
@@ -74,10 +74,7 @@
     <!-- Custom js for this page -->
     <script src={{ asset('backend/assets/js/dashboard.js') }}></script>
     <!-- End custom js for this page -->
-    {{--End Corona Template --}}
-
-    {{-- <script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.1.0/dist/flasher.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher-toastr@1.1.0/dist/flasher-toastr.min.js"></script> --}}
+    <!-- End Corona Template -->
 
     <script>
         $(() => {
