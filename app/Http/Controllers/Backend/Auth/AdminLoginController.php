@@ -70,6 +70,13 @@ class AdminLoginController extends Controller
         
         $otp = OTPCode::latestOtpWithEmail($session->email);
 
+        $now = Carbon::now()->timestamp;
+        $expire_at = OTPCode::where('email', $session->email)->first()->expire_at;
+
+        if ($expire_at < $now) {
+            return redirect()->back()->with('error', 'OTP was expired. To get new OTP again, click "Resend OTP".');
+        }
+
         if ($request->otp != $otp) {
             return redirect()->back()->with('error', 'OTP doesn\'t match.');
         }

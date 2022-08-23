@@ -47,6 +47,8 @@
                                     {{ __('Confirm OTP') }}
                                 </button>
 
+                                <a href="" class="btn btn-outline-primary disabled">Resend OTP <span id="" class="countdown text-light"></span></a>
+
                                 {{-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
@@ -60,4 +62,32 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $(() => {
+        var timer2 = "05:00";
+        var interval = setInterval(function() {
+
+            var timer = timer2.split(':');
+            //by parsing integer, I avoid all extra string processing
+            var minutes = parseInt(timer[0], 10);
+            var seconds = parseInt(timer[1], 10);
+            --seconds;
+            minutes = (seconds < 0) ? --minutes : minutes;
+            if (minutes < 0) clearInterval(interval);
+            seconds = (seconds < 0) ? 59 : seconds;
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+            //minutes = (minutes < 10) ?  minutes : minutes;
+            $('.countdown').html(minutes + ':' + seconds);
+            timer2 = minutes + ':' + seconds;
+
+        }, 1000);
+
+        var x = $('.countdown').text();
+
+        console.log(x);
+    });
+</script>
 @endsection
