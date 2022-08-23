@@ -12,6 +12,8 @@ class OTPMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $otp;
+
+    protected $from_email;
     /**
      * Create a new message instance.
      *
@@ -20,6 +22,7 @@ class OTPMail extends Mailable
     public function __construct($otp)
     {
         $this->otp = $otp;
+        $this->from_email = config('mail.from.address');
     }
 
     /**
@@ -29,7 +32,8 @@ class OTPMail extends Mailable
      */
     public function build()
     {
-        return $this->from('walone@gmail.com')
+        return $this->subject(config('app.name').'Wa Lone OTP Mail')
+                    ->from($this->from_email)
                     ->view('backend.admin.mails.otp_email')
                     ->with([
                         'otp' => $this->otp

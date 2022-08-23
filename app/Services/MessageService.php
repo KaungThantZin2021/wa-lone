@@ -5,6 +5,7 @@ namespace App\Services;
 use Carbon\Carbon;
 use App\Mail\OTPMail;
 use App\Models\OTPCode;
+use App\Jobs\OTPMailJob;
 use Illuminate\Support\Facades\Mail;
 
 class  MessageService
@@ -29,7 +30,12 @@ class  MessageService
 
     public static function sendEmail($to_email, $otp)
     {
-        Mail::to($to_email)->send(new OTPMail($otp));
+        $email_data = [
+            'to_email' => $to_email,
+            'otp' => $otp
+        ];
+
+        OTPMailJob::dispatch($email_data);
 
         return 'A message has been sent to Mailtrap!';
     }
