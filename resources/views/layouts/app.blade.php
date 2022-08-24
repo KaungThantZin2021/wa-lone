@@ -77,8 +77,13 @@
     <!-- End Corona Template -->
 
     <script>
-        $(() => {
-
+        $(() => {            
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            
             if ("{{ session()->has('error') }}") {
                 toastr.error("{{ session()->get('error') }}");
                 // toastr.options.progressBar = true;
@@ -105,6 +110,8 @@
 
         })
     </script>
+
+    @yield('script')
 
 </body>
 

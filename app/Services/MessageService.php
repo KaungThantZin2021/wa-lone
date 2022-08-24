@@ -22,7 +22,7 @@ class  MessageService
         OTPCode::create([
             'email' => $email,
             'otp' => $otp,
-            'expire_at' => Carbon::now()->addMinutes(5)->timestamp
+            'expire_at' => Carbon::now()->addMinutes(1)->timestamp
         ]);
         
         return;

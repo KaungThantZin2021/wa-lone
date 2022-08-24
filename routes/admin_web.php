@@ -19,6 +19,7 @@ Route::name('admin.')
             Route::get('/login', 'AdminLoginController@showLoginForm')->name('login');
             Route::post('/two-step-otp', 'AdminLoginController@twoStepOtp')->name('two-step-otp');
             Route::get('/otp', 'AdminLoginController@showOtpForm')->name('otp');
+            Route::post('/resend-otp', 'AdminLoginController@resendOtp')->name('resend-otp');
             Route::post('/login', 'AdminLoginController@login')->name('login');
             Route::post('/logout', 'AdminLoginController@logout')->name('logout');
         });
