@@ -2,10 +2,11 @@
 
 namespace App\Rules;
 
+use Carbon\Carbon;
 use App\Models\OTPCode;
 use Illuminate\Contracts\Validation\Rule;
 
-class OtpRule implements Rule
+class OtpExpireCheckRule implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,9 +27,10 @@ class OtpRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $session = (object) session()->get(config('otp.key'));
-        $otp = OTPCode::latestOtp($session);
-        return $value == $otp;
+        $now = Carbon::now()->timestamp;
+        $expire_at = OTPCode::where('otp', $value)->first()->expire_at;
+
+        return $expire_at >= $now;
     }
 
     /**
@@ -38,6 +40,6 @@ class OtpRule implements Rule
      */
     public function message()
     {
-        return 'OTP doesn\'t match. Check your OTP code!';
+        return 'OTP was expired. To get new OTP again, click "Resend OTP".';
     }
 }

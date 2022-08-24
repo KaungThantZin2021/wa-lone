@@ -47,7 +47,7 @@
                                     {{ __('Confirm OTP') }}
                                 </button>
 
-                                <a href="" class="btn btn-outline-primary disabled">Resend OTP <span id="" class="countdown text-light"></span></a>
+                                <a href="javascript:void[0]" class="btn btn-outline-primary resend-otp-btn">Resend OTP <span id="" class="countdown text-light"></span></a>
 
                                 {{-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -85,9 +85,17 @@
 
         }, 1000);
 
-        var x = $('.countdown').text();
-
-        console.log(x);
+        $('.resend-otp-btn').click(function () {
+           $.post("{{ route('admin.resend-otp') }}")
+            .done(function (res) {
+                if (res.result == 1) {
+                    toastr.success(res.message);
+                }
+            })
+            .fail(function (error) {
+                toastr.error("Something wrong!");
+            });
+        });
     });
 </script>
 @endsection

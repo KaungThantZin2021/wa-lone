@@ -7,6 +7,7 @@ use App\Rules\OtpRule;
 use App\Models\OTPCode;
 use App\Models\AdminUser;
 use Illuminate\Http\Request;
+use App\Rules\OtpExpireCheckRule;
 use App\Services\MessageService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -63,19 +64,12 @@ class AdminLoginController extends Controller
         $this->validateLogin($request);
         
         $request->validate([
-            'otp' => ['required', 'numeric', 'digits:6', new OtpRule]
+            'otp' => ['required', 'numeric', 'digits:6', new OtpRule, new OtpExpireCheckRule]
         ]);
         
         $session = $this->getSession();
         
-        $otp = OTPCode::latestOtpWithEmail($session->email);
-
-        $now = Carbon::now()->timestamp;
-        $expire_at = OTPCode::where('email', $session->email)->first()->expire_at;
-
-        if ($expire_at < $now) {
-            return redirect()->back()->with('error', 'OTP was expired. To get new OTP again, click "Resend OTP".');
-        }
+        $otp = OTPCode::latestOtp($session);
 
         if ($request->otp != $otp) {
             return redirect()->back()->with('error', 'OTP doesn\'t match.');
@@ -118,12 +112,12 @@ class AdminLoginController extends Controller
                 
                 $otp = MessageService::otpGenerate();
                 MessageService::otpStore($request->email, $otp);
-
                 MessageService::sendEmail($request->email, $otp);
 
                 session()->put(config('otp.key'), [
                     'email' => $admin_user->email,
-                    'password' => $request->password
+                    'password' => $request->password,
+                    'otp' => $otp
                 ]);
     
                 return redirect()->route('admin.otp');
@@ -137,6 +131,28 @@ class AdminLoginController extends Controller
         $session = $this->getSession();
 
         return view('backend.auth.admin_otp', compact('session'));
+    }
+
+    public function resendOtp()
+    {
+        $this->deleteOtp();
+
+        $session = $this->getSession();
+
+        $otp = MessageService::otpGenerate();
+        MessageService::otpStore($session->email, $otp);
+        MessageService::sendEmail($session->email, $otp);
+
+        session()->put(config('otp.key'), [
+            'email' => $session->email,
+            'password' => $session->password,
+            'otp' => $otp
+        ]);
+
+        return response()->json([
+            'result' => 1,
+            'message' => 'We sent a new OTP email. Please Check Your email.'
+        ]);
     }
 
     protected function authenticated(Request $request, $user)
@@ -155,6 +171,12 @@ class AdminLoginController extends Controller
     {
         $session = $this->getSession();
         
-        OTPCode::where('email', $session->email)->latest()->first()->delete();
+        $otp_code = OTPCode::where('email', $session->email)->where('otp', $session->otp)->latest()->first();
+
+        if ($otp_code) {
+            $otp_code->delete();
+        }
+
+        return;
     }
 }
