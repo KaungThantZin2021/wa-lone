@@ -1,6 +1,6 @@
 @extends('backend.admin.layouts.app')
 @section('title', 'Create User')
-@section('user-active', 'active')
+@section('user-active', 'nav-active')
 
 @section('content')
     <div>
@@ -49,4 +49,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    
 @endsection

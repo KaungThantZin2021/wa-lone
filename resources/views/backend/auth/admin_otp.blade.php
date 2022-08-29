@@ -1,62 +1,50 @@
 @extends('layouts.app')
-
+@section('title', config('app.name', 'Wa Lone').' Admin Login OTP')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">OTP (One Time Password)</div>
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                <div class="col-md-4 col-sm-12">
+                    <h1 class="text-center">{{ config('app.name') }}</h1>
+                </div>
+                <div class="col-md-8 col-sm-12 card col-lg-4 mx-auto">
+                    <div class="card-body px-5 py-5">
+                        <h3 class="card-title text-left mb-3">Admin Login OTP</h3>
+                        <p class="text-success">We sent OTP code to <a href="https://accounts.google.com" target="_blank">{{ $session->email }}</a>. Please check your <a href="https://accounts.google.com" target="_blank">email</a>.</p>
+                        <form method="POST" action="{{ route('admin.login') }}">
+                            @csrf
 
-                <div class="card-body">
+                            <input type="hidden" class="form-control text-light @error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="off">
+                            <input type="hidden" class="form-control text-light @error('password') is-invalid @enderror" name="password" value="{{ $session->password }}" required autocomplete="off">
 
-                    <form method="POST" action="{{ route('admin.login') }}">
-                        @csrf
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
-                        <input type="hidden" class="form-control text-light @error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="off">
-                        <input type="hidden" class="form-control text-light @error('password') is-invalid @enderror" name="password" value="{{ $session->password }}" required autocomplete="off">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
-                        @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                        <div class="row mb-3">
-                            <label for="otp" class="col-md-4 col-form-label text-md-end">OTP</label>
-
-                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label>OTP (One Time Password) *</label>
                                 <input id="otp" type="number" class="form-control text-center text-light @error('otp') is-invalid @enderror" name="otp" value="{{ old('otp') }}" autocomplete="off" placeholder="______" autofocus>
-
                                 @error('otp')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm OTP') }}
-                                </button>
-
-                                <a href="javascript:void[0]" class="btn btn-outline-primary resend-otp-btn">Resend OTP <span id="" class="countdown text-light"></span></a>
-
-                                {{-- @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif --}}
-                            </div>
-                        </div>
-                    </form>
+                            <div class="d-flex">
+                                <button type="submit" class="btn btn-primary mr-2 col">Confirm</button>
+                                <a href="javascript:void[0]" class="btn btn-outline-primary resend-otp-btn col disabled">Resend OTP <span id="" class="countdown text-light"></span></a>
+                              </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

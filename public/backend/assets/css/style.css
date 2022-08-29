@@ -20195,7 +20195,7 @@ div.tagsinput {
 /* === Landing screens === */
 /* Auth */
 .auth.login-bg {
-  background: url("../images/auth/Login_bg.jpg");
+  background: url("../images/auth/lockscreen-bg.jpg");
   background-size: cover; }
 
 .auth .login-half-bg {
@@ -20734,10 +20734,11 @@ div.tagsinput {
         .sidebar .nav .nav-item .nav-link .badge {
           margin-right: auto;
           margin-left: 1rem; }
-      .sidebar .nav .nav-item.active > .nav-link {
+      /* .sidebar .nav .nav-item.active > .nav-link {
         background: #0f1015;
-        position: relative; }
-        .sidebar .nav .nav-item.active > .nav-link:before {
+        position: relative; 
+      } */
+        /* .sidebar .nav .nav-item.active > .nav-link:before {
           content: "";
           width: 3px;
           height: 100%;
@@ -20745,11 +20746,14 @@ div.tagsinput {
           display: inline-block;
           position: absolute;
           left: 0;
-          top: 0; }
-        .sidebar .nav .nav-item.active > .nav-link .menu-title {
-          color: #ffffff; }
+          top: 0; 
+        } */
+        .sidebar .nav .nav-item.nav-active > .nav-link .menu-title {
+          color: #ffffff; 
+        }
         .sidebar .nav .nav-item.active > .nav-link i {
-          color: #ffffff; }
+          color: #ffffff; 
+        }
       .sidebar .nav .nav-item.nav-profile .nav-link {
         height: auto;
         line-height: 1;
@@ -20912,15 +20916,30 @@ div.tagsinput {
       background: #0f1015;
       color: #ffffff; }
     .sidebar .nav .menu-items:nth-child(5n+1) .nav-link .menu-icon i {
-      color: #0090e7; }
+      /* color: #0090e7;  */
+      color: #fff;
+      /* color: #0090e7; */
+    }
     .sidebar .nav .menu-items:nth-child(5n+2) .nav-link .menu-icon i {
-      color: #00d25b; }
+      /* color: #00d25b;  */
+      color: #fff;
+      /* color: #0090e7; */
+    }
     .sidebar .nav .menu-items:nth-child(5n+3) .nav-link .menu-icon i {
-      color: #8f5fe8; }
+      /* color: #8f5fe8;  */
+      color: #fff;
+      /* color: #0090e7; */
+    }
     .sidebar .nav .menu-items:nth-child(5n+4) .nav-link .menu-icon i {
-      color: #ffab00; }
+      /* color: #ffab00;  */
+      color: #fff;
+      /* color: #0090e7; */
+    }
     .sidebar .nav .menu-items:nth-child(5n+5) .nav-link .menu-icon i {
-      color: #fc424a; }
+      /* color: #fc424a;  */
+      color: #fff;
+      /* color: #0090e7; */
+    }
 
 /* style for off-canvas menu*/
 @media screen and (max-width: 991px) {

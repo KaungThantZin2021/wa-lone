@@ -35,4 +35,7 @@ Route::name('admin.')
         Route::resource('/user', 'UserController');
         // End User
 
+        //Admin User
+        Route::resource('/admin-user', 'AdminUserController');
+        // End Admin User
 });

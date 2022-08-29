@@ -12,9 +12,13 @@ class  MessageService
 {
     public static function otpGenerate()
     {
-        $otp = mt_rand(100000, 999999);
+        if (env('APP_ENV') == 'local') {
+            return 123123;
+        } 
 
-        return $otp;
+        if (env('APP_ENV') == 'production') {
+            return mt_rand(100000, 999999);
+        }
     }
 
     public static function otpStore($email, $otp)
@@ -22,7 +26,7 @@ class  MessageService
         OTPCode::create([
             'email' => $email,
             'otp' => $otp,
-            'expire_at' => Carbon::now()->addMinutes(1)->timestamp
+            'expire_at' => Carbon::now()->addMinutes(5)->timestamp
         ]);
         
         return;

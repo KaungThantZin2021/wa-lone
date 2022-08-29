@@ -1,13 +1,13 @@
 @extends('backend.admin.layouts.app')
-@section('title', 'Users')
-@section('user-active', 'nav-active')
+@section('title', 'Admin Users')
+@section('admin-user-active', 'nav-active')
 
 @section('content')
 <div>
     <div class="page-header">
         <div>
             @include('backend.components.buttons.back_button')
-            <a href="{{ route('admin.user.create') }}" class="btn btn-outline-success"><i class="fas fa-user-plus"></i> Create User</a>
+            <a href="{{ route('admin.admin-user.create') }}" class="btn btn-outline-success"><i class="fas fa-user-plus"></i> Create User</a>
         </div>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -20,7 +20,7 @@
         <div class="grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Users</h4>
+                    <h4 class="card-title">Admin Users</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="users-table">
                             <thead>
@@ -44,7 +44,7 @@
 
 @section('script')
 
-<script>
+{{-- <script>
     $(() => {
         var table = $('#users-table').DataTable({
             processing: true,
@@ -85,6 +85,6 @@
             ]
         });
     });
-</script>
+</script> --}}
 
 @endsection

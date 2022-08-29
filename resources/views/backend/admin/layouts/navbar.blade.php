@@ -78,7 +78,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="assets/images/faces/face4.jpg" alt="image"
+                            <img src="{{ asset('backend/assets/images/faces/face4.jpg') }}" alt="image"
                                 class="rounded-circle profile-pic">
                         </div>
                         <div class="preview-item-content">
@@ -89,7 +89,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="assets/images/faces/face2.jpg" alt="image"
+                            <img src="{{ asset('backend/assets/images/faces/face2.jpg') }}" alt="image"
                                 class="rounded-circle profile-pic">
                         </div>
                         <div class="preview-item-content">
@@ -100,7 +100,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="assets/images/faces/face3.jpg" alt="image"
+                            <img src="{{ asset('backend/assets/images/faces/face3.jpg') }}" alt="image"
                                 class="rounded-circle profile-pic">
                         </div>
                         <div class="preview-item-content">
