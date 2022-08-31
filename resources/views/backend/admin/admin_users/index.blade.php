@@ -22,17 +22,43 @@
                 <div class="card-body">
                     <h4 class="card-title">Admin Users</h4>
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="users-table">
+                        <table class="table table-bordered" id="admin-users-table" style="width:100%;">
                             <thead>
                                 <tr class="bg-primary">
-                                    <th class="text-light">ID</th>
+                                    <th class="text-light"></th>
                                     <th class="text-light">Name</th>
+                                    <th class="text-light">Phone</th>
                                     <th class="text-light">Email</th>
+                                    <th class="text-light">NRC Number</th>
+                                    <th class="text-light">Gender</th>
+                                    <th class="text-light">Profile Photo</th>
+                                    <th class="text-light">IP</th>
+                                    <th class="text-light">Device</th>
+                                    <th class="text-light">Browser</th>
+                                    <th class="text-light">Platform</th>
+                                    <th class="text-light">Login At</th>
                                     <th class="text-light">Created At</th>
                                     <th class="text-light">Updated At</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                                {{-- <tr>
+                                    <td></td>
+                                    <td>fdfdf</td>
+                                    <td>dfdfdfdf</td>
+                                    <td>dhsdf</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr> --}}
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -44,9 +70,9 @@
 
 @section('script')
 
-{{-- <script>
+<script>
     $(() => {
-        var table = $('#users-table').DataTable({
+        var table = $('#admin-users-table').DataTable({
             processing: true,
             serverSide: true,
             mark: true,
@@ -75,16 +101,101 @@
                 [10, 25, 50, 100],
                 ['10 rows', '25 rows', '50 rows', '100 rows']
             ],
-            ajax: "{{ route('admin.user.index') }}",
+            ajax: "{{ route('admin.admin-user.index') }}",
             columns: [
-                { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },
-                { data: 'email', name: 'email' },
-                { data: 'created_at', name: 'created_at' },
-                { data: 'updated_at', name: 'updated_at' }
+                { 
+                    data: 'plus-icon', 
+                    name: 'plus-icon',
+                    defaultContent: null
+                },
+                { 
+                    data: 'name', 
+                    name: 'name',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'email',
+                    name: 'email',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'phone',
+                    name: 'phone',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'nrc_no',
+                    name: 'nrc_no',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'gender',
+                    name: 'gender',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'profile_photo',
+                    name: 'profile_photo',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'ip',
+                    name: 'ip',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'device',
+                    name: 'device',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'browser',
+                    name: 'browser',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'platform',
+                    name: 'platform',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'login_at',
+                    name: 'login_at',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'created_at',
+                    name: 'created_at',
+                    class: 'text-secondary'
+                },
+                { 
+                    data: 'updated_at',
+                    name: 'updated_at',
+                    class: 'text-secondary'
+                }
+            ],
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: 0
+                }
+            },
+            columnDefs: [{
+                    targets: "no-sort",
+                    orderable: false
+                },
+                {
+                    className: "control",
+                    orderable: false,
+                    targets: 0
+                },
+                {
+                    targets: "hidden",
+                    visible: false
+                }
             ]
         });
     });
-</script> --}}
+</script>
 
 @endsection

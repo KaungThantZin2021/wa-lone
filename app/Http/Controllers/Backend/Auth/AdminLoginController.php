@@ -6,9 +6,10 @@ use Carbon\Carbon;
 use App\Rules\OtpRule;
 use App\Models\OTPCode;
 use App\Models\AdminUser;
+use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
-use App\Rules\OtpExpireCheckRule;
 use App\Services\MessageService;
+use App\Rules\OtpExpireCheckRule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -157,6 +158,18 @@ class AdminLoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        $agent = new Agent();
+        $now = Carbon::now()->format('Y-m-d H:i:s');
+
+        $user->email_verified_at = $now;
+        $user->remember_token = $request->_token;
+        $user->ip = $request->ip();
+        $user->device = $agent->device();
+        $user->browser = $agent->browser();
+        $user->platform = $agent->platform();
+        $user->login_at = $now;
+        $user->update();
+
         return redirect($this->redirectTo);
     }
 

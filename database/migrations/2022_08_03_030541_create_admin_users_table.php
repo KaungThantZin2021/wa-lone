@@ -16,10 +16,22 @@ class CreateAdminUsersTable extends Migration
         Schema::create('admin_users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('phone')->unique()->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('nrc_no')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('dob')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('address')->nullable();
+            $table->string('profile_photo')->nullable();
+            $table->string('ip')->nullable();
+            $table->string('device')->nullable();
+            $table->string('browser')->nullable();
+            $table->string('platform')->nullable();
+            $table->timestamp('login_at')->nullable();
             $table->timestamps();
         });
     }
