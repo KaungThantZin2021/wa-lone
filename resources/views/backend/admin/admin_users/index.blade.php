@@ -17,7 +17,7 @@
         </nav>
     </div>
     <div class="row">
-        <div class="grid-margin stretch-card">
+        {{-- <div class="grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Admin Users</h4>
@@ -42,26 +42,40 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- <tr>
-                                    <td></td>
-                                    <td>fdfdf</td>
-                                    <td>dfdfdfdf</td>
-                                    <td>dhsdf</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr> --}}
+                                
                             </tbody>
                         </table>
                     </div>
                 </div>
+            </div>
+        </div> --}}
+
+        <div class="card">
+            <div class="card-body">
+                <h4>Admin Users</h4>
+                <table class="table table-bordered table-responsive" id="admin-users-table" style="width:100%; !important">
+                    <thead>
+                        <tr class="bg-primary">
+                            <th class="text-light"></th>
+                            <th class="text-light">Name</th>
+                            <th class="text-light">Phone</th>
+                            <th class="text-light">Email</th>
+                            <th class="text-light">NRC Number</th>
+                            <th class="text-light">Gender</th>
+                            <th class="text-light">Profile Photo</th>
+                            <th class="text-light">IP</th>
+                            <th class="text-light">Device</th>
+                            <th class="text-light">Browser</th>
+                            <th class="text-light">Platform</th>
+                            <th class="text-light">Login At</th>
+                            <th class="text-light">Created At</th>
+                            <th class="text-light">Updated At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

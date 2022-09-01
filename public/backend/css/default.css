@@ -24,7 +24,7 @@ div.dataTables_wrapper div.dataTables_filter input {
     color: whitesmoke !important;
 }
 
-#users-table_filter {
+.dataTables_filter {
     float: right !important;
 }
 
