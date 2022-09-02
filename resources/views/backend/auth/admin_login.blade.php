@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.layouts.app')
 @section('title', config('app.name', 'Wa Lone').' Admin Login')
 @section('content')
 <div class="container-scroller">

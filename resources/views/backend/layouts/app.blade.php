@@ -44,7 +44,7 @@
 
 <body>
     <div id="app">
-        @if (auth()->user())
+        @if (auth()->guard('admin_user')->check())
             @include('layouts.navbar')
         @endif
 
