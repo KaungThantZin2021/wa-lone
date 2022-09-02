@@ -7,26 +7,8 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./resources/frontend/assets/js/app.js":
-/*!*********************************************!*\
-  !*** ./resources/frontend/assets/js/app.js ***!
-  \*********************************************/
-/***/ (() => {
-
-eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9mcm9udGVuZC9hc3NldHMvanMvYXBwLmpzPzBiMzYiXSwic291cmNlc0NvbnRlbnQiOlsiIl0sIm1hcHBpbmdzIjoiIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2Zyb250ZW5kL2Fzc2V0cy9qcy9hcHAuanMuanMiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/frontend/assets/js/app.js\n");
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
+/******/ 	"use strict";
 /******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./resources/frontend/assets/js/app.js"]();
 /******/ 	
 /******/ })()
 ;
