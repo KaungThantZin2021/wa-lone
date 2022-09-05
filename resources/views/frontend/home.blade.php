@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 @section('content')
   <div class="container">
-    <div class="row p-3">
+    <div class="row">
       <div class="col-md-8 col-sm-12">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">

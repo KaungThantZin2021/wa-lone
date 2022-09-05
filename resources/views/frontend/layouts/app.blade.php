@@ -13,18 +13,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
-<style>
+{{-- <style>
     body {
         margin: 0 !important;
         padding: 0 !important;
     }
-</style>
+</style> --}}
 
-<body style="width: 100% !important">
-    <div style="width: 100% !important">
-        <div class="row">
+<body>
+    <div class="container-fluid">
+        <div class="row bg-primary">
             <div class="col-md-12">
-                <div class="bg-primary d-flex justify-content-between p-0 m-0">
+                <div class=" d-flex justify-content-between p-0 m-0">
                     <div class="py-2 px-4">
                         <div class="d-flex justify-content-center">
                             <div class="me-2">
@@ -54,7 +54,7 @@
                     </div> --}}
 
                     <div class="py-2 px-4">
-                        @if (!auth()->guard('web')->check())
+                        @if (auth()->guard('web')->check())
                             <div class="d-flex justify-content-center p-0 m-0">
                                 <div class="me-2 my-0">
                                     <img class="rounded-circle"
@@ -72,10 +72,10 @@
                                     </ul>
                                 </div>
                             </div>
-                        @else
+                        @elseif (!auth()->guard('web')->check())
                             <div class="p-0 m-0">
-                                <button class="btn btn-sm btn-outline-light m-0">Sign In</button>
-                                <button class="btn btn-sm btn-outline-light m-0">Register</button>
+                                <a href="" class="btn btn-sm btn-outline-light m-0">Login In</a>
+                                <a href="{{ route('register') }}" class="btn btn-sm btn-outline-light m-0">Register</a>
                             </div>
                         @endif
                     </div>
@@ -126,7 +126,7 @@
             </div>
         </div>
 
-        <div class="row m-0 border-bottom border-1 py-2">
+        <div class="row m-0 border-bottom border-1 py-1">
             <div class="col-md-2"></div>
             <div class="col-md-8 col-sm-12">
                 <div class="m-0 p-2 d-flex justify-content-evenly">
@@ -140,7 +140,10 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-        @yield('content')
+
+        <div class="my-3">
+            @yield('content')
+        </div>
     </div>
 
 
