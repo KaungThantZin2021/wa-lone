@@ -74,7 +74,7 @@
                             </div>
                         @elseif (!auth()->guard('web')->check())
                             <div class="p-0 m-0">
-                                <a href="" class="btn btn-sm btn-outline-light m-0">Login In</a>
+                                <a href="{{ route('login') }}" class="btn btn-sm btn-outline-light m-0">Login In</a>
                                 <a href="{{ route('register') }}" class="btn btn-sm btn-outline-light m-0">Register</a>
                             </div>
                         @endif
@@ -130,7 +130,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-8 col-sm-12">
                 <div class="m-0 p-2 d-flex justify-content-evenly">
-                    <a href="" class="text-decoration-none">Home</a>
+                    <a href="/" class="text-decoration-none">Home</a>
                     <a href="" class="text-decoration-none text-dark">Shops</a>
                     <a href="" class="text-decoration-none text-dark">accessories</a>
                     <a href="" class="text-decoration-none text-dark">Blogs</a>

@@ -6,14 +6,10 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-primary">
-                    Register
+                    Login
                 </div>
                 <div class="card-body">
                     <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email</label>
                             <input type="email" class="form-control" id="exampleInputEmail1">
@@ -21,10 +17,6 @@
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="confirm_password" class="form-control" id="confirmPassword">
                         </div>
                         <div class="row">
                             <div class="col-6 d-grid gap-1">
