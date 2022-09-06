@@ -19,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
 Route::get('/register', [App\Http\Controllers\Frontend\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [App\Http\Controllers\Frontend\Auth\RegisterController::class, 'register'])->name('register');
+
 Route::get('/login', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'login'])->name('login');
 
 // Auth::routes();
 

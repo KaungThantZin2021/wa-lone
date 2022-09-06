@@ -9,18 +9,19 @@
                     Login
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" id="email">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="password">
                         </div>
                         <div class="row">
                             <div class="col-6 d-grid gap-1">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                             <div class="col-6 d-grid gap-1">
                                 <a href="/" class="btn btn-secondary">Cancel</a>
