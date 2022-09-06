@@ -23,6 +23,7 @@ Route::post('/register', [App\Http\Controllers\Frontend\Auth\RegisterController:
 
 Route::get('/login', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'login'])->name('login');
+Route::post('/logout', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'logout'])->name('logout');
 
 // Auth::routes();
 

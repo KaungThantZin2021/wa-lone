@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ config('app.name') }}</title>
 
     {{-- <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}"> --}}
@@ -64,11 +68,18 @@
                                 <div class="py-1">
                                     <p class="text-light m-0 dropdown-toggle" id="dropdownMenuButton1"
                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                        Kaung Thant Zin
+                                        {{ auth()->user()->name }}
                                     </p>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">View Profile</a></li>
-                                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-user"></i> View Profile</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item text-danger" id="logout" href=""><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                        </li>
+                                        <form method="POST" action="{{ route('logout') }}" id="logoutForm">
+                                            @csrf
+                                        </form>
                                     </ul>
                                 </div>
                             </div>
@@ -151,6 +162,21 @@
     {{-- <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script> --}}
 
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script>
+        $(() => {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).on('click', '#logout', function (e) {
+                e.preventDefault();
+                $('#logoutForm').submit();
+            })
+        });
+    </script>
 </body>
 
 </html>

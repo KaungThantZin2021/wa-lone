@@ -36,7 +36,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::ADMIN;
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     // protected $otp = env('OTP_KEY', 'otp');
     
@@ -60,137 +60,137 @@ class LoginController extends Controller
         return view('frontend.auth.login');
     }
 
-    public function login(Request $request)
-    {
-        dd($request->all());
-        $this->validateLogin($request);
+    // public function login(Request $request)
+    // {
+    //     dd($request->all());
+    //     $this->validateLogin($request);
         
-        $request->validate([
-            'otp' => ['required', 'numeric', 'digits:6', new OtpRule, new OtpExpireCheckRule]
-        ]);
+    //     $request->validate([
+    //         'otp' => ['required', 'numeric', 'digits:6', new OtpRule, new OtpExpireCheckRule]
+    //     ]);
         
-        $session = $this->getSession();
+    //     $session = $this->getSession();
         
-        $otp = OTPCode::latestOtp($session);
+    //     $otp = OTPCode::latestOtp($session);
 
-        if ($request->otp != $otp) {
-            return redirect()->back()->with('error', 'OTP doesn\'t match.');
-        }
+    //     if ($request->otp != $otp) {
+    //         return redirect()->back()->with('error', 'OTP doesn\'t match.');
+    //     }
 
-        if ($request->email != $session->email || $request->password != $session->password) {
-            return redirect()->back()->with('error', 'Invalid Data!');
-        }
+    //     if ($request->email != $session->email || $request->password != $session->password) {
+    //         return redirect()->back()->with('error', 'Invalid Data!');
+    //     }
 
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
+    //     if (method_exists($this, 'hasTooManyLoginAttempts') &&
+    //         $this->hasTooManyLoginAttempts($request)) {
+    //         $this->fireLockoutEvent($request);
 
-            return $this->sendLockoutResponse($request);
-        }
+    //         return $this->sendLockoutResponse($request);
+    //     }
 
-        if ($this->attemptLogin($request)) {
-            if ($request->hasSession()) {
-                $request->session()->put('auth.password_confirmed_at', time());
-            }
+    //     if ($this->attemptLogin($request)) {
+    //         if ($request->hasSession()) {
+    //             $request->session()->put('auth.password_confirmed_at', time());
+    //         }
 
-            $this->deleteOtp();
+    //         $this->deleteOtp();
 
-            return $this->sendLoginResponse($request);
-        }
+    //         return $this->sendLoginResponse($request);
+    //     }
 
-        $this->incrementLoginAttempts($request);
+    //     $this->incrementLoginAttempts($request);
 
-        return $this->sendFailedLoginResponse($request);
-    }
+    //     return $this->sendFailedLoginResponse($request);
+    // }
 
-    public function twoStepOtp(Request $request)
-    {
-        $this->validateLogin($request);
+    // public function twoStepOtp(Request $request)
+    // {
+    //     $this->validateLogin($request);
 
-        $admin_user = AdminUser::where('email', $request->email)->first();
+    //     $admin_user = AdminUser::where('email', $request->email)->first();
 
-        if (!is_null($admin_user)) {
-            if (Hash::check($request->password, $admin_user->password)) {
+    //     if (!is_null($admin_user)) {
+    //         if (Hash::check($request->password, $admin_user->password)) {
                 
-                $otp = MessageService::otpGenerate();
-                MessageService::otpStore($request->email, $otp);
-                MessageService::sendEmail($request->email, $otp);
+    //             $otp = MessageService::otpGenerate();
+    //             MessageService::otpStore($request->email, $otp);
+    //             MessageService::sendEmail($request->email, $otp);
 
-                session()->put(config('otp.key'), [
-                    'email' => $admin_user->email,
-                    'password' => $request->password,
-                    'otp' => $otp
-                ]);
+    //             session()->put(config('otp.key'), [
+    //                 'email' => $admin_user->email,
+    //                 'password' => $request->password,
+    //                 'otp' => $otp
+    //             ]);
     
-                return redirect()->route('admin.otp');
-            }
-        }
-        return redirect()->back()->withError('Credentials doesn\'t match.');
-    }
+    //             return redirect()->route('admin.otp');
+    //         }
+    //     }
+    //     return redirect()->back()->withError('Credentials doesn\'t match.');
+    // }
 
-    public function showOtpForm()
-    {
-        $session = $this->getSession();
+    // public function showOtpForm()
+    // {
+    //     $session = $this->getSession();
 
-        return view('backend.auth.admin_otp', compact('session'));
-    }
+    //     return view('backend.auth.admin_otp', compact('session'));
+    // }
 
-    public function resendOtp()
-    {
-        $this->deleteOtp();
+    // public function resendOtp()
+    // {
+    //     $this->deleteOtp();
 
-        $session = $this->getSession();
+    //     $session = $this->getSession();
 
-        $otp = MessageService::otpGenerate();
-        MessageService::otpStore($session->email, $otp);
-        MessageService::sendEmail($session->email, $otp);
+    //     $otp = MessageService::otpGenerate();
+    //     MessageService::otpStore($session->email, $otp);
+    //     MessageService::sendEmail($session->email, $otp);
 
-        session()->put(config('otp.key'), [
-            'email' => $session->email,
-            'password' => $session->password,
-            'otp' => $otp
-        ]);
+    //     session()->put(config('otp.key'), [
+    //         'email' => $session->email,
+    //         'password' => $session->password,
+    //         'otp' => $otp
+    //     ]);
 
-        return response()->json([
-            'result' => 1,
-            'message' => 'We sent a new OTP email. Please Check Your email.'
-        ]);
-    }
+    //     return response()->json([
+    //         'result' => 1,
+    //         'message' => 'We sent a new OTP email. Please Check Your email.'
+    //     ]);
+    // }
 
-    protected function authenticated(Request $request, $user)
-    {
-        $agent = new Agent();
-        $now = Carbon::now()->format('Y-m-d H:i:s');
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     $agent = new Agent();
+    //     $now = Carbon::now()->format('Y-m-d H:i:s');
 
-        $user->email_verified_at = $now;
-        $user->remember_token = $request->_token;
-        $user->ip = $request->ip();
-        $user->device = $agent->device();
-        $user->browser = $agent->browser();
-        $user->platform = $agent->platform();
-        $user->login_at = $now;
-        $user->update();
+    //     $user->email_verified_at = $now;
+    //     $user->remember_token = $request->_token;
+    //     $user->ip = $request->ip();
+    //     $user->device = $agent->device();
+    //     $user->browser = $agent->browser();
+    //     $user->platform = $agent->platform();
+    //     $user->login_at = $now;
+    //     $user->update();
 
-        return redirect($this->redirectTo);
-    }
+    //     return redirect($this->redirectTo);
+    // }
 
-    protected function getSession()
-    {
-        $session = (object) session()->get(config('otp.key'));
+    // protected function getSession()
+    // {
+    //     $session = (object) session()->get(config('otp.key'));
 
-        return $session;
-    }
+    //     return $session;
+    // }
 
-    protected function deleteOtp()
-    {
-        $session = $this->getSession();
+    // protected function deleteOtp()
+    // {
+    //     $session = $this->getSession();
         
-        $otp_code = OTPCode::where('email', $session->email)->where('otp', $session->otp)->latest()->first();
+    //     $otp_code = OTPCode::where('email', $session->email)->where('otp', $session->otp)->latest()->first();
 
-        if ($otp_code) {
-            $otp_code->delete();
-        }
+    //     if ($otp_code) {
+    //         $otp_code->delete();
+    //     }
 
-        return;
-    }
+    //     return;
+    // }
 }
