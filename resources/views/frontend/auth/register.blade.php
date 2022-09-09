@@ -38,15 +38,15 @@
                             <div class="row @error('gender') is-invalid @enderror">
                                 <div class="col-4 d-grid gap-1">
                                     <input type="radio" name="gender" class="btn-check" id="male" value="male" {{ old('gender') == 'male' ? 'checked' : '' }} autocomplete="off">
-                                    <label class="btn btn-sm btn-outline-secondary @error('gender') is-invalid btn-outline-danger @enderror" for="male"><i class="fas fa-male"></i> Male</label>
+                                    <label class="btn btn-sm btn-outline-secondary @error('gender') btn-outline-danger @enderror" for="male"><i class="fas fa-male"></i> Male</label>
                                 </div>
                                 <div class="col-4 d-grid gap-1">
                                     <input type="radio" name="gender" class="btn-check" id="female" value="female" {{ old('gender') == 'female' ? 'checked' : '' }} autocomplete="off">
-                                    <label class="btn btn-sm btn-outline-secondary @error('gender') is-invalid btn-outline-danger @enderror" for="female"><i class="fas fa-female"></i> Female</label>
+                                    <label class="btn btn-sm btn-outline-secondary @error('gender') btn-outline-danger @enderror" for="female"><i class="fas fa-female"></i> Female</label>
                                 </div>
                                 <div class="col-4 d-grid gap-1">
                                     <input type="radio" name="gender" class="btn-check" id="other" value="other" {{ old('gender') == 'other' ? 'checked' : '' }} autocomplete="off">
-                                    <label class="btn btn-sm btn-outline-secondary @error('gender') is-invalid btn-outline-danger @enderror" for="other"><i class="fas fa-genderless"></i> Other</label>
+                                    <label class="btn btn-sm btn-outline-secondary @error('gender') btn-outline-danger @enderror" for="other"><i class="fas fa-genderless"></i> Other</label>
                                 </div>
                             </div>
                             @error('gender')
