@@ -1,6 +1,9 @@
 @extends('frontend.layouts.app')
 @section('content')
   <div class="container">
+    <h1 class="tw-text-3xl tw-text-red-500 tw-font-bold tw-underline">
+      Hello world!
+    </h1>
     <div class="row">
       <div class="col-md-8 col-sm-12">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

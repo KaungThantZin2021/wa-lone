@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/default.css') }}">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
 
 </head>
 <style>
