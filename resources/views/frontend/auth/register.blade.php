@@ -101,6 +101,9 @@
                     </form>
                 </div>
             </div>
+
+            <p class="text-center my-2">If you have an account, go to <a href="{{ route('login') }}">Login >>>.</a></p>
+
         </div>
         <div class="col-md-4"></div>
     </div>

@@ -59,6 +59,9 @@
                     </form>        
                 </div>
             </div>
+
+            <p class="text-center my-2">If you don't have an account, go to <a href="{{ route('register') }}">Register >>>.</a></p>
+
         </div>
         <div class="col-md-4"></div>
     </div>
