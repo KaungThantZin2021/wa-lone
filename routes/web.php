@@ -28,3 +28,9 @@ Route::post('/logout', [App\Http\Controllers\Frontend\Auth\LoginController::clas
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::namespace('App\Http\Controllers\Frontend\Auth')
+    ->group(function () {
+        Route::get('/auth/{provider}/redirect', 'SocialiteController@provider');
+        Route::get('/auth/{provider}/callback', 'SocialiteController@callback');
+});

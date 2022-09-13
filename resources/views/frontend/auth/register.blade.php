@@ -4,6 +4,24 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
+            <div class="card">
+                <div class="card-header text-primary">
+                    Login with Social Media
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-1">
+                        <a href="/auth/facebook/redirect" class="btn btn-primary"><i class="fab fa-facebook"></i> Register with Facebook</a>
+                    </div>
+
+                    <div class="d-grid gap-1 mt-2">
+                        <a href="/auth/google/redirect" class="btn btn-outline-secondary"><i class="fab fa-google"></i> Register with Google</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-2">
+                <p class="text-muted text-center p-0 m-0">OR</p>
+            </div>
 
             {{-- @include('frontend.layouts.flash') --}}
 
@@ -70,7 +88,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" name="confirm_password" class="form-control" id="confirmPassword">
+                            <input type="password" name="password_confirmation" class="form-control" id="confirmPassword">
                         </div>
                         <div class="row">
                             <div class="col-6 d-grid gap-1">

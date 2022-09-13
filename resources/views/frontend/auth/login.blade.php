@@ -6,6 +6,25 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-primary">
+                    Login with Social Media
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-1">
+                        <a href="/auth/facebook/redirect" class="btn btn-primary"><i class="fab fa-facebook"></i> Login with Facebook</a>
+                    </div>
+
+                    <div class="d-grid gap-1 mt-2">
+                        <a href="/auth/google/redirect" class="btn btn-outline-secondary"><i class="fab fa-google"></i> Login with Google</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-2">
+                <p class="text-muted text-center p-0 m-0">OR</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header text-primary">
                     Login
                 </div>
                 <div class="card-body">
@@ -37,7 +56,7 @@
                                 <a href="/" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
-                    </form>
+                    </form>        
                 </div>
             </div>
         </div>
