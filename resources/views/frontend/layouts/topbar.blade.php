@@ -34,7 +34,7 @@
                     <div class="d-flex justify-content-center p-0 m-0">
                         <div class="me-2 my-0">
                             <img class="rounded-circle"
-                                src="https://cdn.vectorstock.com/i/1000x1000/06/18/male-avatar-profile-picture-vector-10210618.webp"
+                                src="https://ui-avatars.com/api/?format=svg&background=random&name={{ auth()->user()->name }}"
                                 alt="" width="30px" height="30px">
                         </div>
                         <div class="py-1">
@@ -60,7 +60,7 @@
                     </div>
                 @elseif (!auth()->guard('web')->check())
                     <div class="p-0 m-0">
-                        <a href="{{ route('login') }}" class="btn btn-sm {{ Request::is('login') ? 'btn-light' : 'btn-outline-light' }} m-0">Login In</a>
+                        <a href="{{ route('login') }}" class="btn btn-sm {{ Request::is('login') ? 'btn-light' : 'btn-outline-light' }} m-0">Login</a>
                         <a href="{{ route('register') }}" class="btn btn-sm {{ Request::is('register') ? 'btn-light' : 'btn-outline-light' }} m-0">Register</a>
                     </div>
                 @endif
