@@ -20,13 +20,16 @@
 </head>
 <style>
     body {
-        margin: 0 !important;
-        padding: 0 !important;
+        /* margin: 0 !important; */
+        /* padding: 0 !important; */
         background: #eeeeee;
     }
 </style>
 
 <body>
+    <div class="loader container-fluid tw-absolute tw-flex tw-items-center tw-justify-center tw-w-screen tw-h-screen tw-z-10 tw-bg-gray-100">
+        <img src="{{ asset('frontend/images/loader.gif') }}" class="tw-w-24 tw-h-24" alt="">
+    </div>
     <div class="container-fluid">
         
         @include('frontend.layouts.topbar')
@@ -58,7 +61,9 @@
             $(document).on('click', '#logout', function (e) {
                 e.preventDefault();
                 $('#logoutForm').submit();
-            })
+            });
+
+            $('.loader').fadeOut();
         });
     </script>
 </body>

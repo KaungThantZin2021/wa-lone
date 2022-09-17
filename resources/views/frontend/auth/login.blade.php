@@ -10,11 +10,11 @@
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-1">
-                        <a href="/auth/facebook/redirect" class="btn btn-primary"><i class="fab fa-facebook"></i> Login with Facebook</a>
+                        <a href="{{ url('/auth/' . config('socialite.provider.facebook') . '/redirect') }}" class="btn btn-primary"><i class="fab fa-facebook"></i> Login with Facebook</a>
                     </div>
 
                     <div class="d-grid gap-1 mt-2">
-                        <a href="/auth/google/redirect" class="btn btn-outline-secondary"><i class="fab fa-google"></i> Login with Google</a>
+                        <a href="{{ url('/auth/' . config('socialite.provider.google') . '/redirect') }}" class="btn btn-outline-secondary"><i class="fab fa-google"></i> Login with Google</a>
                     </div>
                 </div>
             </div>

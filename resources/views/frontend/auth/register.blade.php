@@ -6,15 +6,15 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-primary">
-                    Login with Social Media
+                    Register with Social Media
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-1">
-                        <a href="/auth/facebook/redirect" class="btn btn-primary"><i class="fab fa-facebook"></i> Register with Facebook</a>
+                        <a href="{{ url('/auth/' . config('socialite.provider.facebook') . '/redirect') }}" class="btn btn-primary"><i class="fab fa-facebook"></i> Register with Facebook</a>
                     </div>
 
                     <div class="d-grid gap-1 mt-2">
-                        <a href="/auth/google/redirect" class="btn btn-outline-secondary"><i class="fab fa-google"></i> Register with Google</a>
+                        <a href="{{ url('/auth/' . config('socialite.provider.google') . '/redirect') }}" class="btn btn-outline-secondary"><i class="fab fa-google"></i> Register with Google</a>
                     </div>
                 </div>
             </div>

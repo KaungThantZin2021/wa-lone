@@ -21,53 +21,26 @@ class SocialiteController extends Controller
         // dd($user);
         // $user->token
 
-        if ($provider == config('socialite.provider.facebook')) {
+        if ($user) {
+            try {
+                $now = Carbon::now()->format('Y-m-d H:i:s');
 
-            if ($user) {
-                try {
-                    $now = Carbon::now()->format('Y-m-d H:i:s');
-                    $user = User::create([
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'email_verified_at' => $now,
-                        'password' => Hash::make($user->name.'@'.$user->id),
-                        'provider_id' => $user->id,
-                        'provider' => config('socialite.provider.facebook'),
-                        // 'remember_token' => $request->_token //is not working
-                    ]);
-    
-                    auth()->login($user);
-    
-                    return redirect()->route('home');
+                $user = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'email_verified_at' => $now,
+                    'password' => Hash::make($user->name.'@'.$user->id),
+                    'provider_id' => $user->id,
+                    'provider' => $provider,
+                    // 'remember_token' => $request->_token //is not working
+                ]);
 
-                } catch (\Throwable $th) {
-                    throw $th;
-                }
-            }
-        }
+                auth()->login($user);
 
-        if ($provider == config('socialite.provider.google')) {
+                return redirect()->route('home');
 
-            if ($user) {
-                try {
-                    $now = Carbon::now()->format('Y-m-d H:i:s');
-                    $user = User::create([
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'email_verified_at' => $now,
-                        'password' => Hash::make($user->name.'@'.$user->id),
-                        'provider_id' => $user->id,
-                        'provider' => config('socialite.provider.google'),
-                        // 'remember_token' => $request->_token //is not working
-                    ]);
-    
-                    auth()->login($user);
-    
-                    return redirect()->route('home');
-
-                } catch (\Throwable $th) {
-                    throw $th;
-                }
+            } catch (\Throwable $th) {
+                throw $th;
             }
         }
     }
