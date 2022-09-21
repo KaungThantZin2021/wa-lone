@@ -6,7 +6,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-primary">
-                    Login with Social Media
+                    Login with
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-1">
@@ -47,6 +47,14 @@
                                 {{ $message }}
                             </div>
                             @enderror
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" value="true" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Remember me
+                            </label>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-6 d-grid gap-1">

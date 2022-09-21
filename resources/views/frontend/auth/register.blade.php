@@ -6,7 +6,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-primary">
-                    Register with Social Media
+                    Register with
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-1">
@@ -89,6 +89,14 @@
                         <div class="mb-3">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
                             <input type="password" name="password_confirmation" class="form-control" id="confirmPassword">
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" value="true" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Remember me
+                            </label>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-6 d-grid gap-1">
