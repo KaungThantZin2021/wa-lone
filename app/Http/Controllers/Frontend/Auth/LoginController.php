@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use App\Http\Requests\User\UserLoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -60,137 +61,33 @@ class LoginController extends Controller
         return view('frontend.auth.login');
     }
 
-    // public function login(Request $request)
-    // {
-    //     dd($request->all());
-    //     $this->validateLogin($request);
-        
-    //     $request->validate([
-    //         'otp' => ['required', 'numeric', 'digits:6', new OtpRule, new OtpExpireCheckRule]
-    //     ]);
-        
-    //     $session = $this->getSession();
-        
-    //     $otp = OTPCode::latestOtp($session);
+    public function login(UserLoginRequest $request)
+    {
+        // $this->validateLogin($request);
 
-    //     if ($request->otp != $otp) {
-    //         return redirect()->back()->with('error', 'OTP doesn\'t match.');
-    //     }
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
 
-    //     if ($request->email != $session->email || $request->password != $session->password) {
-    //         return redirect()->back()->with('error', 'Invalid Data!');
-    //     }
+            return $this->sendLockoutResponse($request);
+        }
 
-    //     if (method_exists($this, 'hasTooManyLoginAttempts') &&
-    //         $this->hasTooManyLoginAttempts($request)) {
-    //         $this->fireLockoutEvent($request);
+        if ($this->attemptLogin($request)) {
+            if ($request->hasSession()) {
+                $request->session()->put('auth.password_confirmed_at', time());
+            }
 
-    //         return $this->sendLockoutResponse($request);
-    //     }
+            return $this->sendLoginResponse($request);
+        }
 
-    //     if ($this->attemptLogin($request)) {
-    //         if ($request->hasSession()) {
-    //             $request->session()->put('auth.password_confirmed_at', time());
-    //         }
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
 
-    //         $this->deleteOtp();
-
-    //         return $this->sendLoginResponse($request);
-    //     }
-
-    //     $this->incrementLoginAttempts($request);
-
-    //     return $this->sendFailedLoginResponse($request);
-    // }
-
-    // public function twoStepOtp(Request $request)
-    // {
-    //     $this->validateLogin($request);
-
-    //     $admin_user = AdminUser::where('email', $request->email)->first();
-
-    //     if (!is_null($admin_user)) {
-    //         if (Hash::check($request->password, $admin_user->password)) {
-                
-    //             $otp = MessageService::otpGenerate();
-    //             MessageService::otpStore($request->email, $otp);
-    //             MessageService::sendEmail($request->email, $otp);
-
-    //             session()->put(config('otp.key'), [
-    //                 'email' => $admin_user->email,
-    //                 'password' => $request->password,
-    //                 'otp' => $otp
-    //             ]);
-    
-    //             return redirect()->route('admin.otp');
-    //         }
-    //     }
-    //     return redirect()->back()->withError('Credentials doesn\'t match.');
-    // }
-
-    // public function showOtpForm()
-    // {
-    //     $session = $this->getSession();
-
-    //     return view('backend.auth.admin_otp', compact('session'));
-    // }
-
-    // public function resendOtp()
-    // {
-    //     $this->deleteOtp();
-
-    //     $session = $this->getSession();
-
-    //     $otp = MessageService::otpGenerate();
-    //     MessageService::otpStore($session->email, $otp);
-    //     MessageService::sendEmail($session->email, $otp);
-
-    //     session()->put(config('otp.key'), [
-    //         'email' => $session->email,
-    //         'password' => $session->password,
-    //         'otp' => $otp
-    //     ]);
-
-    //     return response()->json([
-    //         'result' => 1,
-    //         'message' => 'We sent a new OTP email. Please Check Your email.'
-    //     ]);
-    // }
-
-    // protected function authenticated(Request $request, $user)
-    // {
-    //     $agent = new Agent();
-    //     $now = Carbon::now()->format('Y-m-d H:i:s');
-
-    //     $user->email_verified_at = $now;
-    //     $user->remember_token = $request->_token;
-    //     $user->ip = $request->ip();
-    //     $user->device = $agent->device();
-    //     $user->browser = $agent->browser();
-    //     $user->platform = $agent->platform();
-    //     $user->login_at = $now;
-    //     $user->update();
-
-    //     return redirect($this->redirectTo);
-    // }
-
-    // protected function getSession()
-    // {
-    //     $session = (object) session()->get(config('otp.key'));
-
-    //     return $session;
-    // }
-
-    // protected function deleteOtp()
-    // {
-    //     $session = $this->getSession();
-        
-    //     $otp_code = OTPCode::where('email', $session->email)->where('otp', $session->otp)->latest()->first();
-
-    //     if ($otp_code) {
-    //         $otp_code->delete();
-    //     }
-
-    //     return;
-    // }
+        return $this->sendFailedLoginResponse($request);
+    }
 }

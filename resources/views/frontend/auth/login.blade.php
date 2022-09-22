@@ -28,7 +28,7 @@
                     Login
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" id="loginForm">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" value="true" id="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" name="remember" value="true" checked id="flexCheckChecked">
                             <label class="form-check-label" for="flexCheckChecked">
                                 Remember me
                             </label>
@@ -74,4 +74,8 @@
         <div class="col-md-4"></div>
     </div>
   </div>
+@endsection
+
+@section('script')
+{!! JsValidator::formRequest('App\Http\Requests\User\UserLoginRequest', '#loginForm') !!}
 @endsection

@@ -26,6 +26,8 @@
     }
 </style>
 
+@yield('css')
+
 <body>
     <div id="mainPageLoader" class="tw-absolute tw-flex tw-items-center tw-justify-center tw-w-screen tw-h-screen tw-z-10 tw-bg-gray-100" style="width: 100% !important; height: 100% !important;">
         <img src="{{ asset('frontend/images/loader.gif') }}" class="tw-w-24 tw-h-24" alt="">
@@ -50,6 +52,9 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
 
+    <!-- Laravel Javascript Validation -->
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
     <script>
         $(() => {
             $.ajaxSetup({
@@ -66,6 +71,8 @@
             $('#mainPageLoader').fadeOut();
         });
     </script>
+
+    @yield('script')
 </body>
 
 </html>
