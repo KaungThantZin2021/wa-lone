@@ -3,22 +3,18 @@
 namespace App\Services;
 
 use Carbon\Carbon;
-use App\Mail\OTPMail;
 use App\Models\OTPCode;
 use App\Jobs\OTPMailJob;
-use Illuminate\Support\Facades\Mail;
 
 class  MessageService
 {
     public static function otpGenerate()
     {
-        if (env('APP_ENV') == 'local') {
+        if (config('app.env') != 'production') {
             return 123123;
         } 
 
-        if (env('APP_ENV') == 'production') {
-            return mt_rand(100000, 999999);
-        }
+        return mt_rand(100000, 999999);
     }
 
     public static function otpStore($email, $otp)

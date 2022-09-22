@@ -162,7 +162,6 @@ class AdminLoginController extends Controller
         $now = Carbon::now()->format('Y-m-d H:i:s');
 
         $user->email_verified_at = $now;
-        $user->remember_token = $request->_token;
         $user->ip = $request->ip();
         $user->device = $agent->device();
         $user->browser = $agent->browser();
