@@ -68,13 +68,11 @@
                 $('#logoutForm').submit();
             });
 
-            $(document).on('change', '#changeLanguage', function (e) {
+            $(document).on('click', '.change-language', function (e) {
                 e.preventDefault();
-                var lang = $(this).val();
+                var lang = $(this).data('lang');
 
                 $.post('/change-language', {lang}).done(function (res) {
-                    console.log(res);
-
                     if (res.result == 1) {
                         window.location.reload();
                     }

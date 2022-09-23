@@ -1,6 +1,14 @@
 @extends('frontend.layouts.app')
 @section('content')
   <div class="container">
+    <div class="d-flex justify-content-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-decoration-none">{{ config('app.name') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@lang('lang.login')</li>
+          </ol>
+        </nav>
+    </div>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
@@ -20,7 +28,7 @@
             </div>
 
             <div class="my-2">
-                <p class="text-muted text-center p-0 m-0">OR</p>
+                <p class="text-muted text-center p-0 m-0">@lang('lang.or')</p>
             </div>
 
             <div class="card">

@@ -7,11 +7,51 @@
                         <a href="" class="btn btn-sm btn-outline-light rounded-circle"><i
                                 class="fas fa-cog"></i></a>
                     </div>
-                    <div>
-                        <select class="m-0 py-1 bg-primary border-0 text-light" id="changeLanguage">
-                            <option value="en" {{ app()->isLocale('en') ? 'selected' : '' }}>English</option>
-                            <option value="mm" {{ app()->isLocale('mm') ? 'selected' : '' }}>မြန်မာ</option>
-                        </select>
+                    <div class="d-flex justify-content-center p-0 m-0">
+                        <div class="me-2 my-0">
+                            <img class="rounded"
+                                @if (app()->isLocale(config('app.available_language.english')))
+                                    src="{{ asset('frontend/images/flags/english-circle.png') }}"
+                                @elseif (app()->isLocale(config('app.available_language.myanmar')))
+                                    src="{{ asset('frontend/images/flags/myanmar-circle.png') }}"
+                                @endif
+                                alt="" width="30px" height="30px">
+                        </div>
+                        <div class="py-1">
+                            <p class="text-light m-0 dropdown-toggle" id="languageDropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                @if (app()->isLocale(config('app.available_language.english')))
+                                    English
+                                @elseif (app()->isLocale(config('app.available_language.myanmar')))
+                                    မြန်မာ
+                                @endif
+                            </p>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdownMenuButton">
+                                <li>
+                                    <a class="dropdown-item py-0 
+                                        {{ app()->isLocale(config('app.available_language.english')) ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary bg-light' : '' }}
+                                        change-language" data-lang="{{ config('app.available_language.english') }}" href="">
+                                        <img class="rounded"
+                                            src="{{ asset('frontend/images/flags/english-circle.png') }}"
+                                            alt="" width="25px" height="25px">
+                                        English
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-0
+                                        {{ app()->isLocale(config('app.available_language.myanmar')) ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary bg-light' : '' }}
+                                        change-language" data-lang="{{ config('app.available_language.myanmar') }}" href="">
+                                        <img class="rounded"
+                                            src="{{ asset('frontend/images/flags/myanmar-circle.png') }}"
+                                            alt="" width="25px" height="25px">
+                                        မြန်မာ
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

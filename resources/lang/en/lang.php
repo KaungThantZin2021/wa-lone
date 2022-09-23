@@ -14,7 +14,16 @@ return [
     'register_with_facebook' => 'Register with Facebook',
     'register_with_google' => 'Register with Google',
 
+    'or' => 'OR',
+
     // Navbar
+    'all_categories' => 'All Categories',
+    'bicycels' => 'Bicycles',
+    'motor_cycles' => 'Motor Cycles',
+    'cars' => 'Cars',
+
+    'search_with_filter' => 'Search with filter',
+
     'home' => 'Home',
     'products' => 'Products',
     'shops' => 'Shops',

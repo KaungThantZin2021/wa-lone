@@ -1,10 +1,14 @@
 @extends('frontend.layouts.app')
 @section('content')
   <div class="container">
-    <h1 class="tw-text-3xl tw-text-red-500 tw-font-bold tw-underline">
-      Hello world!
-    </h1>
-    <p>{{ __('lang.home') }}</p>
+    <div class="d-flex justify-content-center">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-decoration-none">{{ config('app.name') }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">@lang('lang.home')</li>
+        </ol>
+      </nav>
+    </div>
     <div class="row">
       <div class="col-md-8 col-sm-12">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

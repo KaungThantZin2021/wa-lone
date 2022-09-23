@@ -11,19 +11,19 @@
         <div class="m-0 p-2">
             <div class="input-group">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">All Categoies</button>
+                    aria-expanded="false">@lang('lang.all_categories')</button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item border border-top-0 border-bottom-0 border-end-0 border-3 border-primary bg-light" href="#"><i class="fas fa-bars"></i> All Categories</a></li>                       
+                    <li><a class="dropdown-item border border-top-0 border-bottom-0 border-end-0 border-3 border-primary bg-light" href="#"><i class="fas fa-bars"></i> @lang('lang.all_categories')</a></li>                       
                     <hr class="dropdown-divider">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-bicycle"></i> Bicycles</a></li>                       
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-bicycle"></i> @lang('lang.bicycels')</a></li>                       
                     <hr class="dropdown-divider">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-motorcycle"></i> Motor Bikes</a></li>                       
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-motorcycle"></i> @lang('lang.motor_cycles')</a></li>                       
                     <hr class="dropdown-divider">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-car"></i> Cars</a></li>                       
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-car"></i> @lang('lang.cars')</a></li>                       
                     <hr class="dropdown-divider">
                     <li><a class="dropdown-item" href="#">Separated link</a></li>
                 </ul>
-                <input type="text" class="form-control" placeholder="Search with filter"
+                <input type="text" class="form-control" placeholder="{{ __('lang.search_with_filter') }}"
                     aria-label="Text input with 2 dropdown buttons">
                 <button class="btn btn-primary">
                     <i class="fas fa-search"></i>
@@ -52,9 +52,13 @@
     <div class="col-md-8 col-sm-12">
         <div class="m-0 p-2 d-flex justify-content-evenly">
             <a href="/" class="text-decoration-none {{ Request::is('/') ? 'text-primary' : 'text-dark' }}">@lang('lang.home')</a>
-            <a href="" class="text-decoration-none text-dark">@lang('lang.products')</a>
+            <span class="text-secondary">/</span>
             <a href="" class="text-decoration-none text-dark">@lang('lang.shops')</a>
+            <span class="text-secondary">/</span>
+            <a href="" class="text-decoration-none text-dark">@lang('lang.products')</a>
+            <span class="text-secondary">/</span>
             <a href="" class="text-decoration-none text-dark">@lang('lang.accessories')</a>
+            <span class="text-secondary">/</span>
             <a href="" class="text-decoration-none text-dark">@lang('lang.blogs')</a>
         </div>
     </div>
