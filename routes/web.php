@@ -29,8 +29,14 @@ Route::post('/logout', [App\Http\Controllers\Frontend\Auth\LoginController::clas
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::namespace('App\Http\Controllers\Frontend\Auth')
+Route::namespace('App\Http\Controllers\Frontend')
+->group(function () {
+    
+    Route::namespace('Auth')
     ->group(function () {
         Route::get('/auth/{provider}/redirect', 'SocialiteController@provider');
         Route::get('/auth/{provider}/callback', 'SocialiteController@callback');
+    });
+
+    Route::post('/change-language', 'PageController@changeLanguage');
 });

@@ -8,9 +8,9 @@
                                 class="fas fa-cog"></i></a>
                     </div>
                     <div>
-                        <select class="m-0 py-1 bg-primary border-0 text-light">
-                            <option selected>English</option>
-                            <option value="1">မြန်မာ</option>
+                        <select class="m-0 py-1 bg-primary border-0 text-light" id="changeLanguage">
+                            <option value="en" {{ app()->isLocale('en') ? 'selected' : '' }}>English</option>
+                            <option value="mm" {{ app()->isLocale('mm') ? 'selected' : '' }}>မြန်မာ</option>
                         </select>
                     </div>
                 </div>
@@ -60,8 +60,8 @@
                     </div>
                 @elseif (!auth()->guard('web')->check())
                     <div class="p-0 m-0">
-                        <a href="{{ route('login') }}" class="btn btn-sm {{ Request::is('login') ? 'btn-light' : 'btn-outline-light' }} m-0">Login</a>
-                        <a href="{{ route('register') }}" class="btn btn-sm {{ Request::is('register') ? 'btn-light' : 'btn-outline-light' }} m-0">Register</a>
+                        <a href="{{ route('login') }}" class="btn btn-sm {{ Request::is('login') ? 'btn-light' : 'btn-outline-light' }} m-0">@lang('lang.login')</a>
+                        <a href="{{ route('register') }}" class="btn btn-sm {{ Request::is('register') ? 'btn-light' : 'btn-outline-light' }} m-0">@lang('lang.register')</a>
                     </div>
                 @endif
             </div>

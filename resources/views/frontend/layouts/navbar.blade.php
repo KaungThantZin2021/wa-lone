@@ -51,11 +51,11 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 col-sm-12">
         <div class="m-0 p-2 d-flex justify-content-evenly">
-            <a href="/" class="text-decoration-none {{ Request::is('/') ? 'text-primary' : 'text-dark' }}">Home</a>
-            <a href="" class="text-decoration-none text-dark">Products</a>
-            <a href="" class="text-decoration-none text-dark">Shops</a>
-            <a href="" class="text-decoration-none text-dark">Accessories</a>
-            <a href="" class="text-decoration-none text-dark">Blogs</a>
+            <a href="/" class="text-decoration-none {{ Request::is('/') ? 'text-primary' : 'text-dark' }}">@lang('lang.home')</a>
+            <a href="" class="text-decoration-none text-dark">@lang('lang.products')</a>
+            <a href="" class="text-decoration-none text-dark">@lang('lang.shops')</a>
+            <a href="" class="text-decoration-none text-dark">@lang('lang.accessories')</a>
+            <a href="" class="text-decoration-none text-dark">@lang('lang.blogs')</a>
         </div>
     </div>
     <div class="col-md-2"></div>

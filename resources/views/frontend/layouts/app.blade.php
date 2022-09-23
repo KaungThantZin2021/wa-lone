@@ -68,6 +68,22 @@
                 $('#logoutForm').submit();
             });
 
+            $(document).on('change', '#changeLanguage', function (e) {
+                e.preventDefault();
+                var lang = $(this).val();
+
+                $.post('/change-language', {lang}).done(function (res) {
+                    console.log(res);
+
+                    if (res.result == 1) {
+                        window.location.reload();
+                    }
+                })
+                .fail(function (error) {
+                   console.log(error); 
+                });
+            });
+
             $('#mainPageLoader').fadeOut();
         });
     </script>

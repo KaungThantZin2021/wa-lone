@@ -6,15 +6,15 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-primary">
-                    Register with
+                    @lang('lang.register_with')
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-1">
-                        <a href="{{ url('/auth/' . config('socialite.provider.facebook') . '/redirect') }}" class="btn btn-primary"><i class="fab fa-facebook"></i> Register with Facebook</a>
+                        <a href="{{ url('/auth/' . config('socialite.provider.facebook') . '/redirect') }}" class="btn btn-primary"><i class="fab fa-facebook"></i> @lang('lang.register_with_facebook')</a>
                     </div>
 
                     <div class="d-grid gap-1 mt-2">
-                        <a href="{{ url('/auth/' . config('socialite.provider.google') . '/redirect') }}" class="btn btn-outline-secondary"><i class="fab fa-google"></i> Register with Google</a>
+                        <a href="{{ url('/auth/' . config('socialite.provider.google') . '/redirect') }}" class="btn btn-outline-secondary"><i class="fab fa-google"></i> @lang('lang.register_with_google')</a>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
 
             <div class="card">
                 <div class="card-header text-primary">
-                    Register
+                    @lang('lang.register')
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" id="registerForm">
