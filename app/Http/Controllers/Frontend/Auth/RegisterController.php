@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Frontend\Auth;
 
+use Carbon\Carbon;
 use App\Models\User;
+use Jenssegers\Agent\Agent;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -88,6 +91,22 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'gender' => $data['gender'],
+            'dob' => $data['dob']
         ]);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        $agent = new Agent();
+        $now = Carbon::now()->format('Y-m-d H:i:s');
+
+        $user->email_verified_at = $now;
+        $user->ip = $request->ip();
+        $user->user_agent = $request->server('HTTP_USER_AGENT');
+        $user->login_at = $now;
+        $user->update();
+
+        return redirect($this->redirectTo);
     }
 }

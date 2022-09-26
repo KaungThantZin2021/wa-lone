@@ -59,7 +59,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Gender</label>
+                            <label for="gender" class="form-label">Gender</label>
                             <br>
                             <div class="row @error('gender') is-invalid @enderror">
                                 <div class="col-4 d-grid gap-1">

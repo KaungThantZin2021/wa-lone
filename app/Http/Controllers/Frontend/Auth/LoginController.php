@@ -3,16 +3,10 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use Carbon\Carbon;
-use App\Rules\OtpRule;
-use App\Models\OTPCode;
-use App\Models\AdminUser;
 use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
-use App\Services\MessageService;
-use App\Rules\OtpExpireCheckRule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\User\UserLoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -89,5 +83,19 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        $agent = new Agent();
+        $now = Carbon::now()->format('Y-m-d H:i:s');
+
+        $user->email_verified_at = $now;
+        $user->ip = $request->ip();
+        $user->user_agent = $request->server('HTTP_USER_AGENT');
+        $user->login_at = $now;
+        $user->update();
+
+        return redirect($this->redirectTo);
     }
 }
