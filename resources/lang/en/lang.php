@@ -16,6 +16,22 @@ return [
 
     'or' => 'OR',
 
+    'name' => 'Name',
+    'email' => 'Email',
+    'password' => 'Password',
+    'forget_password' => 'Forget Password',
+    'remember_me' => 'Remember me',
+
+    'if_you_do_not_have_an_account' => 'If you don\'t have an account, go to <a href="'. route('register') .'"> Register >>> </a>.',
+
+    'new_password' => 'New Password',
+    'confirm_password' => 'Confirm Password',
+    'create_new_password' => 'Create New Password',
+    'otp_code' => 'OTP Code',
+
+    'confirm' => 'Confirm',
+    'cancel' => 'Cancel',
+
     // Navbar
     'all_categories' => 'All Categories',
     'bicycels' => 'Bicycles',

@@ -28,8 +28,8 @@
                             </p>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdownMenuButton">
                                 <li>
-                                    <a class="dropdown-item py-0 
-                                        {{ app()->isLocale(config('app.available_language.english')) ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary bg-light' : '' }}
+                                    <a class="dropdown-item py-0
+                                        {{ app()->isLocale(config('app.available_language.english')) ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}
                                         change-language" data-lang="{{ config('app.available_language.english') }}" href="">
                                         <img class="rounded"
                                             src="{{ asset('frontend/images/flags/english-circle.png') }}"
@@ -42,7 +42,7 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item py-0
-                                        {{ app()->isLocale(config('app.available_language.myanmar')) ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary bg-light' : '' }}
+                                        {{ app()->isLocale(config('app.available_language.myanmar')) ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}
                                         change-language" data-lang="{{ config('app.available_language.myanmar') }}" href="">
                                         <img class="rounded"
                                             src="{{ asset('frontend/images/flags/myanmar-circle.png') }}"
@@ -69,7 +69,7 @@
                 </div>
             </div> --}}
 
-            <div class="py-2 px-4">
+            <div class="py-2 px-4 tw-z-20">
                 @if (auth()->guard('web')->check())
                     <div class="d-flex justify-content-center p-0 m-0">
                         <div class="me-2 my-0">

@@ -36,7 +36,7 @@ class SocialiteController extends Controller
         } else {
             try {
                 $now = Carbon::now()->format('Y-m-d H:i:s');
-    
+
                 $user = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
@@ -45,10 +45,10 @@ class SocialiteController extends Controller
                     'provider_id' => $user->id,
                     'provider' => $provider,
                 ]);
-    
+
                 auth()->login($user, true);
                 return redirect()->route('home');
-    
+
             } catch (\Throwable $th) {
                 throw $th;
             }

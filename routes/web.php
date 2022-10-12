@@ -25,13 +25,19 @@ Route::get('/login', [App\Http\Controllers\Frontend\Auth\LoginController::class,
 Route::post('/login', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'login'])->name('login');
 Route::post('/logout', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'logout'])->name('logout');
 
+Route::get('/forget-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'forgetPassword'])->name('forget-password');
+Route::post('/forget-password/send-request', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'sendRequest'])->name('send-request');
+Route::get('/forget-password/otp-for-new-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'otpForNewPassword'])->name('otp-for-new-password');
+Route::post('/forget-password/new-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'newPassword'])->name('new-password');
+Route::post('/forget-password/change-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'changePassword'])->name('change-password');
+
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::namespace('App\Http\Controllers\Frontend')
 ->group(function () {
-    
+
     Route::namespace('Auth')
     ->group(function () {
         Route::get('/auth/{provider}/redirect', 'SocialiteController@provider');

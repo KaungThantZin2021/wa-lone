@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>@yield('title') | {{ config('app.name') }}</title>
 
     {{-- <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('bootstrap/css/default.css') }}">
@@ -29,11 +29,11 @@
 @yield('css')
 
 <body>
-    <div id="mainPageLoader" class="tw-absolute tw-flex tw-items-center tw-justify-center tw-w-screen tw-h-screen tw-z-10 tw-bg-gray-100" style="width: 100% !important; height: 100% !important;">
+    <div id="mainPageLoader" class="tw-fixed tw-flex tw-items-center tw-justify-center tw-z-50 tw-bg-gray-100" style="width: 100% !important; height: 100% !important;">
         <img src="{{ asset('frontend/images/loader.gif') }}" class="tw-w-24 tw-h-24" alt="">
     </div>
     <div class="container-fluid">
-        
+
         @include('frontend.layouts.topbar')
 
         @include('frontend.layouts.navbar')
@@ -43,7 +43,7 @@
         </div>
 
         @include('frontend.layouts.footer')
-        
+
     </div>
 
 
@@ -78,7 +78,7 @@
                     }
                 })
                 .fail(function (error) {
-                   console.log(error); 
+                   console.log(error);
                 });
             });
 

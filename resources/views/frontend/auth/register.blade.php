@@ -1,10 +1,11 @@
 @extends('frontend.layouts.app')
+@section('title', __('lang.register'))
 @section('content')
   <div class="container">
     <div class="d-flex justify-content-center">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-decoration-none">{{ config('app.name') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-decoration-none">@lang('lang.home')</a></li>
             <li class="breadcrumb-item active" aria-current="page">@lang('lang.register')</li>
           </ol>
         </nav>
@@ -31,7 +32,7 @@
                 <p class="text-muted text-center p-0 m-0">@lang('lang.or')</p>
             </div>
 
-            {{-- @include('frontend.layouts.flash') --}}
+            @include('frontend.layouts.flash')
 
             <div class="card">
                 <div class="card-header text-primary">
@@ -41,7 +42,7 @@
                     <form method="POST" action="{{ route('register') }}" id="registerForm">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label">@lang('lang.name')</label>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}">
                             @error('name')
                             <div class="invalid-feedback">
@@ -61,25 +62,20 @@
                         <div class="mb-3">
                             <label for="gender" class="form-label">Gender</label>
                             <br>
-                            <div class="row @error('gender') is-invalid @enderror">
+                            <div class="row">
                                 <div class="col-4 d-grid gap-1">
-                                    <input type="radio" name="gender" class="btn-check" id="male" value="male" {{ old('gender') == 'male' ? 'checked' : '' }} autocomplete="off">
-                                    <label class="btn btn-sm btn-outline-secondary @error('gender') btn-outline-danger @enderror" for="male"><i class="fas fa-male"></i> Male</label>
+                                    <input type="radio" name="gender" class="btn-check" id="male" value="male" checked autocomplete="off">
+                                    <label class="btn btn-sm btn-outline-secondary for="male"><i class="fas fa-male"></i> Male</label>
                                 </div>
                                 <div class="col-4 d-grid gap-1">
-                                    <input type="radio" name="gender" class="btn-check" id="female" value="female" {{ old('gender') == 'female' ? 'checked' : '' }} autocomplete="off">
-                                    <label class="btn btn-sm btn-outline-secondary @error('gender') btn-outline-danger @enderror" for="female"><i class="fas fa-female"></i> Female</label>
+                                    <input type="radio" name="gender" class="btn-check" id="female" value="female" autocomplete="off">
+                                    <label class="btn btn-sm btn-outline-secondary for="female"><i class="fas fa-female"></i> Female</label>
                                 </div>
                                 <div class="col-4 d-grid gap-1">
-                                    <input type="radio" name="gender" class="btn-check" id="other" value="other" {{ old('gender') == 'other' ? 'checked' : '' }} autocomplete="off">
-                                    <label class="btn btn-sm btn-outline-secondary @error('gender') btn-outline-danger @enderror" for="other"><i class="fas fa-genderless"></i> Other</label>
+                                    <input type="radio" name="gender" class="btn-check" id="other" value="other" autocomplete="off">
+                                    <label class="btn btn-sm btn-outline-secondary for="other"><i class="fas fa-genderless"></i> Other</label>
                                 </div>
                             </div>
-                            @error('gender')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="dob" class="form-label">Date of birth</label>
