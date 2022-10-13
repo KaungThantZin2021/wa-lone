@@ -22,7 +22,11 @@ module.exports = {
 
             'sm': {'max': '639px'},
             // => @media (max-width: 639px) { ... }
+
             'xs': {'max' : '475px'},
+            // => @media (max-width: 475px) { ... }
+
+            '2xs': {'max' : '350px'},
             // => @media (max-width: 475px) { ... }
         }
     },

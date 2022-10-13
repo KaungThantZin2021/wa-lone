@@ -1,10 +1,8 @@
 <div class="tw-sticky tw-top-0 tw-z-10 tw-drop-shadow-2xl">
     <div class="row border-bottom border-1 py-2 bg-light">
         <div class="col-lg-4">
-            <div class="m-0 p-2">
-                <h3 class="text-primary text-center text-nowrap">
-                    <a href="" class="text-decoration-none">{{ config('app.name') }}</a>
-                </h3>
+            <div class="m-0 p-2 text-center">
+                <a href="" class="text-decoration-none tw-text-2xl lg:tw-text-lg md:tw-text-base">{{ config('app.name') }}</a>
             </div>
         </div>
 
@@ -37,14 +35,14 @@
         <div class="col-lg-4">
             <div class="row">
                 <div class="d-flex justify-content-center"">
-                    <div class="tw-hidden sm:tw-inline-block">
+                    <div class="tw-hidden md:tw-inline-block">
                         <div class="m-0 p-2 text-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                    <i class="fas fa-bars"></i> Menu
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item {{ Request::is('/') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="#">@lang('lang.home')</a></li>
+                                    <li><a class="dropdown-item {{ Request::is('/') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="/">@lang('lang.home')</a></li>
                                     <hr class="dropdown-divider">
                                     <li><a class="dropdown-item" href="#">@lang('lang.shops')</a></li>
                                     <hr class="dropdown-divider">
@@ -59,6 +57,8 @@
                     </div>
                     <div class="m-0 p-2 d-flex justify-content-center">
                         <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i
+                            class="fas fa-search"></i></a>
+                        <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i
                             class="fas fa-bell"></i></a>
                         <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i
                                 class="fas fa-heart"></i></a>
@@ -72,7 +72,7 @@
         </div>
     </div>
 
-    <div class="row border-bottom border-1 py-1 bg-light sm:tw-hidden">
+    <div class="row border-bottom border-1 py-1 bg-light md:tw-hidden">
         <div class="col-md-2"></div>
         <div class="col-md-8 col-sm-12">
             <div class="m-0 p-2 d-flex justify-content-evenly">
