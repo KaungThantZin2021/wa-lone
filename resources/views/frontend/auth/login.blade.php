@@ -32,6 +32,17 @@
                 <p class="text-muted text-center p-0 m-0">@lang('lang.or')</p>
             </div>
 
+            @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                <p>{{ session('success') }}</p>
+            </div>
+            @endif
+            @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                <p>{{ session('error') }}</p>
+            </div>
+            @endif
+
             <div class="card">
                 <div class="card-header text-primary">
                     @lang('lang.login')
@@ -76,7 +87,7 @@
                                 <a href="/" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
-                    </form>        
+                    </form>
                 </div>
             </div>
 

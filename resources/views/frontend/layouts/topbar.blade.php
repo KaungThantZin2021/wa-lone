@@ -86,8 +86,8 @@
                 </div>
             @elseif (!auth()->guard('web')->check())
                 <div class="p-0 m-0">
-                    <a href="{{ route('login') }}" class="btn btn-sm {{ Request::is('login') ? 'btn-light' : 'btn-outline-light' }} m-0">@lang('lang.login')</a>
-                    <a href="{{ route('register') }}" class="btn btn-sm {{ Request::is('register') ? 'btn-light' : 'btn-outline-light' }} m-0">@lang('lang.register')</a>
+                    <a href="{{ route('login') }}" class="btn btn-sm {{ request()->is('login') || request()->is('forget-password') || request()->is('reset-password/*') ? 'btn-light' : 'btn-outline-light' }} m-0">@lang('lang.login')</a>
+                    <a href="{{ route('register') }}" class="btn btn-sm {{ request()->is('register') ? 'btn-light' : 'btn-outline-light' }} m-0">@lang('lang.register')</a>
                 </div>
             @endif
         </div>

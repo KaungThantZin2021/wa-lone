@@ -14,18 +14,24 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
+            @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                <p>{{ session('success') }}</p>
+            </div>
+            @endif
+            @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                <p>{{ session('error') }}</p>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header text-primary">
                     @lang('lang.forget_password')
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('send-request') }}" id="forgetPassword">
+                    <form method="POST" action="{{ route('forget-password.store') }}" id="forgetPasswordForm">
                         @csrf
-                        <ul class="text-muted px-3">
-                            <li>To get new password, we have to verify your account.</li>
-                            <li>Please fill your registerated walone account email and we will send OTP code.</li>
-                        </ul>
-                        <hr>
+
                         <div class="mb-3">
                             <label for="email" class="form-label">@lang('lang.email')</label>
                             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email">
@@ -36,16 +42,17 @@
                             @enderror
                         </div>
                         <div class="row">
-                            <div class="col-6 d-grid gap-1">
-                                <button type="submit" class="btn btn-primary">@lang('lang.confirm')</button>
-                            </div>
-                            <div class="col-6 d-grid gap-1">
-                                <a href="{{ route('login') }}" class="btn btn-secondary">@lang('lang.cancel')</a>
+                            <div class="d-grid gap-1">
+                                <button type="submit" class="btn btn-block btn-primary">Send Password Reset Link</button>
+                                <a href="{{ route('login') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+
+            <p class="text-center my-2">@lang('lang.if_you_do_not_have_an_account')</p>
+
         </div>
         <div class="col-md-4"></div>
     </div>
@@ -53,5 +60,5 @@
 @endsection
 
 @section('script')
-{!! JsValidator::formRequest('App\Http\Requests\User\ForgetPasswordRequest', '#forgetPassword') !!}
+{!! JsValidator::formRequest('App\Http\Requests\User\ForgetPasswordRequest', '#forgetPasswordForm') !!}
 @endsection

@@ -25,11 +25,10 @@ Route::get('/login', [App\Http\Controllers\Frontend\Auth\LoginController::class,
 Route::post('/login', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'login'])->name('login');
 Route::post('/logout', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::get('/forget-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'forgetPassword'])->name('forget-password');
-Route::post('/forget-password/send-request', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'sendRequest'])->name('send-request');
-Route::get('/forget-password/otp-for-new-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'otpForNewPassword'])->name('otp-for-new-password');
-Route::post('/forget-password/new-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'newPassword'])->name('new-password');
-Route::post('/forget-password/change-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'changePassword'])->name('change-password');
+Route::get('/forget-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forget-password');
+Route::post('/forget-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'submitForgetPasswordForm'])->name('forget-password.store');
+Route::get('/reset-password/{token}', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'showResetPasswordForm'])->name('reset-password');
+Route::post('/reset-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswordController::class, 'submitResetPasswordForm'])->name('reset-password.store');
 
 // Auth::routes();
 

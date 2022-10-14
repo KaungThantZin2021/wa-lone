@@ -20,6 +20,7 @@ return [
     'email' => 'Email',
     'password' => 'Password',
     'forget_password' => 'Forget Password',
+    'reset_password' => 'Reset Password',
     'remember_me' => 'Remember me',
 
     'if_you_do_not_have_an_account' => 'If you don\'t have an account, go to <a href="'. route('register') .'"> Register >>> </a>.',
