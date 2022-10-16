@@ -13,5 +13,5 @@ function decryptString($ciphertext, $password, $encoding = null) {
     return openssl_decrypt(substr($ciphertext, 48), "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, substr($ciphertext, 0, 16));
 }
 
-$enc = encryptString("mysecretText", "myPassword");
-$dec = decryptString($enc, "myPassword");
+// $enc = encryptString("mysecretText", "myPassword");
+// $dec = decryptString($enc, "myPassword");
