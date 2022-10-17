@@ -39,7 +39,7 @@ class AdminLoginController extends Controller
     protected $redirectTo = RouteServiceProvider::ADMIN;
 
     // protected $otp = env('OTP_KEY', 'otp');
-    
+
     /**
      * Create a new controller instance.
      *
@@ -57,19 +57,20 @@ class AdminLoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('backend.auth.admin_login');
+        // return view('backend.auth.admin_login');
+        return view('backend1.auth.admin_login');
     }
 
     public function login(Request $request)
     {
         $this->validateLogin($request);
-        
+
         $request->validate([
             'otp' => ['required', 'numeric', 'digits:6', new OtpRule, new OtpExpireCheckRule]
         ]);
-        
+
         $session = $this->getSession();
-        
+
         $otp = OTPCode::latestOtp($session);
 
         if ($request->otp != $otp) {
@@ -110,7 +111,7 @@ class AdminLoginController extends Controller
 
         if (!is_null($admin_user)) {
             if (Hash::check($request->password, $admin_user->password)) {
-                
+
                 $otp = MessageService::otpGenerate();
                 MessageService::otpStore($request->email, $otp);
                 MessageService::sendEmail($request->email, $otp);
@@ -120,7 +121,7 @@ class AdminLoginController extends Controller
                     'password' => $request->password,
                     'otp' => $otp
                 ]);
-    
+
                 return redirect()->route('admin.otp');
             }
         }
@@ -131,7 +132,8 @@ class AdminLoginController extends Controller
     {
         $session = $this->getSession();
 
-        return view('backend.auth.admin_otp', compact('session'));
+        // return view('backend.auth.admin_otp', compact('session'));
+        return view('backend1.auth.admin_otp', compact('session'));
     }
 
     public function resendOtp()
@@ -182,7 +184,7 @@ class AdminLoginController extends Controller
     protected function deleteOtp()
     {
         $session = $this->getSession();
-        
+
         $otp_code = OTPCode::where('email', $session->email)->where('otp', $session->otp)->latest()->first();
 
         if ($otp_code) {
