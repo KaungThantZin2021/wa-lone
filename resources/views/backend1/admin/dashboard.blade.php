@@ -1,5 +1,5 @@
 @extends('backend1.admin.layouts.app')
-@section('title', 'Dashboard')
+@section('title', 'Dashboard | ' . config('app.name'))
 @section('dashboard-selected', 'selected')
 
 @section('content')

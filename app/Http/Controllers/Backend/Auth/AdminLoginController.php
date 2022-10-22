@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Admin\AdminLoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AdminLoginController extends Controller
@@ -103,9 +104,9 @@ class AdminLoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    public function twoStepOtp(Request $request)
+    public function twoStepOtp(AdminLoginRequest $request)
     {
-        $this->validateLogin($request);
+        // $this->validateLogin($request);
 
         $admin_user = AdminUser::where('email', $request->email)->first();
 

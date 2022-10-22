@@ -4,10 +4,21 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="sidebar-item @yield('dashboard-selected')"> <a class="sidebar-link sidebar-link" href="index.html"
-                        aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
-                            class="hide-menu">Dashboard</span></a></li>
+                <li class="sidebar-item @yield('dashboard-selected')">
+                    <a class="sidebar-link sidebar-link" href="{{ route('admin.dashboard') }}" aria-expanded="false">
+                        <i data-feather="home" class="feather-icon"></i>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+
                 <li class="list-divider"></li>
+
+                <li class="nav-small-cap"><span class="hide-menu">User Management</span></li>
+                <li class="sidebar-item  @yield('user-selected')">
+                    <a class="sidebar-link" href="{{ route('admin.user.index') }}" aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i><span class="hide-menu">User</span>
+                    </a>
+                </li>
                 <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
 
                 <li class="sidebar-item"> <a class="sidebar-link" href="ticket-list.html" aria-expanded="false"><i

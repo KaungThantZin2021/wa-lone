@@ -14,11 +14,11 @@
             <h2 class="mt-3 text-center">Admin Login OTP</h2>
             <p class="text-center">We sent OTP code to <a href="https://accounts.google.com" target="_blank">{{ $session->email }}</a>. Please check your <a href="https://accounts.google.com" target="_blank">email</a>.</p>
             <hr>
-            <form class="mt-4" method="POST" action="{{ route('admin.login') }}">
+            <form class="mt-4" method="POST" action="{{ route('admin.login') }}" id="adminOTPLoginForm">
                 @csrf
 
-                <input type="hidden" class="form-control text-light @error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="off">
-                <input type="hidden" class="form-control text-light @error('password') is-invalid @enderror" name="password" value="{{ $session->password }}" required autocomplete="off">
+                <input type="hidden" class="@error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="off">
+                <input type="hidden" class="@error('password') is-invalid @enderror" name="password" value="{{ $session->password }}" required autocomplete="off">
 
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -45,11 +45,15 @@
                         </div>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <button type="submit" class="btn btn-block btn-dark">Sign In</button>
+                        <button type="submit" class="btn btn-block btn-primary">Confirm</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+{!! JsValidator::formRequest('App\Http\Requests\Admin\AdminOTPLoginRequest', '#adminOTPLoginForm') !!}
 @endsection

@@ -22,7 +22,7 @@
     body {
         /* margin: 0 !important; */
         /* padding: 0 !important; */
-        background: #eeeeee;
+        background: #eef1fc;
     }
 </style>
 

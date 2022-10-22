@@ -11,6 +11,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('backend1/assets/images/favicon.png') }}">
     <title>@yield('title')</title>
+
     <!-- Custom CSS -->
     <link href="{{ asset('backend1/dist/css/style.min.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -59,6 +60,11 @@
     <script>
         $(".preloader ").fadeOut();
     </script>
+
+    <!-- Laravel Javascript Validation -->
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
+    @yield('script')
 </body>
 
 </html>

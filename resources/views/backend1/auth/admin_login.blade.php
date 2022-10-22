@@ -11,10 +11,10 @@
                 <h3 class="text-primary">{{ config('app.name') }}</h3>
             </div>
             <hr>
-            <h2 class="mt-3 text-center">Sign In</h2>
+            <h2 class="mt-3 text-center">Login</h2>
             <p class="text-center">Enter your email address and password to access admin panel.</p>
             <hr>
-            <form class="mt-4" method="POST" action="{{ route('admin.two-step-otp') }}">
+            <form class="mt-4" method="POST" action="{{ route('admin.two-step-otp') }}" id="adminLoginForm">
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
@@ -42,11 +42,15 @@
                         </div>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <button type="submit" class="btn btn-block btn-dark">Sign In</button>
+                        <button type="submit" class="btn btn-block btn-primary">Login</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+{!! JsValidator::formRequest('App\Http\Requests\Admin\AdminLoginRequest', '#adminLoginForm') !!}
 @endsection
