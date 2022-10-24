@@ -1,5 +1,5 @@
 <header class="topbar" data-navbarbg="skin6">
-    <nav class="navbar top-navbar navbar-expand-md">
+    <nav class="navbar top-navbar navbar-expand-md dark:tw-bg-slate-700">
         <div class="navbar-header" data-logobg="skin6">
             <!-- This is for the sidebar toggle which is visible on mobile only -->
             <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
@@ -7,7 +7,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <div class="navbar-brand d-flex justify-content-center">
+            <div class="navbar-brand d-flex justify-content-center dark:tw-bg-slate-700">
                 <!-- Logo icon -->
                 <a href="{{ route('admin.dashboard') }}" class="text-center">
                     <h3>{{ config('app.name') }}</h3>
@@ -41,7 +41,7 @@
         <!-- ============================================================== -->
         <!-- End Logo -->
         <!-- ============================================================== -->
-        <div class="navbar-collapse collapse" id="navbarSupportedContent">
+        <div class="navbar-collapse collapse dark:tw-border-b-black" id="navbarSupportedContent">
             <!-- ============================================================== -->
             <!-- toggle and nav items -->
             <!-- ============================================================== -->
@@ -137,11 +137,19 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="javascript:void(0)">
+                        <span class="tw-text-gray-400 hover:tw-text-gray-600 dark:hover:tw-text-gray-200" id="theme-toggle">
+                            <svg id="theme-toggle-dark-icon" class="tw-hidden tw-w-5 tw-h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                            <svg id="theme-toggle-light-icon" class="tw-hidden tw-w-5 tw-h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                        </span>
+                    </a>
+                </li>
                 <li class="nav-item d-none d-md-block">
                     <a class="nav-link" href="javascript:void(0)">
                         <div class="customize-input">
                             <select
-                                class="custom-select form-control bg-white custom-radius custom-shadow border-0">
+                                class="custom-select form-control tw-bg-white dark:tw-bg-slate-500 custom-radius custom-shadow border-0">
                                 <option selected>EN</option>
                                 <option value="1">AB</option>
                                 <option value="2">AK</option>
@@ -162,7 +170,7 @@
                     <a class="nav-link" href="javascript:void(0)">
                         <form>
                             <div class="customize-input">
-                                <input class="form-control custom-shadow custom-radius border-0 bg-white"
+                                <input class="form-control custom-shadow custom-radius border-0 tw-bg-white dark:tw-bg-slate-500"
                                     type="search" placeholder="Search" aria-label="Search">
                                 <i class="form-control-icon" data-feather="search"></i>
                             </div>
@@ -178,7 +186,7 @@
                         <img src="{{ asset('backend1/assets/images/users/profile-pic.jpg') }}" alt="user"
                             class="rounded-circle" width="40">
                         <span class="ml-2 d-none d-lg-inline-block"><span
-                                class="text-dark">{{ auth()->guard('admin_user')->user()->name }}</span> <i data-feather="chevron-down"
+                                class="tw-text-gray-600 dark:tw-text-white">{{ auth()->guard('admin_user')->user()->name }}</span> <i data-feather="chevron-down"
                                 class="svg-icon"></i></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">

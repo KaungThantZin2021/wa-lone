@@ -1,6 +1,6 @@
 <aside class="left-sidebar" data-sidebarbg="skin6">
     <!-- Sidebar scroll-->
-    <div class="scroll-sidebar" data-sidebarbg="skin6">
+    <div class="scroll-sidebar dark:tw-bg-slate-700" data-sidebarbg="skin6">
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
@@ -13,13 +13,13 @@
 
                 <li class="list-divider"></li>
 
-                <li class="nav-small-cap"><span class="hide-menu">User Management</span></li>
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">User Management</span></li>
                 <li class="sidebar-item  @yield('user-selected')">
                     <a class="sidebar-link" href="{{ route('admin.user.index') }}" aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i><span class="hide-menu">User</span>
                     </a>
                 </li>
-                <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Applications</span></li>
 
                 <li class="sidebar-item"> <a class="sidebar-link" href="ticket-list.html" aria-expanded="false"><i
                             data-feather="tag" class="feather-icon"></i><span class="hide-menu">Ticket List
@@ -33,7 +33,7 @@
                             class="hide-menu">Calendar</span></a></li>
 
                 <li class="list-divider"></li>
-                <li class="nav-small-cap"><span class="hide-menu">Components</span></li>
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Components</span></li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                         aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
                             class="hide-menu">Forms </span></a>

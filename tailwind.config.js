@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     prefix: "tw-",
+    darkMode: 'class',
     content: [
         "./resources/**/*.{blade.php,js,vue}",
         "./app/Http/Controllers/**/*.php",
