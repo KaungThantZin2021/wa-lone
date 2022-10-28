@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\Admin\AdminLoginRequest;
+use App\Http\Requests\Admin\AdminOTPLoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AdminLoginController extends Controller
@@ -62,7 +63,7 @@ class AdminLoginController extends Controller
         return view('backend1.auth.admin_login');
     }
 
-    public function login(Request $request)
+    public function login(AdminOTPLoginRequest $request)
     {
         $this->validateLogin($request);
 
