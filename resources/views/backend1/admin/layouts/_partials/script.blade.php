@@ -1,7 +1,9 @@
 <!-- All Jquery -->
 <!-- ============================================================== -->
 
-<script src="{{ asset('backend1/assets/libs/jquery/dist/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
+
+{{-- <script src="{{ asset('backend1/assets/libs/jquery/dist/jquery.min.js') }}"></script> --}}
 <script src="{{ asset('backend1/assets/libs/popper.js/dist/umd/popper.min.js') }}"></script>
 <script src="{{ asset('backend1/assets/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 

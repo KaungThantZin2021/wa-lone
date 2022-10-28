@@ -196,6 +196,10 @@
     --tw-bg-opacity: 1;
     background-color: rgb(30 41 59 / var(--tw-bg-opacity))
 }
+.tw-dark .dark\:tw-bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity))
+}
 .tw-dark .dark\:tw-text-gray-300 {
     --tw-text-opacity: 1;
     color: rgb(209 213 219 / var(--tw-text-opacity))
@@ -203,6 +207,10 @@
 .tw-dark .dark\:tw-text-white {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+.tw-dark .dark\:tw-text-black {
+    --tw-text-opacity: 1;
+    color: rgb(0 0 0 / var(--tw-text-opacity))
 }
 .tw-dark .dark\:hover\:tw-text-gray-200:hover {
     --tw-text-opacity: 1;

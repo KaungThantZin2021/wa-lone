@@ -16,6 +16,14 @@
 
     @include('backend1.admin.layouts._partials.css')
 
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/> --}}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
+
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/datatables.min.css"/> --}}
+
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/datatables.min.css"/> --}}
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -69,39 +77,6 @@
     <!-- End Wrapper -->
     <!-- ============================================================== -->
 
-    @include('backend1.admin.layouts._partials.script')
-
-    <!-- Laravel Javascript Validation -->
-    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-
-    {{-- <script>
-        $(() => {
-            document.getElementById('previous-btn').onclick = function () {
-                window.history.back();
-            };
-
-            $.extend( true, $.fn.dataTable.defaults, {
-                "language": {
-                    "processing": "<span class='fa-stack fa-lg'>\n\
-                                        <i class='fa fa-spinner fa-spin fa-stack-2x fa-fw'></i>\n\
-                                </span>&emsp;Processing ...",
-                }
-            });
-
-            console.log($.fn);
-
-            $.fn.dataTable.ext.buttons.refresh = {
-            text: '<i class="fa fa-sync text-light"></i>',
-            className: 'bg-success',
-                action: function ( e, dt, node, config ) {
-                    dt.clear().draw();
-                    dt.ajax.reload();
-                }
-            };
-
-        });
-    </script> --}}
-
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
         if (localStorage.getItem('color-theme') === 'tw-dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: tw-dark)').matches)) {
@@ -149,6 +124,53 @@
                     localStorage.setItem('color-theme', 'tw-dark');
                 }
             }
+        });
+    </script>
+
+    @include('backend1.admin.layouts._partials.script')
+
+    {{-- <script type="text/javascript" src="{{ asset('js/datatable.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}" defer></script> --}}
+
+    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/datatables.min.js"></script> --}}
+
+    {{-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/datatables.min.js"></script> --}}
+
+
+    {{-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script> --}}
+    <!-- Laravel Javascript Validation -->
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
+    <script>
+        $(() => {
+            if (document.getElementById('previous-btn')) {
+                document.getElementById('previous-btn').onclick = function () {
+                    window.history.back();
+                };
+            }
+
+            // $.extend( true, $.fn.dataTable.defaults, {
+            //     "language": {
+            //         "processing": "<span class='fa-stack fa-lg'>\n\
+            //                             <i class='fa fa-spinner fa-spin fa-stack-2x fa-fw'></i>\n\
+            //                     </span>&emsp;Processing ...",
+            //     }
+            // });
+
+            // console.log($.fn);
+
+            // $.fn.dataTable.ext.buttons.refresh = {
+            // text: '<i class="fa fa-sync text-light"></i>',
+            // className: 'bg-success',
+            //     action: function ( e, dt, node, config ) {
+            //         dt.clear().draw();
+            //         dt.ajax.reload();
+            //     }
+            // };
+
         });
     </script>
 

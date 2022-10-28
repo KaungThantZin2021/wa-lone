@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-5 align-self-center">
-                
+
             </div>
         </div>
     </div>
@@ -31,6 +31,9 @@
     <!-- Container fluid  -->
     <!-- ============================================================== -->
     <div class="container-fluid">
+        <div class="mb-3">
+            @include('backend1.components.buttons.back_button')
+        </div>
         <div class="card dark:tw-bg-slate-800">
             <div class="card-body">
                 <form action="{{ route('admin.user.store') }}" method="POST" id="createUserForm">
