@@ -1,3 +1,8 @@
+<!-- Plugin --->
+<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
+
+{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/datatables.min.css"/> --}}
+
 <!-- Custom CSS -->
 <link href="{{ asset('backend1/assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
 <link href="{{ asset('backend1/assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
@@ -8,4 +13,7 @@
 
 <!-- Tailwind CSS -->
 <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
+
+
+
 
