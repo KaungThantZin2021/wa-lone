@@ -4,14 +4,14 @@
 <div class="auth-box row">
     {{-- <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url({{ asset('backend1/assets/images/big/3.jpg') }});"> --}}
     </div>
-    <div class="col-lg-5 col-md-7 bg-white">
+    <div class="col-lg-5 col-md-7 bg-white card">
         <div class="p-3">
             <div class="text-center">
                 {{-- <img src="{{ asset('backend1/assets/images/big/icon.png') }}" alt="wrapkit"> --}}
                 <h3 class="text-primary">{{ config('app.name') }}</h3>
             </div>
             <hr>
-            <h2 class="mt-3 text-center">Login</h2>
+            <h2 class="mt-3 text-center">Admin Login</h2>
             <p class="text-center">Enter your email address and password to access admin panel.</p>
             <hr>
             <form class="mt-4" method="POST" action="{{ route('admin.two-step-otp') }}" id="adminLoginForm">

@@ -4,7 +4,7 @@
 <div class="auth-box row">
     {{-- <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url({{ asset('backend1/assets/images/big/3.jpg') }});"> --}}
     </div>
-    <div class="col-lg-5 col-md-7 bg-white">
+    <div class="col-lg-5 col-md-7 bg-white card">
         <div class="p-3">
             <div class="text-center">
                 {{-- <img src="{{ asset('backend1/assets/images/big/icon.png') }}" alt="wrapkit"> --}}

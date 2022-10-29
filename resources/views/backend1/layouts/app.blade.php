@@ -40,7 +40,7 @@
         <!-- Login box.scss -->
         <!-- ============================================================== -->
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
-            style="background:url({{ asset('backend1/assets/images/big/auth-bg.jpg') }}) no-repeat center center;">
+            style="background:url({{ asset('images/logo/walone_logo-removebg.png') }}); background-size: 100px 100px;">
             @yield('content')
         </div>
         <!-- ============================================================== -->
