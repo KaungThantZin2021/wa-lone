@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('backend1/assets/images/favicon.png') }}">
     <title>@yield('title')</title>
@@ -59,6 +62,14 @@
     <!-- ============================================================== -->
     <script>
         $(".preloader ").fadeOut();
+
+        $(() => {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
     </script>
 
     <!-- Laravel Javascript Validation -->

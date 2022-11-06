@@ -140,19 +140,19 @@ class AdminLoginController extends Controller
 
     public function resendOtp()
     {
-        $this->deleteOtp();
+        // $this->deleteOtp();
 
-        $session = $this->getSession();
+        // $session = $this->getSession();
 
-        $otp = MessageService::otpGenerate();
-        MessageService::otpStore($session->email, $otp);
-        MessageService::sendEmail($session->email, $otp);
+        // $otp = MessageService::otpGenerate();
+        // MessageService::otpStore($session->email, $otp);
+        // MessageService::sendEmail($session->email, $otp);
 
-        session()->put(config('otp.key'), [
-            'email' => $session->email,
-            'password' => $session->password,
-            'otp' => $otp
-        ]);
+        // session()->put(config('otp.key'), [
+        //     'email' => $session->email,
+        //     'password' => $session->password,
+        //     'otp' => $otp
+        // ]);
 
         return response()->json([
             'result' => 1,

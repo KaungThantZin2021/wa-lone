@@ -2,12 +2,10 @@
 @section('title', 'Admin Login OTP | ' . config('app.name', 'Wa Lone'))
 @section('content')
 <div class="auth-box row">
-    {{-- <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url({{ asset('backend1/assets/images/big/3.jpg') }});"> --}}
     </div>
     <div class="col-lg-5 col-md-7 bg-white card">
         <div class="p-3">
             <div class="text-center">
-                {{-- <img src="{{ asset('backend1/assets/images/big/icon.png') }}" alt="wrapkit"> --}}
                 <h3 class="text-primary">{{ config('app.name') }}</h3>
             </div>
             <hr>
@@ -44,8 +42,15 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-lg-12 text-center">
-                        <button type="submit" class="btn btn-block btn-primary">Confirm</button>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-block btn-primary my-1">Confirm</button>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="" id="resendOtpBtn" class="btn btn-block btn-outline-primary my-1 disabled">Resend OTP <span class="timer"></span></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -56,4 +61,59 @@
 
 @section('script')
 {!! JsValidator::formRequest('App\Http\Requests\Admin\AdminOTPLoginRequest', '#adminOTPLoginForm') !!}
+
+<script>
+
+    var resendOtpBtn = $('#resendOtpBtn');
+
+    $(() => {
+        var remain_second = 10;
+        var min = 00;
+        var sec = 00;
+        var countDown = setInterval(timer, 1000);
+
+        function timer() {
+            if (remain_second > 0) {
+
+                remain_second--;
+
+                min = Math.floor(remain_second / 60);
+                sec = remain_second - (min * 60);
+
+                if (min < 10) {
+                    min = '0' + min.toString();
+                }
+
+                if (sec < 10) {
+                    sec = '0' + sec.toString();
+                }
+
+                $('.timer').text(`(${min} : ${sec})`);
+
+            } else {
+                console.log('time out');
+                clearInterval(countDown);
+
+                resendOtpBtn.removeClass('disabled');
+                resendOtpBtn.toggleClass('btn-outline-primary btn-primary');
+
+                $('.timer').hide();
+            }
+        }
+
+       $(document).on('click', '#resendOtpBtn', function (e) {
+            e.preventDefault();
+
+            $.post('{{ route("admin.resend-otp") }}').done((res) => {
+                if (res.result == 1) {
+
+                    resendOtpBtn.addClass('disabled');
+                    resendOtpBtn.toggleClass('btn-primary btn-outline-primary');
+
+                    console.log(res.message);
+                }
+            });
+       })
+    });
+</script>
 @endsection

@@ -120,11 +120,17 @@
 .tw-h-5 {
     height: 1.25rem
 }
+.tw-h-1 {
+    height: 0.25rem
+}
 .tw-w-24 {
     width: 6rem
 }
 .tw-w-5 {
     width: 1.25rem
+}
+.tw-w-1 {
+    width: 0.25rem
 }
 .tw-items-center {
     align-items: center
@@ -141,6 +147,17 @@
 .tw-justify-between {
     justify-content: space-between
 }
+.tw-border {
+    border-width: 1px
+}
+.tw-border-red-500 {
+    --tw-border-opacity: 1;
+    border-color: rgb(239 68 68 / var(--tw-border-opacity))
+}
+.tw-border-red-50 {
+    --tw-border-opacity: 1;
+    border-color: rgb(254 242 242 / var(--tw-border-opacity))
+}
 .tw-bg-white {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity))
@@ -152,6 +169,14 @@
 .tw-bg-blue-50 {
     --tw-bg-opacity: 1;
     background-color: rgb(239 246 255 / var(--tw-bg-opacity))
+}
+.tw-bg-black {
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity))
+}
+.tw-bg-blue-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(59 130 246 / var(--tw-bg-opacity))
 }
 .tw-text-right {
     text-align: right
@@ -171,6 +196,10 @@
 .tw-text-gray-600 {
     --tw-text-opacity: 1;
     color: rgb(75 85 99 / var(--tw-text-opacity))
+}
+.tw-text-red-600 {
+    --tw-text-opacity: 1;
+    color: rgb(220 38 38 / var(--tw-text-opacity))
 }
 .tw-drop-shadow-2xl {
     --tw-drop-shadow: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
