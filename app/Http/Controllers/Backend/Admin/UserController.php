@@ -16,13 +16,13 @@ class UserController extends Controller
             return Datatables::of(User::query())->make();
         }
         // return view('backend.admin.users.index');
-        return view('backend1.admin.users.index');
+        return view('backend.admin.users.index');
     }
 
     public function create()
     {
         // return view('backend.admin.users.create');
-        return view('backend1.admin.users.create');
+        return view('backend.admin.users.create');
     }
 
     public function store(CreateUserRequest $request)

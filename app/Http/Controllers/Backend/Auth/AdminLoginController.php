@@ -59,8 +59,7 @@ class AdminLoginController extends Controller
 
     public function showLoginForm()
     {
-        // return view('backend.auth.admin_login');
-        return view('backend1.auth.admin_login');
+        return view('backend.auth.admin_login');
     }
 
     public function login(AdminOTPLoginRequest $request)
@@ -134,8 +133,7 @@ class AdminLoginController extends Controller
     {
         $session = $this->getSession();
 
-        // return view('backend.auth.admin_otp', compact('session'));
-        return view('backend1.auth.admin_otp', compact('session'));
+        return view('backend.auth.admin_otp', compact('session'));
     }
 
     public function resendOtp()

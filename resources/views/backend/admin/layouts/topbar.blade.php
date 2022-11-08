@@ -13,17 +13,17 @@
                     <h3>{{ config('app.name') }}</h3>
                     {{-- <b class="logo-icon">
                         <!-- Dark Logo icon -->
-                        <img src="{{ asset('backend1/assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
+                        <img src="{{ asset('backend/assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
                         <!-- Light Logo icon -->
-                        <img src="{{ asset('backend1/assets/images/logo-icon.png') }}" alt="homepage" class="light-logo" />
+                        <img src="{{ asset('backend/assets/images/logo-icon.png') }}" alt="homepage" class="light-logo" />
                     </b>
                     <!--End Logo icon -->
                     <!-- Logo text -->
                     <span class="logo-text">
                         <!-- dark Logo text -->
-                        <img src="{{ asset('backend1/assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
+                        <img src="{{ asset('backend/assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
                         <!-- Light Logo text -->
-                        <img src="{{ asset('backend1/assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" />
+                        <img src="{{ asset('backend/assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" />
                     </span> --}}
                 </a>
             </div>
@@ -183,7 +183,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset('backend1/assets/images/users/profile-pic.jpg') }}" alt="user"
+                        <img src="{{ asset('backend/assets/images/users/profile-pic.jpg') }}" alt="user"
                             class="rounded-circle" width="40">
                         <span class="ml-2 d-none d-lg-inline-block"><span
                                 class="tw-text-gray-600 dark:tw-text-white">{{ auth()->guard('admin_user')->user()->name }}</span> <i data-feather="chevron-down"

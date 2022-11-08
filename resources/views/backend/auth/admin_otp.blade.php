@@ -1,89 +1,119 @@
 @extends('backend.layouts.app')
-@section('title', config('app.name', 'Wa Lone').' Admin Login OTP')
+@section('title', 'Admin Login OTP | ' . config('app.name', 'Wa Lone'))
 @section('content')
-<div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="row w-100 m-0">
-            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-                <div class="col-md-4 col-sm-12">
-                    <h1 class="text-center">{{ config('app.name') }}</h1>
-                </div>
-                <div class="col-md-8 col-sm-12 card col-lg-4 mx-auto">
-                    <div class="card-body px-5 py-5">
-                        <h3 class="card-title text-left mb-3">Admin Login OTP</h3>
-                        <p class="text-success">We sent OTP code to <a href="https://accounts.google.com" target="_blank">{{ $session->email }}</a>. Please check your <a href="https://accounts.google.com" target="_blank">email</a>.</p>
-                        <form method="POST" action="{{ route('admin.login') }}">
-                            @csrf
+<div class="auth-box row">
+    </div>
+    <div class="col-lg-5 col-md-7 bg-white card">
+        <div class="p-3">
+            <div class="text-center">
+                <h3 class="text-primary">{{ config('app.name') }}</h3>
+            </div>
+            <hr>
+            <h2 class="mt-3 text-center">Admin Login OTP</h2>
+            <p class="text-center">We sent OTP code to <a href="https://accounts.google.com" target="_blank">{{ $session->email }}</a>. Please check your <a href="https://accounts.google.com" target="_blank">email</a>.</p>
+            <hr>
+            <form class="mt-4" method="POST" action="{{ route('admin.login') }}" id="adminOTPLoginForm">
+                @csrf
 
-                            <input type="hidden" class="form-control text-light @error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="off">
-                            <input type="hidden" class="form-control text-light @error('password') is-invalid @enderror" name="password" value="{{ $session->password }}" required autocomplete="off">
+                <input type="hidden" class="@error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="off">
+                <input type="hidden" class="@error('password') is-invalid @enderror" name="password" value="{{ $session->password }}" required autocomplete="off">
 
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="text-dark" for="otp">OTP (One Time Password) *</label>
+                            <input class="form-control text-center @error('otp') is-invalid @enderror" id="otp" type="number" name="otp" value="{{ old('otp') }}" autocomplete="off" placeholder="______" autofocus>
+                            @error('otp')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                            <div class="form-group">
-                                <label>OTP (One Time Password) *</label>
-                                <input id="otp" type="number" class="form-control text-center text-light @error('otp') is-invalid @enderror" name="otp" value="{{ old('otp') }}" autocomplete="off" placeholder="______" autofocus>
-                                @error('otp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-block btn-primary my-1">Confirm</button>
                             </div>
-                            <div class="d-flex">
-                                <button type="submit" class="btn btn-primary mr-2 col">Confirm</button>
-                                <a href="javascript:void[0]" class="btn btn-outline-primary resend-otp-btn col disabled">Resend OTP <span id="" class="countdown text-light"></span></a>
-                              </div>
-                        </form>
+                            <div class="col-md-6">
+                                <a href="" id="resendOtpBtn" class="btn btn-block btn-outline-primary my-1 disabled">Resend OTP <span class="timer"></span></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
 @endsection
 
 @section('script')
+{!! JsValidator::formRequest('App\Http\Requests\Admin\AdminOTPLoginRequest', '#adminOTPLoginForm') !!}
+
 <script>
+
+    var resendOtpBtn = $('#resendOtpBtn');
+
     $(() => {
-        var timer2 = "05:00";
-        var interval = setInterval(function() {
+        var remain_second = 10;
+        var min = 00;
+        var sec = 00;
+        var countDown = setInterval(timer, 1000);
 
-            var timer = timer2.split(':');
-            //by parsing integer, I avoid all extra string processing
-            var minutes = parseInt(timer[0], 10);
-            var seconds = parseInt(timer[1], 10);
-            --seconds;
-            minutes = (seconds < 0) ? --minutes : minutes;
-            if (minutes < 0) clearInterval(interval);
-            seconds = (seconds < 0) ? 59 : seconds;
-            seconds = (seconds < 10) ? '0' + seconds : seconds;
-            //minutes = (minutes < 10) ?  minutes : minutes;
-            $('.countdown').html(minutes + ':' + seconds);
-            timer2 = minutes + ':' + seconds;
+        function timer() {
+            if (remain_second > 0) {
 
-        }, 1000);
+                remain_second--;
 
-        $('.resend-otp-btn').click(function () {
-           $.post("{{ route('admin.resend-otp') }}")
-            .done(function (res) {
-                if (res.result == 1) {
-                    toastr.success(res.message);
+                min = Math.floor(remain_second / 60);
+                sec = remain_second - (min * 60);
+
+                if (min < 10) {
+                    min = '0' + min.toString();
                 }
-            })
-            .fail(function (error) {
-                toastr.error("Something wrong!");
+
+                if (sec < 10) {
+                    sec = '0' + sec.toString();
+                }
+
+                $('.timer').text(`(${min} : ${sec})`);
+
+            } else {
+                console.log('time out');
+                clearInterval(countDown);
+
+                resendOtpBtn.removeClass('disabled');
+                resendOtpBtn.toggleClass('btn-outline-primary btn-primary');
+
+                $('.timer').hide();
+            }
+        }
+
+       $(document).on('click', '#resendOtpBtn', function (e) {
+            e.preventDefault();
+
+            $.post('{{ route("admin.resend-otp") }}').done((res) => {
+                if (res.result == 1) {
+
+                    resendOtpBtn.addClass('disabled');
+                    resendOtpBtn.toggleClass('btn-primary btn-outline-primary');
+
+                    console.log(res.message);
+                }
             });
-        });
+       })
     });
 </script>
 @endsection

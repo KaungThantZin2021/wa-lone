@@ -1,41 +1,4 @@
-/* .button-page-length {
-    color: black !important;
-} */
 
-
-.dropdown-item :hover {
-    color: whitesmoke !important;
-}
-
-div.dt-button-collection {
-    background-color: #22252f !important;
-}
-
-/* a.dt-button.dropdown-item.button-page-length :hover {
-    background-color: blueviolet !important;
-} */
-
-div.dt-button-collection .dt-button:hover{
-    background-color: #007bff !important;
-
-}
-
-div.dataTables_wrapper div.dataTables_filter input {
-    color: whitesmoke !important;
-}
-
-.dataTables_filter {
-    float: right !important;
-}
-
-.nav-active {
-    background: #0f1015;
-    border-left: 3px solid #0090e7;
-    border-radius: 0px 100px 100px 0px;
-    margin-right: 20px;
-}
-
-.sidebar {
-    height: 700px;
-    overflow: scroll;
-}
+/*Original theme color  #5f76e8 */
+/*Bootstrap primary color  #0d6efd */
+/*Side bar selected active linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#0d6efd) */

@@ -1,55 +1,77 @@
 @extends('backend.admin.layouts.app')
-@section('title', 'Users')
-@section('user-active', 'nav-active')
+@section('title', 'User | ' . config('app.name'))
+@section('user-selected', 'selected')
 
 @section('content')
-<div>
-    <div class="page-header">
-        <div>
-            @include('backend.components.buttons.back_button')
-            <a href="{{ route('admin.user.create') }}" class="btn btn-outline-success"><i class="fas fa-user-plus"></i> Create User</a>
-        </div>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">admin</a></li>
-                <li class="breadcrumb-item active" aria-current="page">user</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="row">
-        <div class="grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Users</h4>
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="users-table">
-                            <thead>
-                                <tr class="bg-primary">
-                                    <th class="text-light">ID</th>
-                                    <th class="text-light">Name</th>
-                                    <th class="text-light">Email</th>
-                                    <th class="text-light">Created At</th>
-                                    <th class="text-light">Updated At</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-7 align-self-center">
+                <h3 class="page-title text-truncate font-weight-medium mb-1 tw-text-black dark:tw-text-gray-300">Good Morning Jason!</h3>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 p-0">
+                            <li class="breadcrumb-item"><a href="index.html">User</a>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
+            </div>
+            <div class="col-5 align-self-center">
+
             </div>
         </div>
     </div>
-</div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <div class="mb-3">
+            <a href="{{ route('admin.user.create') }}" class="btn btn-primary">Create User</a>
+        </div>
+        <div class="card">
+            <div class="card-body dark:tw-bg-slate-800">
+                <table class="table table-bordered" id="users-table">
+                    <thead>
+                        <tr class="bg-primary">
+                            <th class="text-light">ID</th>
+                            <th class="text-light">Name</th>
+                            <th class="text-light">Email</th>
+                            <th class="text-light">Created At</th>
+                            <th class="text-light">Updated At</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ======================================================== ====== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center text-muted">
+        All Rights Reserved by Adminmart. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
 @endsection
 
 @section('script')
 
 <script>
-    $(() => {
+    $(document).ready(function () {
         var table = $('#users-table').DataTable({
             processing: true,
             serverSide: true,
-            mark: true,
             dom: 'Bfrtip',
             buttons: [
                 {
@@ -64,11 +86,11 @@
                 {
                     extend: 'excelHtml5',
                     text: '<i class="fas fa-file-excel"></i> Excel',
-                    className: 'btn btn-outline-success bg-dark border border-success',
+                    className: 'btn btn-success',
                     filename: 'Users Report',
                 },
                 {
-                    extend: 'pageLength',               
+                    extend: 'pageLength',
                 }
             ],
             lengthMenu: [
