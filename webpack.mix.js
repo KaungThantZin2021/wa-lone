@@ -18,6 +18,10 @@ mix.js('resources/js/app.js', 'public/js')
     })
     .js('resources/js/plugins.js', 'public/js')
     .sass('resources/sass/plugins.scss', 'public/css')
+    .js('resources/js/toastr.js', 'public/js')
+    .sass('resources/sass/toastr.scss', 'public/css')
+    .js('resources/js/sweetalert2.js', 'public/js')
+    .sass('resources/sass/sweetalert2.scss', 'public/css')
     .sass('resources/sass/tailwind.scss', 'public/css').options({
         postCss: [ tailwindcss('./tailwind.config.js') ],
         // processCssUrls: false

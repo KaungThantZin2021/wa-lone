@@ -63,7 +63,6 @@
 {!! JsValidator::formRequest('App\Http\Requests\Admin\AdminOTPLoginRequest', '#adminOTPLoginForm') !!}
 
 <script>
-
     var resendOtpBtn = $('#resendOtpBtn');
 
     $(() => {
@@ -106,10 +105,10 @@
 
             $.post('{{ route("admin.resend-otp") }}').done((res) => {
                 if (res.result == 1) {
-
                     resendOtpBtn.addClass('disabled');
                     resendOtpBtn.toggleClass('btn-primary btn-outline-primary');
 
+                    toastr.success(res.message, 'Success', {timeOut: 5000});
                     console.log(res.message);
                 }
             });
