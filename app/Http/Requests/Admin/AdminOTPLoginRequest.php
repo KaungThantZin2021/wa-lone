@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Rules\OtpRule;
-use App\Rules\OtpExpireCheckRule;
+use App\Rules\OTPRule;
+use App\Rules\OTPExpireCheckRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdminOTPLoginRequest extends FormRequest
@@ -28,7 +28,7 @@ class AdminOTPLoginRequest extends FormRequest
         return [
             'email' => 'required|email|exists:admin_users,email',
             'password' => 'required|between:8,12',
-            'otp' => ['required', 'numeric', 'digits:6', new OtpRule, new OtpExpireCheckRule]
+            'otp' => ['required', 'numeric', 'digits:6', new OTPRule, new OTPExpireCheckRule]
         ];
     }
 }

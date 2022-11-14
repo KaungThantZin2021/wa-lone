@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Backend\Auth;
 
 use Carbon\Carbon;
-use App\Rules\OtpRule;
+use App\Rules\OTPRule;
 use App\Models\OTPCode;
 use App\Models\AdminUser;
 use Jenssegers\Agent\Agent;
+use App\Services\OTPService;
 use Illuminate\Http\Request;
-use App\Services\MessageService;
-use App\Rules\OtpExpireCheckRule;
+use App\Rules\OTPExpireCheckRule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -40,7 +40,8 @@ class AdminLoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::ADMIN;
 
-    // protected $otp = env('OTP_KEY', 'otp');
+    protected $otp_key;
+    protected $otp_expire_duration;
 
     /**
      * Create a new controller instance.
@@ -50,6 +51,8 @@ class AdminLoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest:admin_user')->except('logout');
+        $this->otp_key = config('otp.key');
+        $this->otp_expire_duration = config('otp.expire_duration');
     }
 
     protected function guard()
@@ -67,12 +70,12 @@ class AdminLoginController extends Controller
         $this->validateLogin($request);
 
         $request->validate([
-            'otp' => ['required', 'numeric', 'digits:6', new OtpRule, new OtpExpireCheckRule]
+            'otp' => ['required', 'numeric', 'digits:6', new OTPRule, new OTPExpireCheckRule]
         ]);
 
         $session = $this->getSession();
 
-        $otp = OTPCode::latestOtp($session);
+        $otp = OTPCode::latestOTP($session);
 
         if ($request->otp != $otp) {
             return redirect()->back()->with('error', 'OTP doesn\'t match.');
@@ -94,7 +97,7 @@ class AdminLoginController extends Controller
                 $request->session()->put('auth.password_confirmed_at', time());
             }
 
-            $this->deleteOtp();
+            OTPService::deleteOTP($session);
 
             return $this->sendLoginResponse($request);
         }
@@ -104,7 +107,7 @@ class AdminLoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    public function twoStepOtp(AdminLoginRequest $request)
+    public function twoStepOTP(AdminLoginRequest $request)
     {
         // $this->validateLogin($request);
 
@@ -113,11 +116,9 @@ class AdminLoginController extends Controller
         if (!is_null($admin_user)) {
             if (Hash::check($request->password, $admin_user->password)) {
 
-                $otp = MessageService::otpGenerate();
-                MessageService::otpStore($request->email, $otp);
-                MessageService::sendEmail($request->email, $otp);
+                $otp = OTPService::OTPSendingProcess($request->email, $this->otp_expire_duration);
 
-                session()->put(config('otp.key'), [
+                session()->put($this->otp_key, [
                     'email' => $admin_user->email,
                     'password' => $request->password,
                     'otp' => $otp
@@ -129,24 +130,24 @@ class AdminLoginController extends Controller
         return redirect()->back()->withError('Credentials doesn\'t match.');
     }
 
-    public function showOtpForm()
+    public function showOTPForm()
     {
         $session = $this->getSession();
 
-        return view('backend.auth.admin_otp', compact('session'));
+        $remain_seconds = OTPService::OTPExpireDuration($session, $this->otp_expire_duration);
+
+        return view('backend.auth.admin_otp', compact('session', 'remain_seconds'));
     }
 
-    public function resendOtp()
+    public function resendOTP()
     {
-        $this->deleteOtp();
-
         $session = $this->getSession();
 
-        $otp = MessageService::otpGenerate();
-        MessageService::otpStore($session->email, $otp);
-        MessageService::sendEmail($session->email, $otp);
+        OTPService::deleteOTP($session);
 
-        session()->put(config('otp.key'), [
+        $otp = OTPService::OTPSendingProcess($session->email, $this->otp_expire_duration);
+
+        session()->put($this->otp_key, [
             'email' => $session->email,
             'password' => $session->password,
             'otp' => $otp
@@ -176,21 +177,8 @@ class AdminLoginController extends Controller
 
     protected function getSession()
     {
-        $session = (object) session()->get(config('otp.key'));
+        $session = (object) session()->get($this->otp_key);
 
         return $session;
-    }
-
-    protected function deleteOtp()
-    {
-        $session = $this->getSession();
-
-        $otp_code = OTPCode::where('email', $session->email)->where('otp', $session->otp)->latest()->first();
-
-        if ($otp_code) {
-            $otp_code->delete();
-        }
-
-        return;
     }
 }

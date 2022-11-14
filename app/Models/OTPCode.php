@@ -11,7 +11,7 @@ class OTPCode extends Model
 
     protected $fillable = ['phone', 'email', 'otp', 'expire_at'];
 
-    public function scopelatestOtp($query, $session)
+    public function scopelatestOTP($query, $session)
     {
         return $query->where('email', $session->email)->where('otp', $session->otp)->latest()->first()->otp;
     }

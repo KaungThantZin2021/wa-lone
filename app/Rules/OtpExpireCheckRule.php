@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use App\Models\OTPCode;
 use Illuminate\Contracts\Validation\Rule;
 
-class OtpExpireCheckRule implements Rule
+class OTPExpireCheckRule implements Rule
 {
     /**
      * Create a new rule instance.

@@ -66,7 +66,7 @@
     var resendOtpBtn = $('#resendOtpBtn');
 
     $(() => {
-        var remain_second = 10;
+        var remain_second = "{{ $remain_seconds }}";
         var min = 00;
         var sec = 00;
         var countDown = setInterval(timer, 1000);
@@ -108,8 +108,9 @@
                     resendOtpBtn.addClass('disabled');
                     resendOtpBtn.toggleClass('btn-primary btn-outline-primary');
 
-                    toastr.success(res.message, 'Success', {timeOut: 5000});
+                    toastr.success(res.message, 'Success', {timeOut: 3000});
                     console.log(res.message);
+                    window.location.reload();
                 }
             });
        })
