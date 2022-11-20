@@ -1,9 +1,11 @@
-@if ($errors->any())                    
+@if ($errors->any())
     @foreach ($errors->all() as $error)
-        {{ $error }}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger"
+            role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
             {{ $error }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endforeach
 @endif

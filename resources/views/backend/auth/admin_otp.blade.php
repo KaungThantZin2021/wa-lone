@@ -12,6 +12,9 @@
             <h2 class="mt-3 text-center">Admin Login OTP</h2>
             <p class="text-center">We sent OTP code to <a href="https://accounts.google.com" target="_blank">{{ $session->email }}</a>. Please check your <a href="https://accounts.google.com" target="_blank">email</a>.</p>
             <hr>
+
+            @include('backend.layouts.flash')
+
             <form class="mt-4" method="POST" action="{{ route('admin.login') }}" id="adminOTPLoginForm">
                 @csrf
 
@@ -100,20 +103,25 @@
             }
         }
 
-       $(document).on('click', '#resendOtpBtn', function (e) {
-            e.preventDefault();
+        $(document).on('click', '#resendOtpBtn', function (e) {
+                e.preventDefault();
 
-            $.post('{{ route("admin.resend-otp") }}').done((res) => {
-                if (res.result == 1) {
-                    resendOtpBtn.addClass('disabled');
-                    resendOtpBtn.toggleClass('btn-primary btn-outline-primary');
+                $.post('{{ route("admin.resend-otp") }}').done((res) => {
+                    if (res.result == 1) {
+                        resendOtpBtn.addClass('disabled');
+                        resendOtpBtn.toggleClass('btn-primary btn-outline-primary');
 
-                    toastr.success(res.message, 'Success', {timeOut: 3000});
-                    console.log(res.message);
-                    window.location.reload();
-                }
-            });
-       })
+                        // toastr.success(res.message, 'Success', {timeOut: 3000});
+                        window.location.reload();
+                    } else {
+                        toastr.error(res.message, 'Error', {timeOut: 5000});
+                    }
+                });
+        });
+
+        @if (session()->get('resend-otp'))
+        toastr.success("{{ session()->get('resend-otp') }}", 'Success', {timeOut: 5000});
+        @endif
     });
 </script>
 @endsection

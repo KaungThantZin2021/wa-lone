@@ -78,11 +78,11 @@ class AdminLoginController extends Controller
         $otp = OTPCode::latestOTP($session);
 
         if ($request->otp != $otp) {
-            return redirect()->back()->with('error', 'OTP doesn\'t match.');
+            return redirect()->back()->withErrors(['fail' => 'OTP doesn\'t match.'])->withInput();
         }
 
         if ($request->email != $session->email || $request->password != $session->password) {
-            return redirect()->back()->with('error', 'Invalid Data!');
+            return redirect()->back()->withErrors(['fail' => 'Invalid Data!'])->withInput();
         }
 
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
@@ -109,34 +109,42 @@ class AdminLoginController extends Controller
 
     public function twoStepOTP(AdminLoginRequest $request)
     {
-        // $this->validateLogin($request);
-
         $admin_user = AdminUser::where('email', $request->email)->first();
 
         if (!is_null($admin_user)) {
             if (Hash::check($request->password, $admin_user->password)) {
 
-                $otp = OTPService::OTPSendingProcess($request->email, $this->otp_expire_duration);
+                $result = OTPService::OTPSendingProcess($request->email, $this->otp_expire_duration);
 
-                session()->put($this->otp_key, [
-                    'email' => $admin_user->email,
-                    'password' => $request->password,
-                    'otp' => $otp
-                ]);
+                if ($result['result'] == 1) {
+                    session()->put($this->otp_key, [
+                        'email' => $admin_user->email,
+                        'password' => $request->password,
+                        'otp' => $result['data']['otp']
+                    ]);
 
-                return redirect()->route('admin.otp');
+                    return redirect()->route('admin.otp');
+                }
+
+                return redirect()->back()->withErrors(['fail' => 'Something wrong!'])->withInput();
             }
         }
-        return redirect()->back()->withError('Credentials doesn\'t match.');
+
+        return redirect()->back()->withErrors(['fail' => 'Credentials doesn\'t match.'])->withInput();
     }
 
     public function showOTPForm()
     {
         $session = $this->getSession();
 
-        $remain_seconds = OTPService::OTPExpireDuration($session, $this->otp_expire_duration);
+        $result = OTPService::OTPExpireDuration($session, $this->otp_expire_duration);
 
-        return view('backend.auth.admin_otp', compact('session', 'remain_seconds'));
+        if ($result['result'] == 1) {
+            $remain_seconds = $result['data']['remain_seconds'];
+            return view('backend.auth.admin_otp', compact('session', 'remain_seconds'));
+        }
+
+        return redirect()->back()->withErrors(['fail' => $result['message']])->withInput();
     }
 
     public function resendOTP()
@@ -145,18 +153,21 @@ class AdminLoginController extends Controller
 
         OTPService::deleteOTP($session);
 
-        $otp = OTPService::OTPSendingProcess($session->email, $this->otp_expire_duration);
+        $result = OTPService::OTPSendingProcess($session->email, $this->otp_expire_duration);
 
-        session()->put($this->otp_key, [
-            'email' => $session->email,
-            'password' => $session->password,
-            'otp' => $otp
-        ]);
+        if ($result['result'] == 1) {
+            session()->put($this->otp_key, [
+                'email' => $session->email,
+                'password' => $session->password,
+                'otp' => $result['data']['otp']
+            ]);
 
-        return response()->json([
-            'result' => 1,
-            'message' => 'We sent a new OTP email. Please Check Your email.'
-        ]);
+            session()->flash('resend-otp', $result['message']);
+
+            return success($result['message']);
+        }
+
+        return fail('Something wrong!');
     }
 
     protected function authenticated(Request $request, $user)

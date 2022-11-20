@@ -14,6 +14,9 @@
             <h2 class="mt-3 text-center">Admin Login</h2>
             <p class="text-center">Enter your email address and password to access admin panel.</p>
             <hr>
+
+            @include('backend.layouts.flash')
+
             <form class="mt-4" method="POST" action="{{ route('admin.two-step-otp') }}" id="adminLoginForm">
                 @csrf
                 <div class="row">
