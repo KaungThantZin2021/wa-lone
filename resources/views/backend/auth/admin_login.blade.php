@@ -17,7 +17,7 @@
 
             @include('backend.layouts.flash')
 
-            <form class="mt-4" method="POST" action="{{ route('admin.two-step-otp') }}" id="adminLoginForm">
+            <form class="mt-4" method="POST" action="{{ route('admin.login') }}" id="adminLoginForm">
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">

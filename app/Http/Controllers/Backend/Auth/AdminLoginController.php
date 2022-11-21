@@ -43,6 +43,9 @@ class AdminLoginController extends Controller
     protected $otp_key;
     protected $otp_expire_duration;
 
+    protected $maxAttempts = 1; // Default is 5
+    protected $decayMinutes = 1; // Default is 1
+
     /**
      * Create a new controller instance.
      *
@@ -65,7 +68,44 @@ class AdminLoginController extends Controller
         return view('backend.auth.admin_login');
     }
 
-    public function login(AdminOTPLoginRequest $request)
+    public function login(AdminLoginRequest $request)
+    {
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        $this->validateLogin($request);
+
+        $admin_user = AdminUser::where('email', $request->email)->first();
+
+        if (is_null($admin_user)) return redirect()->back()->withErrors(['fail' => 'Credentials doesn\'t match.'])->withInput();
+
+        if (Hash::check($request->password, $admin_user->password)) {
+
+            $result = OTPService::OTPSendingProcess($request->email, $this->otp_expire_duration);
+
+            if ($result['result'] == 1) {
+                session()->put($this->otp_key, [
+                    'email' => $admin_user->email,
+                    'password' => $request->password,
+                    'otp' => $result['data']['otp']
+                ]);
+
+                return redirect()->route('admin.otp');
+            }
+
+            return redirect()->back()->withErrors(['fail' => 'Something wrong!'])->withInput();
+        }
+
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    public function twoStepOTP(AdminOTPLoginRequest $request)
     {
         $this->validateLogin($request);
 
@@ -85,13 +125,6 @@ class AdminLoginController extends Controller
             return redirect()->back()->withErrors(['fail' => 'Invalid Data!'])->withInput();
         }
 
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
-
-            return $this->sendLockoutResponse($request);
-        }
-
         if ($this->attemptLogin($request)) {
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
@@ -101,36 +134,6 @@ class AdminLoginController extends Controller
 
             return $this->sendLoginResponse($request);
         }
-
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
-    }
-
-    public function twoStepOTP(AdminLoginRequest $request)
-    {
-        $admin_user = AdminUser::where('email', $request->email)->first();
-
-        if (!is_null($admin_user)) {
-            if (Hash::check($request->password, $admin_user->password)) {
-
-                $result = OTPService::OTPSendingProcess($request->email, $this->otp_expire_duration);
-
-                if ($result['result'] == 1) {
-                    session()->put($this->otp_key, [
-                        'email' => $admin_user->email,
-                        'password' => $request->password,
-                        'otp' => $result['data']['otp']
-                    ]);
-
-                    return redirect()->route('admin.otp');
-                }
-
-                return redirect()->back()->withErrors(['fail' => 'Something wrong!'])->withInput();
-            }
-        }
-
-        return redirect()->back()->withErrors(['fail' => 'Credentials doesn\'t match.'])->withInput();
     }
 
     public function showOTPForm()

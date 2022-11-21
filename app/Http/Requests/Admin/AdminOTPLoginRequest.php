@@ -27,7 +27,7 @@ class AdminOTPLoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email|exists:admin_users,email',
-            'password' => 'required|between:8,12',
+            'password' => 'required',
             'otp' => ['required', 'numeric', 'digits:6', new OTPRule, new OTPExpireCheckRule]
         ];
     }

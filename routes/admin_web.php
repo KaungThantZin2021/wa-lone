@@ -17,9 +17,12 @@ Route::name('admin.')
         ->namespace('App\Http\Controllers\Backend\Auth')
         ->group(function () {
             Route::get('/login', 'AdminLoginController@showLoginForm')->name('login');
+
             Route::post('/two-step-otp', 'AdminLoginController@twoStepOTP')->name('two-step-otp');
+
             Route::get('/otp', 'AdminLoginController@showOTPForm')->name('otp');
             Route::post('/resend-otp', 'AdminLoginController@resendOTP')->name('resend-otp');
+
             Route::post('/login', 'AdminLoginController@login')->name('login');
             Route::post('/logout', 'AdminLoginController@logout')->name('logout');
         });
