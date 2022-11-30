@@ -43,7 +43,7 @@ class AdminLoginController extends Controller
     protected $otp_key;
     protected $otp_expire_duration;
 
-    protected $maxAttempts = 1; // Default is 5
+    protected $maxAttempts = 5; // Default is 5
     protected $decayMinutes = 1; // Default is 1
 
     /**
@@ -105,7 +105,7 @@ class AdminLoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    public function twoStepOTP(AdminOTPLoginRequest $request)
+    public function twoStepLogin(AdminOTPLoginRequest $request)
     {
         $this->validateLogin($request);
 

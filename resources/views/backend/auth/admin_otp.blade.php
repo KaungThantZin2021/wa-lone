@@ -15,7 +15,7 @@
 
             @include('backend.layouts.flash')
 
-            <form class="mt-4" method="POST" action="{{ route('admin.two-step-otp') }}" id="adminOTPLoginForm">
+            <form class="mt-4" method="POST" action="{{ route('admin.two-step-login') }}" id="adminOTPLoginForm">
                 @csrf
 
                 <input type="hidden" class="@error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="off">
