@@ -93,4 +93,20 @@ class  OTPService
             return fail($e->getMessage());
         }
     }
+
+    // public static function checkResendOTPAttempts(object $session)
+    // {
+    //     $maxAttempts = 3;
+    //     $decayMinutes = 1;
+
+    //     $otp_codes_count = OTPCode::where('email', $session->email)->where('otp', $session->otp)->count();
+
+    //     // dd($otp_codes_count);
+
+    //     if ($otp_codes_count >= $maxAttempts) {
+    //         return fail('Too many resend OTP!');
+    //     }
+
+    //     return success('');
+    // }
 }

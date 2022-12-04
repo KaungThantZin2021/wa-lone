@@ -154,6 +154,12 @@ class AdminLoginController extends Controller
     {
         $session = $this->getSession();
 
+        // $result = OTPService::checkResendOTPAttempts($session);
+
+        // if ($result['result'] == 0) {
+        //     return fail($result['message']);
+        // }
+
         OTPService::deleteOTP($session);
 
         $result = OTPService::OTPSendingProcess($session->email, $this->otp_expire_duration);

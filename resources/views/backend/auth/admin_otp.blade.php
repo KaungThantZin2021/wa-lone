@@ -122,6 +122,10 @@
         @if (session()->get('resend-otp'))
         toastr.success("{{ session()->get('resend-otp') }}", 'Success', {timeOut: 5000});
         @endif
+
+        @if (session()->get('too-many-resend-otp'))
+        toastr.info("{{ session()->get('too-many-resend-otp') }}", 'Too Many Resend OTP', {timeOut: 10000});
+        @endif
     });
 </script>
 @endsection
