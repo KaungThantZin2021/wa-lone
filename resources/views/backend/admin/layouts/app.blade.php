@@ -14,6 +14,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('backend/assets/images/favicon.png') }}">
     <title>@yield('title')</title>
 
+    @yield('css')
+
     @include('backend.admin.layouts._partials.css')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

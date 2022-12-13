@@ -14,6 +14,9 @@
 <!-- Tailwind CSS -->
 <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
 
+<link rel="stylesheet" href="{{ asset('backend/vendor/summernote/summernote.min.css') }}">
+
+
 
 
 

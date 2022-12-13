@@ -31,3 +31,5 @@
 <script src="{{ asset('backend/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
 <script src="{{ asset('backend/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
 <script src="{{ asset('backend/dist/js/pages/dashboards/dashboard1.min.js') }}"></script>
+
+<script src="{{ asset('backend/vendor/summernote/summernote.min.js') }}"></script>

@@ -19,6 +19,14 @@
                         <i data-feather="tag" class="feather-icon"></i><span class="hide-menu">User</span>
                     </a>
                 </li>
+
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Blog Management</span></li>
+                <li class="sidebar-item  @yield('blog-selected')">
+                    <a class="sidebar-link" href="{{ route('admin.blog.index') }}" aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i><span class="hide-menu">Blog</span>
+                    </a>
+                </li>
+
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Applications</span></li>
 
                 <li class="sidebar-item"> <a class="sidebar-link" href="ticket-list.html" aria-expanded="false"><i
