@@ -142,7 +142,7 @@
                     @forelse ($blogs as $blog)
                     <div class="col-md-4">
                         <a href="" class="text-decoration-none text-dark">
-                          <div class="card border-light mb-3" style="height: 300px">
+                          <div class="card border-light mb-3" style="height: 300px;">
                             <div class="card-header">{{ $blog->title }}</div>
                             <div class="card-body">
                                 <h5 class="card-title">Light card title</h5>
@@ -152,14 +152,20 @@
                         </a>
                     </div>
                     @empty
-                    <div class="col-md-4">
-
+                    <div class="col-md-8">
+                        <div class="alert alert-dismissible alert-primary">
+                            <h5 class="text-center">No blog yet !</h5>
+                            <p class="text-center">Coming Soon ...</p>
+                            <p class="text-center"><a href="{{ route('blogs') }}">Go to blogs page >>></a></p>
+                        </div>
                     </div>
                     @endforelse
                 </div>
+                @if ($blogs)
                 <div class="text-center">
-                    <a href="{{ route('blogs') }}" class="btn btn-sm btn-primary tw-animate-bounce">See More Blogs ...</a>
+                    <a href="{{ route('blogs') }}" class="btn btn-sm btn-primary my-2 tw-animate-bounce">See More Blogs ...</a>
                 </div>
+                @endif
             </div>
         </div>
     </div>
