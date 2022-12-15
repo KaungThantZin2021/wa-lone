@@ -11,7 +11,7 @@
                 </ol>
             </nav>
         </div>
-        <div class="row mb-5">
+        <div class="row mb-5 animate__animated animate__fadeInDown">
             <div class="col-md-8 col-sm-12">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -134,7 +134,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-5 animate__animated animate__fadeInDown">
             <div class="">
                 <h1 class="text-center mb-3">@lang('lang.blogs')</h1>
                 <div class="row d-flex justify-content-center">
@@ -158,7 +158,7 @@
                     @endforelse
                 </div>
                 <div class="text-center">
-                    <a href="{{ route('blogs') }}" class="btn btn-sm btn-primary">See More Blogs ...</a>
+                    <a href="{{ route('blogs') }}" class="btn btn-sm btn-primary tw-animate-bounce">See More Blogs ...</a>
                 </div>
             </div>
         </div>

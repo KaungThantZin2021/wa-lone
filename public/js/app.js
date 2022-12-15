@@ -1028,6 +1028,17 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nvar __WE
 
 /***/ }),
 
+/***/ "./resources/sass/tailwind.scss":
+/*!**************************************!*\
+  !*** ./resources/sass/tailwind.scss ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy90YWlsd2luZC5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9zYXNzL3RhaWx3aW5kLnNjc3M/Y2EyNyJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/tailwind.scss\n");
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -1072,14 +1083,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 
 /***/ }),
 
-/***/ "./resources/sass/tailwind.scss":
-/*!**************************************!*\
-  !*** ./resources/sass/tailwind.scss ***!
-  \**************************************/
+/***/ "./resources/sass/animate.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/animate.scss ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy90YWlsd2luZC5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9zYXNzL3RhaWx3aW5kLnNjc3M/Y2ZiNiJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/tailwind.scss\n");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9hbmltYXRlLnNjc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vcmVzb3VyY2VzL3Nhc3MvYW5pbWF0ZS5zY3NzP2RhZTgiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/animate.scss\n");
 
 /***/ }),
 
@@ -1269,9 +1280,10 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0,
 /******/ 			"css/plugins": 0,
-/******/ 			"css/tailwind": 0,
+/******/ 			"css/animate": 0,
 /******/ 			"css/sweetalert2": 0,
-/******/ 			"css/toastr": 0
+/******/ 			"css/toastr": 0,
+/******/ 			"css/tailwind": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -1321,12 +1333,13 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/tailwind","css/sweetalert2","css/toastr"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/tailwind","css/sweetalert2","css/toastr"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/tailwind","css/sweetalert2","css/toastr"], () => (__webpack_require__("./resources/sass/plugins.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/tailwind","css/sweetalert2","css/toastr"], () => (__webpack_require__("./resources/sass/toastr.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/tailwind","css/sweetalert2","css/toastr"], () => (__webpack_require__("./resources/sass/sweetalert2.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/plugins","css/tailwind","css/sweetalert2","css/toastr"], () => (__webpack_require__("./resources/sass/tailwind.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/animate","css/sweetalert2","css/toastr","css/tailwind"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/animate","css/sweetalert2","css/toastr","css/tailwind"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/animate","css/sweetalert2","css/toastr","css/tailwind"], () => (__webpack_require__("./resources/sass/plugins.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/animate","css/sweetalert2","css/toastr","css/tailwind"], () => (__webpack_require__("./resources/sass/toastr.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/animate","css/sweetalert2","css/toastr","css/tailwind"], () => (__webpack_require__("./resources/sass/sweetalert2.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/plugins","css/animate","css/sweetalert2","css/toastr","css/tailwind"], () => (__webpack_require__("./resources/sass/animate.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/plugins","css/animate","css/sweetalert2","css/toastr","css/tailwind"], () => (__webpack_require__("./resources/sass/tailwind.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

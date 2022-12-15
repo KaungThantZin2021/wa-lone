@@ -1,7 +1,7 @@
 <div class="tw-sticky tw-top-0 tw-z-10 tw-drop-shadow-2xl">
     <div class="row border-bottom border-1 py-2 bg-light">
         <div class="col-lg-4">
-            <div class="m-0 p-2 text-center">
+            <div class="m-0 p-2 text-center animate__animated animate__pulse">
                 <a href="" class="text-decoration-none tw-text-2xl lg:tw-text-lg md:tw-text-base">{{ config('app.name') }}</a>
             </div>
         </div>
@@ -76,7 +76,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8 col-sm-12">
             <div class="m-0 p-2 d-flex justify-content-evenly">
-                <a href="/" class="text-decoration-none {{ Request::is('/') ? 'text-primary' : 'text-dark' }}">@lang('lang.home')</a>
+                <a href="/" class="text-decoration-none {{ Request::is('/') ? 'text-primary animate__animated animate__tada' : 'text-dark' }}">@lang('lang.home')</a>
                 <span class="text-secondary">/</span>
                 <a href="" class="text-decoration-none {{ Request::is('shops') ? 'text-primary' : 'text-dark' }}">@lang('lang.shops')</a>
                 <span class="text-secondary">/</span>
@@ -84,7 +84,7 @@
                 <span class="text-secondary">/</span>
                 <a href="" class="text-decoration-none {{ Request::is('accessories') ? 'text-primary' : 'text-dark' }}">@lang('lang.accessories')</a>
                 <span class="text-secondary">/</span>
-                <a href="{{ route('blogs') }}" class="text-decoration-none {{ Request::is('blogs') ? 'text-primary' : 'text-dark' }}">@lang('lang.blogs')</a>
+                <a href="{{ route('blogs') }}" class="text-decoration-none {{ Request::is('blogs') ? 'text-primary animate__animated animate__tada' : 'text-dark' }}">@lang('lang.blogs')</a>
             </div>
         </div>
         <div class="col-md-2"></div>
