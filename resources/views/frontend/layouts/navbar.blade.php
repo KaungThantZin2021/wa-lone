@@ -44,13 +44,13 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item {{ Request::is('/') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="/">@lang('lang.home')</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item" href="#">@lang('lang.shops')</a></li>
+                                    <li><a class="dropdown-item {{ Request::is('shops') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="#">@lang('lang.shops')</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item" href="#">@lang('lang.products')</a></li>
+                                    <li><a class="dropdown-item {{ Request::is('products') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="#">@lang('lang.products')</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item" href="#">@lang('lang.accessories')</a></li>
+                                    <li><a class="dropdown-item {{ Request::is('accessories') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="#">@lang('lang.accessories')</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item" href="#">@lang('lang.blogs')</a></li>
+                                    <li><a class="dropdown-item {{ Request::is('blogs') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="{{ route('blogs') }}">@lang('lang.blogs')</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -78,13 +78,13 @@
             <div class="m-0 p-2 d-flex justify-content-evenly">
                 <a href="/" class="text-decoration-none {{ Request::is('/') ? 'text-primary' : 'text-dark' }}">@lang('lang.home')</a>
                 <span class="text-secondary">/</span>
-                <a href="" class="text-decoration-none text-dark">@lang('lang.shops')</a>
+                <a href="" class="text-decoration-none {{ Request::is('shops') ? 'text-primary' : 'text-dark' }}">@lang('lang.shops')</a>
                 <span class="text-secondary">/</span>
-                <a href="" class="text-decoration-none text-dark">@lang('lang.products')</a>
+                <a href="" class="text-decoration-none {{ Request::is('products') ? 'text-primary' : 'text-dark' }}">@lang('lang.products')</a>
                 <span class="text-secondary">/</span>
-                <a href="" class="text-decoration-none text-dark">@lang('lang.accessories')</a>
+                <a href="" class="text-decoration-none {{ Request::is('accessories') ? 'text-primary' : 'text-dark' }}">@lang('lang.accessories')</a>
                 <span class="text-secondary">/</span>
-                <a href="" class="text-decoration-none text-dark">@lang('lang.blogs')</a>
+                <a href="{{ route('blogs') }}" class="text-decoration-none {{ Request::is('blogs') ? 'text-primary' : 'text-dark' }}">@lang('lang.blogs')</a>
             </div>
         </div>
         <div class="col-md-2"></div>

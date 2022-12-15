@@ -36,7 +36,6 @@ Route::post('/reset-password', [App\Http\Controllers\Frontend\Auth\ForgetPasswor
 
 Route::namespace('App\Http\Controllers\Frontend')
 ->group(function () {
-
     Route::namespace('Auth')
     ->group(function () {
         Route::get('/auth/{provider}/redirect', 'SocialiteController@provider');
@@ -44,4 +43,6 @@ Route::namespace('App\Http\Controllers\Frontend')
     });
 
     Route::post('/change-language', 'PageController@changeLanguage');
+
+    Route::get('/blogs', 'BlogController@index')->name('blogs');
 });

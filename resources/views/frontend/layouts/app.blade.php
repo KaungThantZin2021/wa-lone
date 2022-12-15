@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
 
+    {{-- <link href="https://fonts.cdnfonts.com/css/baloo" rel="stylesheet"> --}}
+
 </head>
 <style>
     body {

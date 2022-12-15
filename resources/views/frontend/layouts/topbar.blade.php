@@ -16,7 +16,7 @@
                             @endif
                             alt="" width="30px" height="30px">
                     </div>
-                    <div class="py-1">
+                    <div class="py-1 tw-cursor-pointer">
                         <p class="text-light m-0 dropdown-toggle" id="languageDropdownMenuButton"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             @if (app()->isLocale(config('app.available_language.english')))

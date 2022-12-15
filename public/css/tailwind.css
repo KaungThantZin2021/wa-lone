@@ -126,6 +126,9 @@
 .tw-w-5 {
     width: 1.25rem
 }
+.tw-cursor-pointer {
+    cursor: pointer
+}
 .tw-items-center {
     align-items: center
 }
