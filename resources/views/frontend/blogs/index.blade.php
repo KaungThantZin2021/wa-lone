@@ -11,14 +11,14 @@
                 </ol>
             </nav>
         </div>
-        <div class="row mb-5">
+        <div class="row mb-5 animate__animated animate__fadeInDown">
             <div class="">
                 <h1 class="text-center mb-3 animate__animated animate__pulse">@lang('lang.blogs')</h1>
                 <div class="row d-flex justify-content-center">
                     @forelse ($blogs as $blog)
                     <div class="col-md-4">
                         <a href="" class="text-decoration-none text-dark">
-                          <div class="card border-light mb-3 animate__animated animate__jackInTheBox" style="height: 300px">
+                          <div class="card border-light mb-3" style="height: 300px">
                             <div class="card-header">{{ $blog->title }}</div>
                             <div class="card-body">
                                 <h5 class="card-title">Light card title</h5>

@@ -136,6 +136,79 @@
 
         <div class="row mb-5 animate__animated animate__fadeInDown">
             <div class="">
+                <h1 class="text-center mb-3">@lang('lang.shops')</h1>
+                <div class="row d-flex justify-content-center">
+
+                    @forelse ($blogs as $blog)
+                    <div class="col-md-3">
+                        <a href="" class="text-decoration-none text-dark">
+                            <div class="card border border-0 tw-transition tw-ease-in-out tw-drop-shadow-xl hover:tw-drop-shadow-sm hover:tw-scale-95 tw-duration-300 mb-3">
+                                <img src="https://d1mgeijqpfaspl.cloudfront.net/uploads/bike/image_side/thumbs/628/6399e589302b3_IMG_2229.JPG" class="card-img" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    @empty
+                    <div class="col-md-8">
+                        <div class="alert alert-dismissible alert-primary">
+                            <h5 class="text-center">No blog yet !</h5>
+                            <p class="text-center">Coming Soon ...</p>
+                            <p class="text-center"><a href="{{ route('blogs') }}">Go to blogs page >>></a></p>
+                        </div>
+                    </div>
+                    @endforelse
+                </div>
+                @if ($blogs)
+                <div class="text-center">
+                    <a href="{{ route('blogs') }}" class="btn btn-sm btn-primary my-2 tw-animate-bounce">See More Blogs ...</a>
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="row mb-5 animate__animated animate__fadeInDown">
+            <div class="">
+                <h1 class="text-center mb-3">@lang('lang.products')</h1>
+                <div class="row d-flex justify-content-center">
+
+                    @forelse ($blogs as $blog)
+                    <div class="col-md-4">
+                        <a href="" class="text-decoration-none text-dark">
+                          <div class="card border-light mb-3" style="height: 300px;">
+                            <div class="card-header">{{ $blog->title }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Light card title</h5>
+                                {{ $blog->description }}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    @empty
+                    <div class="col-md-8">
+                        <div class="alert alert-dismissible alert-primary">
+                            <h5 class="text-center">No blog yet !</h5>
+                            <p class="text-center">Coming Soon ...</p>
+                            <p class="text-center"><a href="{{ route('blogs') }}">Go to blogs page >>></a></p>
+                        </div>
+                    </div>
+                    @endforelse
+                </div>
+                @if ($blogs)
+                <div class="text-center">
+                    <a href="{{ route('blogs') }}" class="btn btn-sm btn-primary my-2 tw-animate-bounce">See More Blogs ...</a>
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="row mb-5 animate__animated animate__fadeInDown">
+            <div class="">
                 <h1 class="text-center mb-3">@lang('lang.blogs')</h1>
                 <div class="row d-flex justify-content-center">
 

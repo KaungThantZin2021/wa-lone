@@ -54,12 +54,11 @@
     @if (!Request::is('login') && !Request::is('forget-password') && !Request::is('register'))
     <div class="toast fade show animate__animated animate__shakeX tw-z-20 tw-fixed tw-bottom-5 tw-right-5 bg-primary bg-opacity-50 border border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
-            <strong class="me-auto text-primary">{{ config('app.name') }}</strong>
+            <strong class="me-auto text-primary">Please Login or Register</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
         <div class="toast-body">
-          <p class="text-light p-0 m-0">Please Login or Register</p>
-          <div class="mt-2 pt-2 border-top">
+            <div>
                 <a href="{{ route('login') }}" class="btn btn-sm btn-primary shadow-lg bg-opacity-75 m-0">@lang('lang.login')</a>
                 <a href="{{ route('register') }}" class="btn btn-sm btn-primary shadow-lg bg-opacity-75 m-0">@lang('lang.register')</a>
             </div>
