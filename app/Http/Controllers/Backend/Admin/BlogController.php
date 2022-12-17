@@ -19,8 +19,13 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
+        $file_name = time() . '_' .$request->file('thumbnail')->getClientOriginalName();
+
+        $request->thumbnail->move(public_path('thumbnails'), $file_name);
+
         Blog::create([
             'title' => $request->title,
+            'thumbnail' => $file_name,
             'description' => $request->description,
         ]);
 

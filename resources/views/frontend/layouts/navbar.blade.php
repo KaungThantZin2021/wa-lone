@@ -50,7 +50,7 @@
                                     <hr class="dropdown-divider">
                                     <li><a class="dropdown-item {{ Request::is('accessories') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="#">@lang('lang.accessories')</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item {{ Request::is('blogs') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="{{ route('blogs') }}">@lang('lang.blogs')</a></li>
+                                    <li><a class="dropdown-item {{ Request::is('blogs') || Request::is('blog/*') ? 'border border-top-0 border-bottom-0 border-end-0 border-3 border-primary text-primary' : '' }}" href="{{ route('blogs') }}">@lang('lang.blogs')</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                 <span class="text-secondary">/</span>
                 <a href="" class="text-decoration-none {{ Request::is('accessories') ? 'text-primary' : 'text-dark' }}">@lang('lang.accessories')</a>
                 <span class="text-secondary">/</span>
-                <a href="{{ route('blogs') }}" class="text-decoration-none {{ Request::is('blogs') ? 'text-primary animate__animated animate__tada' : 'text-dark' }}">@lang('lang.blogs')</a>
+                <a href="{{ route('blogs') }}" class="text-decoration-none {{ Request::is('blogs') || Request::is('blog/*') ? 'text-primary animate__animated animate__tada' : 'text-dark' }}">@lang('lang.blogs')</a>
             </div>
         </div>
         <div class="col-md-2"></div>

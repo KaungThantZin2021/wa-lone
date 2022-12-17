@@ -46,7 +46,7 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.blog.store') }}" method="POST" id="createUserForm">
+                <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data" id="createUserForm">
                     @csrf
 
                     <div class="form-group">
@@ -58,6 +58,19 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Thumbnail</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                              <input type="file" name="thumbnail" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -90,7 +103,8 @@
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
-            height: 500
+            height: 500,
+            placeholder: "Let's make a blog here ..."
         });
     });
 </script>

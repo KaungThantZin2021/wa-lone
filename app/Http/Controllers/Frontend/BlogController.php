@@ -12,4 +12,9 @@ class BlogController extends Controller
 
         return view('frontend.blogs.index', compact('blogs'));
     }
+
+    public function show(Blog $blog)
+    {
+        return view('frontend.blogs.show', compact('blog'));
+    }
 }

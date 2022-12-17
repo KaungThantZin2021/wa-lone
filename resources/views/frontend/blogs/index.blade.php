@@ -17,7 +17,7 @@
                 <div class="row d-flex justify-content-center">
                     @forelse ($blogs as $blog)
                     <div class="col-md-4">
-                        <a href="" class="text-decoration-none text-dark">
+                        <a href="{{ route('blog.show', $blog->id) }}" class="text-decoration-none text-dark">
                           <div class="card border-light mb-3" style="height: 300px">
                             <div class="card-header">{{ $blog->title }}</div>
                             <div class="card-body">
