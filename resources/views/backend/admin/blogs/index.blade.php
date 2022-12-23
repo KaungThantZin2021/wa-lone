@@ -32,18 +32,18 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
         <div class="mb-3">
-            <a href="{{ route('admin.blog.create') }}" class="btn btn-primary">Create Blog</a>
+            <a href="{{ route('admin.blog.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create Blog</a>
         </div>
         <div class="card">
             <div class="card-body dark:tw-bg-slate-800">
-                <table class="table table-bordered" id="users-table">
+                <table class="table table-bordered" id="blogs-table">
                     <thead>
                         <tr class="bg-primary">
-                            <th class="text-light">ID</th>
-                            <th class="text-light">Name</th>
-                            <th class="text-light">Email</th>
+                            <th class="text-light">Title</th>
+                            <th class="text-light">Thumbnail</th>
                             <th class="text-light">Created At</th>
                             <th class="text-light">Updated At</th>
+                            <th class="text-light">Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -65,11 +65,11 @@
     <!-- ============================================================== -->
 @endsection
 
-{{-- @section('script')
+@section('script')
 
 <script>
     $(document).ready(function () {
-        var table = $('#users-table').DataTable({
+        var table = $('#blogs-table').DataTable({
             processing: true,
             serverSide: true,
             dom: 'Bfrtip',
@@ -91,22 +91,46 @@
                 },
                 {
                     extend: 'pageLength',
-                }
+                },
+                {
+                    extend: 'trash'
+                },
             ],
             lengthMenu: [
                 [10, 25, 50, 100],
                 ['10 rows', '25 rows', '50 rows', '100 rows']
             ],
-            ajax: "{{ route('admin.user.index') }}",
+            ajax: "{{ route('admin.blog.index') }}",
             columns: [
-                { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },
-                { data: 'email', name: 'email' },
+                { data: 'title', name: 'title' },
+                { data: 'thumbnail', name: 'thumbnail' },
                 { data: 'created_at', name: 'created_at' },
-                { data: 'updated_at', name: 'updated_at' }
+                { data: 'updated_at', name: 'updated_at' },
+                { data: 'action', name: 'action' }
             ]
+        });
+
+        $(document).on('click', '.delete', function (e) {
+            e.preventDefault();
+            DeleteAlert.fire({
+                text: "Are you sure to delete?",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post($(this).data('delete-url'), {
+                        '_method': 'delete',
+                    }).done(function (res) {
+                        if (res.result == 1) {
+                            table.draw();
+                            Toast.fire({
+                                icon: 'success',
+                                title: res.message
+                            })
+                        }
+                    })
+                }
+            })
         });
     });
 </script>
 
-@endsection --}}
+@endsection

@@ -16,6 +16,8 @@
 
 <link rel="stylesheet" href="{{ asset('backend/vendor/summernote/summernote.min.css') }}">
 
+<link rel="stylesheet" href="{{ asset('css/sweetalert2.css') }}">
+
 
 
 

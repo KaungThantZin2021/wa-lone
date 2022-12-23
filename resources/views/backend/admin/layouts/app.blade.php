@@ -10,6 +10,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('backend/assets/images/favicon.png') }}">
     <title>@yield('title')</title>
@@ -128,6 +130,12 @@
 
     <script>
         $(() => {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             if (document.getElementById('previous-btn')) {
                 document.getElementById('previous-btn').onclick = function () {
                     window.history.back();
@@ -147,14 +155,25 @@
             });
 
             $.fn.dataTable.ext.buttons.refresh = {
-            text: '<i class="fa fa-sync text-light"></i>',
-            className: 'bg-success',
+                text: '<i class="fa fa-sync text-light"></i>',
+                className: 'bg-success',
                 action: function ( e, dt, node, config ) {
                     dt.clear().draw();
                     dt.ajax.reload();
                 }
             };
 
+            $.fn.dataTable.ext.buttons.trash = {
+                text: `<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-info active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> No Trash
+                    </label>
+                    <label class="btn btn-info">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Trash
+                    </label>
+                </div`,
+                className: 'p-0',
+            };
         });
     </script>
 

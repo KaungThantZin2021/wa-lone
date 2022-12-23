@@ -16,7 +16,7 @@ class Blog extends Model
         'thumbnail'
     ];
 
-    public function thumbnail_path()
+    public function thumbnailPath()
     {
         return asset('thumbnails/' . $this->thumbnail);
     }
