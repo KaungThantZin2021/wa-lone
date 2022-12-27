@@ -52,7 +52,7 @@
 
     @if (!auth()->guard('web')->check())
     @if (!Request::is('login') && !Request::is('forget-password') && !Request::is('register'))
-    <div class="toast fade show animate__animated animate__shakeX tw-z-20 tw-fixed tw-bottom-5 tw-right-5 bg-primary bg-opacity-50 border border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast fade show animate__animated animate__shakeX tw-z-20 tw-fixed tw-bottom-5 tw-right-5 xs:tw-right-auto sm:tw-right-auto xs:tw-left-auto sm:tw-left-auto bg-primary bg-opacity-50 border border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
             <strong class="me-auto text-primary">Please Login or Register</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -15,18 +17,31 @@ class BlogController extends Controller
         if ($request->ajax()) {
             $blogs = Blog::orderBy('created_at', 'DESC');
 
+            if ($request->trash) {
+                $blogs = $blogs->onlyTrashed();
+            }
+
             return DataTables::of($blogs)
                 ->editColumn('title', function ($blog) {
                     return Str::limit($blog->title, 50);
                 })
                 ->editColumn('thumbnail', function ($blog) {
-                    return '<img class="tw-object-cover tw-w-20" src="'. $blog->thumbnail .'">';
+                    return '<img class="tw-object-cover tw-w-20" src="'. $blog->thumbnailPath() .'">';
                 })
-                ->addColumn('action', function ($blog) {
+                ->addColumn('action', function ($blog) use ($request) {
+
+                    if ($request->trash) {
+                        return '<div class="d-flex justify-content-center">
+                            <a href="' . route('admin.blog.show', $blog->id) . '" class="btn btn-sm btn-info rounded m-1" title="Detail"><i class="fas fa-info-circle"></i></a>
+                            <a href="" class="btn btn-sm btn-secondary rounded m-1 restore" data-restore-url="' . route('admin.blog.destroy', $blog->id) . '" title="Restore"><i class="fas fa-undo"></i></a>
+                            <a href="" class="btn btn-sm btn-danger rounded m-1 delete" data-delete-url="' . route('admin.blog.destroy', $blog->id) . '" title="Delete Permanently"><i class="fas fa-trash"></i></a>
+                        </div>';
+                    }
+
                     return '<div class="d-flex justify-content-center">
-                        <a href="' . route('admin.blog.show', $blog->id) . '" class="btn btn-sm btn-info rounded m-1"><i class="fas fa-info-circle"></i></a>
-                        <a href="' . route('admin.blog.edit', $blog->id) . '" class="btn btn-sm btn-warning rounded m-1"><i class="fas fa-edit"></i></a>
-                        <a href="" class="btn btn-sm btn-danger rounded m-1 delete" data-delete-url="' . route('admin.blog.destroy', $blog->id) . '"><i class="fas fa-trash"></i></a>
+                        <a href="' . route('admin.blog.show', $blog->id) . '" class="btn btn-sm btn-info rounded m-1" title="Detail"><i class="fas fa-info-circle"></i></a>
+                        <a href="' . route('admin.blog.edit', $blog->id) . '" class="btn btn-sm btn-warning rounded m-1" title="Edit"><i class="fas fa-edit"></i></a>
+                        <a href="" class="btn btn-sm btn-danger rounded m-1 delete" data-delete-url="' . route('admin.blog.destroy', $blog->id) . '" title="Trash"><i class="fas fa-trash"></i></a>
                     </div>';
                 })
                 ->rawColumns(['thumbnail', 'action'])
@@ -51,11 +66,19 @@ class BlogController extends Controller
 
             $request->thumbnail_file->move(public_path('thumbnails'), $file_name);
 
-            $thumbnail = asset('thumbnails/' . $file_name);
+            $thumbnail = $file_name;
         }
 
         if ($request->thumbnail_url) {
-            $thumbnail = $request->thumbnail_url;
+
+            // dd(file_get_contents($request->thumbnail_url));
+            $file_name = time().'-'.rand(11111, 99999).'.'.pathinfo($request->thumnnail_url, PATHINFO_EXTENSION);
+            $file = file_get_contents($request->thumbnail_url);
+            // dd($file);
+            // Storage::put(public_path('thumbnails').'/'.$file_name, file_get_contents($request->thumbnail_url));
+            file_put_contents(public_path('thumbnails/'.$file_name), $file);
+
+            $thumbnail = $file_name;
         }
 
         Blog::create([
@@ -74,7 +97,7 @@ class BlogController extends Controller
 
     public function update(Request $request, Blog $blog)
     {
-        $file_name =  $request->thumbnail ? time() . '_' .$request->file('thumbnail')->getClientOriginalName() : $blog->thumbnail;
+        $file_name =  $request->thumbnail ? time() . '_' .$request->file('thumbnail')->getClientOriginalName() : $blog->thumbnailPath();
 
         $request->thumbnail->move(public_path('thumbnails'), $file_name);
 

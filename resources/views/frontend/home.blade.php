@@ -217,7 +217,7 @@
                         <a href="{{ route('blog.show', $blog->id) }}" class="text-decoration-none text-dark">
                             <div class="card border border-0 tw-transition tw-ease-in-out tw-drop-shadow-xl hover:tw-drop-shadow-sm hover:tw-scale-95 tw-duration-300 mb-3">
                                 <div class="tw-relative">
-                                    <img src="{{ $blog->thumbnail }}" class="card-img tw-h-72 tw-object-cover" alt="...">
+                                    <img src="{{ $blog->thumbnailPath() }}" class="card-img tw-h-72 tw-object-cover" alt="...">
                                     <span class="tw-absolute tw-top-2 tw-right-2 text-light tw-text-sm bg-primary bg-opacity-50 tw-rounded px-1">{{ $blog->created_at->diffForHumans() }}</span>
                                     <h5 class="card-title tw-absolute tw-bottom-0 tw-left-0 m-2 tw-break-all text-light bg-primary bg-opacity-50 tw-leading-normal tw-rounded p-2">{!! \Str::limit($blog->title, 70, ' ... <b class="hover:tw-underline">See more</b>') !!}</h5>
                                 </div>

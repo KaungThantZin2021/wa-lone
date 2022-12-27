@@ -33,6 +33,14 @@
     <div class="container-fluid">
         <div class="mb-3">
             <a href="{{ route('admin.blog.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create Blog</a>
+
+
+            <div class="d-inline-block">
+                <div class="custom-control custom-switch p-2 ml-5">
+                    <input type="checkbox" class="custom-control-input p-3 trash-switch" id="trash">
+                    <label class="custom-control-label" for="trash">Trash</label>
+                </div>
+            </div>
         </div>
         <div class="card">
             <div class="card-body dark:tw-bg-slate-800">
@@ -92,15 +100,17 @@
                 {
                     extend: 'pageLength',
                 },
-                {
-                    extend: 'trash'
-                },
             ],
             lengthMenu: [
                 [10, 25, 50, 100],
                 ['10 rows', '25 rows', '50 rows', '100 rows']
             ],
-            ajax: "{{ route('admin.blog.index') }}",
+            ajax: {
+                url: "{{ route('admin.blog.index') }}",
+                data: (d) => {
+                    d.trash = $('.trash-switch').attr('checked') ? 1 : 0;
+                }
+            },
             columns: [
                 { data: 'title', name: 'title' },
                 { data: 'thumbnail', name: 'thumbnail' },
@@ -129,6 +139,16 @@
                     })
                 }
             })
+        });
+
+        $(document).on('change', '.trash-switch', () => {
+            const trashSwitch = $('.trash-switch');
+            if (trashSwitch.attr('checked')) {
+                trashSwitch.attr('checked', false);
+            } else {
+                trashSwitch.attr('checked', true);
+            }
+            table.draw();
         });
     });
 </script>

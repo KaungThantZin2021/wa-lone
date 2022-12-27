@@ -62,7 +62,6 @@
 
                     <div class="form-group">
                         <label for="">Thumbnail</label>
-                        <input type="text" name="thumbnail_type" class="thumbnail-type">
                         <ul class="nav nav-tabs mb-3">
                             <li class="nav-item">
                                 <a href="#file" data-toggle="tab" aria-expanded="false" class="nav-link active">
@@ -85,8 +84,8 @@
                                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                                     </div>
                                     <div class="custom-file">
-                                        <input type="file" name="thumbnail_file" class="custom-file-input thumbnail-file" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        <input type="file" name="thumbnail_file" class="custom-file-input thumbnail-file" id="thumbnailFileInput" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="thumbnailFileInput">Choose file</label>
                                     </div>
                                 </div>
                                 <div class="card">
@@ -165,6 +164,7 @@
 
             $("#thumbnail-file-image-container").attr("src", default_img);
             $('.thumbnail-file').val("");
+            $('.custom-file-label').text('Choose file')
         });
 
         $('.thumbnail-url-submit').on('click', function (e) {

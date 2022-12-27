@@ -162,18 +162,6 @@
                     dt.ajax.reload();
                 }
             };
-
-            $.fn.dataTable.ext.buttons.trash = {
-                text: `<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-info active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> No Trash
-                    </label>
-                    <label class="btn btn-info">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Trash
-                    </label>
-                </div`,
-                className: 'p-0',
-            };
         });
     </script>
 
