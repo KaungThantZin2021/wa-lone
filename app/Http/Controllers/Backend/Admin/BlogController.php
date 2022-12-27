@@ -33,15 +33,15 @@ class BlogController extends Controller
                     if ($request->trash) {
                         return '<div class="d-flex justify-content-center">
                             <a href="' . route('admin.blog.show', $blog->id) . '" class="btn btn-sm btn-info rounded m-1" title="Detail"><i class="fas fa-info-circle"></i></a>
-                            <a href="" class="btn btn-sm btn-secondary rounded m-1 restore" data-restore-url="' . route('admin.blog.destroy', $blog->id) . '" title="Restore"><i class="fas fa-undo"></i></a>
-                            <a href="" class="btn btn-sm btn-danger rounded m-1 delete" data-delete-url="' . route('admin.blog.destroy', $blog->id) . '" title="Delete Permanently"><i class="fas fa-trash"></i></a>
+                            <a href="" class="btn btn-sm btn-secondary rounded m-1 restore" data-restore-url="' . route('admin.blog.restore', $blog->id) . '" title="Restore"><i class="fas fa-undo"></i></a>
+                            <a href="" class="btn btn-sm btn-danger rounded m-1 delete" data-delete-url="' . route('admin.blog.force-delete', $blog->id) . '" title="Delete Permanently"><i class="fas fa-trash"></i></a>
                         </div>';
                     }
 
                     return '<div class="d-flex justify-content-center">
                         <a href="' . route('admin.blog.show', $blog->id) . '" class="btn btn-sm btn-info rounded m-1" title="Detail"><i class="fas fa-info-circle"></i></a>
                         <a href="' . route('admin.blog.edit', $blog->id) . '" class="btn btn-sm btn-warning rounded m-1" title="Edit"><i class="fas fa-edit"></i></a>
-                        <a href="" class="btn btn-sm btn-danger rounded m-1 delete" data-delete-url="' . route('admin.blog.destroy', $blog->id) . '" title="Trash"><i class="fas fa-trash"></i></a>
+                        <a href="" class="btn btn-sm btn-danger rounded m-1 trash" data-trash-url="' . route('admin.blog.destroy', $blog->id) . '" title="Trash"><i class="fas fa-trash"></i></a>
                     </div>';
                 })
                 ->rawColumns(['thumbnail', 'action'])
@@ -122,6 +122,26 @@ class BlogController extends Controller
         return response()->json([
             'result' => 1,
             'message' => 'Deleted in successfully'
+        ]);
+    }
+
+    public function restore($id)
+    {
+        Blog::onlyTrashed()->find($id)->restore();
+
+        return response()->json([
+            'result' => 1,
+            'message' => 'Restored in successfully'
+        ]);
+    }
+
+    public function forceDelete($id)
+    {
+        Blog::onlyTrashed()->find($id)->forceDelete();
+
+        return response()->json([
+            'result' => 1,
+            'message' => 'Permanently Deleted in successfully'
         ]);
     }
 }

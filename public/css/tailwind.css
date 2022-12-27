@@ -91,76 +91,76 @@
     --tw-backdrop-sepia:  
 }
 .tw-fixed {
-    position: fixed
+    position: fixed !important
 }
 .tw-absolute {
-    position: absolute
+    position: absolute !important
 }
 .tw-relative {
-    position: relative
+    position: relative !important
 }
 .tw-sticky {
-    position: sticky
+    position: sticky !important
 }
 .tw-top-2 {
-    top: 0.5rem
+    top: 0.5rem !important
 }
 .tw-right-2 {
-    right: 0.5rem
+    right: 0.5rem !important
 }
 .tw-bottom-0 {
-    bottom: 0px
+    bottom: 0px !important
 }
 .tw-left-0 {
-    left: 0px
+    left: 0px !important
 }
 .tw-bottom-5 {
-    bottom: 1.25rem
+    bottom: 1.25rem !important
 }
 .tw-right-5 {
-    right: 1.25rem
+    right: 1.25rem !important
 }
 .tw-top-0 {
-    top: 0px
+    top: 0px !important
 }
 .tw-z-50 {
-    z-index: 50
+    z-index: 50 !important
 }
 .tw-z-20 {
-    z-index: 20
+    z-index: 20 !important
 }
 .tw-z-10 {
-    z-index: 10
+    z-index: 10 !important
 }
 .tw-flex {
-    display: flex
+    display: flex !important
 }
 .tw-hidden {
-    display: none
+    display: none !important
 }
 .tw-h-72 {
-    height: 18rem
+    height: 18rem !important
 }
 .tw-h-96 {
-    height: 24rem
+    height: 24rem !important
 }
 .tw-h-24 {
-    height: 6rem
+    height: 6rem !important
 }
 .tw-h-5 {
-    height: 1.25rem
+    height: 1.25rem !important
 }
 .tw-w-full {
-    width: 100%
+    width: 100% !important
 }
 .tw-w-24 {
-    width: 6rem
+    width: 6rem !important
 }
 .tw-w-5 {
-    width: 1.25rem
+    width: 1.25rem !important
 }
 .tw-w-20 {
-    width: 5rem
+    width: 5rem !important
 }
 @keyframes tw-bounce {
     0%, 100% {
@@ -173,197 +173,189 @@
     }
 }
 .tw-animate-bounce {
-    animation: tw-bounce 1s infinite
+    animation: tw-bounce 1s infinite !important
 }
 .tw-cursor-pointer {
-    cursor: pointer
+    cursor: pointer !important
 }
 .tw-items-center {
-    align-items: center
+    align-items: center !important
 }
 .tw-justify-start {
-    justify-content: flex-start
+    justify-content: flex-start !important
 }
 .tw-justify-end {
-    justify-content: flex-end
+    justify-content: flex-end !important
 }
 .tw-justify-center {
-    justify-content: center
+    justify-content: center !important
 }
 .tw-justify-between {
-    justify-content: space-between
+    justify-content: space-between !important
 }
 .tw-break-all {
-    word-break: break-all
+    word-break: break-all !important
 }
 .tw-rounded {
-    border-radius: 0.25rem
+    border-radius: 0.25rem !important
 }
 .tw-bg-white {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
 }
 .tw-bg-gray-100 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(243 244 246 / var(--tw-bg-opacity))
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important
 }
 .tw-bg-blue-50 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(239 246 255 / var(--tw-bg-opacity))
-}
-.tw-bg-red-400 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(248 113 113 / var(--tw-bg-opacity))
-}
-.tw-bg-red-500 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(239 68 68 / var(--tw-bg-opacity))
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(239 246 255 / var(--tw-bg-opacity)) !important
 }
 .tw-object-cover {
-    -o-object-fit: cover;
-       object-fit: cover
+    -o-object-fit: cover !important;
+       object-fit: cover !important
 }
 .tw-text-right {
-    text-align: right
+    text-align: right !important
 }
 .tw-text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important
 }
 .tw-text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem
+    font-size: 1.5rem !important;
+    line-height: 2rem !important
 }
 .tw-leading-normal {
-    line-height: 1.5
+    line-height: 1.5 !important
 }
 .tw-text-black {
-    --tw-text-opacity: 1;
-    color: rgb(0 0 0 / var(--tw-text-opacity))
+    --tw-text-opacity: 1 !important;
+    color: rgb(0 0 0 / var(--tw-text-opacity)) !important
 }
 .tw-text-gray-400 {
-    --tw-text-opacity: 1;
-    color: rgb(156 163 175 / var(--tw-text-opacity))
+    --tw-text-opacity: 1 !important;
+    color: rgb(156 163 175 / var(--tw-text-opacity)) !important
 }
 .tw-text-gray-600 {
-    --tw-text-opacity: 1;
-    color: rgb(75 85 99 / var(--tw-text-opacity))
+    --tw-text-opacity: 1 !important;
+    color: rgb(75 85 99 / var(--tw-text-opacity)) !important
 }
 .tw-drop-shadow-xl {
-    --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
-    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+    --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08)) !important;
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important
 }
 .tw-drop-shadow-2xl {
-    --tw-drop-shadow: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
-    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+    --tw-drop-shadow: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15)) !important;
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important
 }
 .tw-transition {
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter !important;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 150ms !important
 }
 .tw-duration-300 {
-    transition-duration: 300ms
+    transition-duration: 300ms !important
 }
 .tw-ease-in-out {
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important
 }
 .hover\:tw-scale-95:hover {
-    --tw-scale-x: .95;
-    --tw-scale-y: .95;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+    --tw-scale-x: .95 !important;
+    --tw-scale-y: .95 !important;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
 }
 .hover\:tw-text-gray-600:hover {
-    --tw-text-opacity: 1;
-    color: rgb(75 85 99 / var(--tw-text-opacity))
+    --tw-text-opacity: 1 !important;
+    color: rgb(75 85 99 / var(--tw-text-opacity)) !important
 }
 .hover\:tw-underline:hover {
-    text-decoration-line: underline
+    text-decoration-line: underline !important
 }
 .hover\:tw-drop-shadow-sm:hover {
-    --tw-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
-    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+    --tw-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05)) !important;
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important
 }
 .tw-dark .dark\:tw-border-b-black {
-    --tw-border-opacity: 1;
-    border-bottom-color: rgb(0 0 0 / var(--tw-border-opacity))
+    --tw-border-opacity: 1 !important;
+    border-bottom-color: rgb(0 0 0 / var(--tw-border-opacity)) !important
 }
 .tw-dark .dark\:tw-bg-slate-700 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(51 65 85 / var(--tw-bg-opacity))
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(51 65 85 / var(--tw-bg-opacity)) !important
 }
 .tw-dark .dark\:tw-bg-slate-500 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(100 116 139 / var(--tw-bg-opacity))
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(100 116 139 / var(--tw-bg-opacity)) !important
 }
 .tw-dark .dark\:tw-bg-slate-800 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(30 41 59 / var(--tw-bg-opacity))
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(30 41 59 / var(--tw-bg-opacity)) !important
 }
 .tw-dark .dark\:tw-bg-slate-900 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(15 23 42 / var(--tw-bg-opacity))
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(15 23 42 / var(--tw-bg-opacity)) !important
 }
 .tw-dark .dark\:tw-bg-gray-100 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(243 244 246 / var(--tw-bg-opacity))
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important
 }
 .tw-dark .dark\:tw-text-white {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity))
+    --tw-text-opacity: 1 !important;
+    color: rgb(255 255 255 / var(--tw-text-opacity)) !important
 }
 .tw-dark .dark\:tw-text-gray-300 {
-    --tw-text-opacity: 1;
-    color: rgb(209 213 219 / var(--tw-text-opacity))
+    --tw-text-opacity: 1 !important;
+    color: rgb(209 213 219 / var(--tw-text-opacity)) !important
 }
 .tw-dark .dark\:tw-text-black {
-    --tw-text-opacity: 1;
-    color: rgb(0 0 0 / var(--tw-text-opacity))
+    --tw-text-opacity: 1 !important;
+    color: rgb(0 0 0 / var(--tw-text-opacity)) !important
 }
 .tw-dark .dark\:hover\:tw-text-gray-200:hover {
-    --tw-text-opacity: 1;
-    color: rgb(229 231 235 / var(--tw-text-opacity))
+    --tw-text-opacity: 1 !important;
+    color: rgb(229 231 235 / var(--tw-text-opacity)) !important
 }
 .tw-dark .dark\:focus\:tw-border-gray-500:focus {
-    --tw-border-opacity: 1;
-    border-color: rgb(107 114 128 / var(--tw-border-opacity))
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(107 114 128 / var(--tw-border-opacity)) !important
 }
 @media (max-width: 1023px) {
     .lg\:tw-text-lg {
-        font-size: 1.125rem;
-        line-height: 1.75rem
+        font-size: 1.125rem !important;
+        line-height: 1.75rem !important
     }
 }
 @media (max-width: 767px) {
     .md\:tw-inline-block {
-        display: inline-block
+        display: inline-block !important
     }
     .md\:tw-hidden {
-        display: none
+        display: none !important
     }
     .md\:tw-text-base {
-        font-size: 1rem;
-        line-height: 1.5rem
+        font-size: 1rem !important;
+        line-height: 1.5rem !important
     }
 }
 @media (max-width: 639px) {
     .sm\:tw-right-auto {
-        right: auto
+        right: auto !important
     }
     .sm\:tw-left-auto {
-        left: auto
+        left: auto !important
     }
 }
 @media (max-width: 475px) {
     .xs\:tw-right-auto {
-        right: auto
+        right: auto !important
     }
     .xs\:tw-left-auto {
-        left: auto
+        left: auto !important
     }
     .xs\:tw-block {
-        display: block
+        display: block !important
     }
 }

@@ -41,5 +41,7 @@ Route::name('admin.')
 
         //Admin User
         Route::resource('/blog', 'BlogController');
+        Route::post('/blog/{id}/restore', 'BlogController@restore')->name('blog.restore');
+        Route::delete('/blog/{id}/force-delete', 'BlogController@forceDelete')->name('blog.force-delete');
         // End Admin User
 });

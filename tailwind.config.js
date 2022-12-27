@@ -2,7 +2,7 @@
 module.exports = {
     prefix: "tw-",
     darkMode: 'class',
-    // important: true,
+    important: true,
     content: [
         "./resources/**/*.{blade.php,js,vue}",
         "./app/Http/Controllers/**/*.php",

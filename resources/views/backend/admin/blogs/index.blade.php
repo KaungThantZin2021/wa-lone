@@ -44,18 +44,20 @@
         </div>
         <div class="card">
             <div class="card-body dark:tw-bg-slate-800">
-                <table class="table table-bordered" id="blogs-table">
-                    <thead>
-                        <tr class="bg-primary">
-                            <th class="text-light">Title</th>
-                            <th class="text-light">Thumbnail</th>
-                            <th class="text-light">Created At</th>
-                            <th class="text-light">Updated At</th>
-                            <th class="text-light">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="blogs-table">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th class="text-light">Title</th>
+                                <th class="text-light">Thumbnail</th>
+                                <th class="text-light">Created At</th>
+                                <th class="text-light">Updated At</th>
+                                <th class="text-light">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -120,11 +122,46 @@
             ]
         });
 
+        $(document).on('click', '.trash', function (e) {
+            e.preventDefault();
+            TrashAlert.fire().then((result) => {
+                if (result.isConfirmed) {
+                    $.post($(this).data('trash-url'), {
+                        '_method': 'delete',
+                    }).done(function (res) {
+                        if (res.result == 1) {
+                            table.draw();
+                            Toast.fire({
+                                icon: 'success',
+                                title: res.message
+                            })
+                        }
+                    })
+                }
+            })
+        });
+
+        $(document).on('click', '.restore', function (e) {
+            e.preventDefault();
+            RestoreAlert.fire().then((result) => {
+                if (result.isConfirmed) {
+                    $.post($(this).data('restore-url'))
+                    .done(function (res) {
+                        if (res.result == 1) {
+                            table.draw();
+                            Toast.fire({
+                                icon: 'success',
+                                title: res.message
+                            })
+                        }
+                    })
+                }
+            })
+        });
+
         $(document).on('click', '.delete', function (e) {
             e.preventDefault();
-            DeleteAlert.fire({
-                text: "Are you sure to delete?",
-            }).then((result) => {
+            DeleteAlert.fire().then((result) => {
                 if (result.isConfirmed) {
                     $.post($(this).data('delete-url'), {
                         '_method': 'delete',
