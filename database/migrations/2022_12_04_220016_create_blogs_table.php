@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateBlogsTable extends Migration
 {
@@ -16,6 +17,7 @@ class CreateBlogsTable extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100)->nullable();
+            $table->enum('thumbnail_type', Blog::THUMBNAIL_TYPE)->nullable();
             $table->string('thumbnail')->nullable();
             $table->longText('description')->nullable();
             $table->softDeletes();

@@ -9,6 +9,7 @@ use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\CreateBlogRequest;
 
 class BlogController extends Controller
 {
@@ -56,33 +57,28 @@ class BlogController extends Controller
         return view('backend.admin.blogs.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateBlogRequest $request)
     {
-        // dd($request->all());
         $thumbnail = null;
 
-        if ($request->thumbnail_file) {
-            $file_name = time() . '_' .$request->file('thumbnail_file')->getClientOriginalName();
-
-            $request->thumbnail_file->move(public_path('thumbnails'), $file_name);
+        if ($request->thumbnail_type === Blog::THUMBNAIL_FILE) {
+            $file_name = Blog::THUMBNAIL_FILE . '_' . time() . '-' . rand(11111, 99999) . '.' . $request->file('thumbnail_file')->getClientOriginalName();
+            $request->thumbnail_file->storeAs('thumbnails', $file_name);
 
             $thumbnail = $file_name;
         }
 
-        if ($request->thumbnail_url) {
-
-            // dd(file_get_contents($request->thumbnail_url));
-            $file_name = time().'-'.rand(11111, 99999).'.'.pathinfo($request->thumnnail_url, PATHINFO_EXTENSION);
+        if ($request->thumbnail_type === Blog::THUMBNAIL_URL) {
+            $file_name = Blog::THUMBNAIL_URL . '_' . time() . '-' . rand(11111, 99999) . '.' . pathinfo($request->thumbnail_url, PATHINFO_BASENAME);
             $file = file_get_contents($request->thumbnail_url);
-            // dd($file);
-            // Storage::put(public_path('thumbnails').'/'.$file_name, file_get_contents($request->thumbnail_url));
-            file_put_contents(public_path('thumbnails/'.$file_name), $file);
+            file_put_contents(storage_path('app/public/thumbnails/'. $file_name), $file);
 
             $thumbnail = $file_name;
         }
 
         Blog::create([
             'title' => $request->title,
+            'thumbnail_type' => $request->thumbnail_type,
             'thumbnail' => $thumbnail,
             'description' => $request->description,
         ]);
@@ -137,7 +133,15 @@ class BlogController extends Controller
 
     public function forceDelete($id)
     {
-        Blog::onlyTrashed()->find($id)->forceDelete();
+        $blog = Blog::onlyTrashed()->find($id);
+
+        $thumbnail_file_path = storage_path('app/public/thumbnails/' . $blog->thumbnail);
+
+        if (File::exists($thumbnail_file_path)) {
+            File::delete($thumbnail_file_path);
+        }
+
+        $blog->forceDelete();
 
         return response()->json([
             'result' => 1,

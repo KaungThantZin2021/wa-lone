@@ -138,11 +138,11 @@
 .tw-hidden {
     display: none !important
 }
-.tw-h-72 {
-    height: 18rem !important
-}
 .tw-h-96 {
     height: 24rem !important
+}
+.tw-h-64 {
+    height: 16rem !important
 }
 .tw-h-24 {
     height: 6rem !important
@@ -199,6 +199,9 @@
 .tw-rounded {
     border-radius: 0.25rem !important
 }
+.tw-rounded-lg {
+    border-radius: 0.5rem !important
+}
 .tw-bg-white {
     --tw-bg-opacity: 1 !important;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
@@ -211,9 +214,29 @@
     --tw-bg-opacity: 1 !important;
     background-color: rgb(239 246 255 / var(--tw-bg-opacity)) !important
 }
+.tw-bg-gray-900 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity)) !important
+}
+.tw-bg-slate-700 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(51 65 85 / var(--tw-bg-opacity)) !important
+}
+.tw-bg-slate-800 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(30 41 59 / var(--tw-bg-opacity)) !important
+}
+.tw-bg-slate-900 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(15 23 42 / var(--tw-bg-opacity)) !important
+}
 .tw-object-cover {
     -o-object-fit: cover !important;
        object-fit: cover !important
+}
+.tw-object-scale-down {
+    -o-object-fit: scale-down !important;
+       object-fit: scale-down !important
 }
 .tw-text-right {
     text-align: right !important
@@ -302,6 +325,26 @@
     --tw-bg-opacity: 1 !important;
     background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important
 }
+.tw-dark .dark\:tw-bg-gray-300 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(209 213 219 / var(--tw-bg-opacity)) !important
+}
+.tw-dark .dark\:tw-bg-gray-900 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity)) !important
+}
+.tw-dark .dark\:tw-bg-slate-200 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(226 232 240 / var(--tw-bg-opacity)) !important
+}
+.tw-dark .dark\:tw-bg-slate-300 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(203 213 225 / var(--tw-bg-opacity)) !important
+}
+.tw-dark .dark\:tw-bg-slate-600 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(71 85 105 / var(--tw-bg-opacity)) !important
+}
 .tw-dark .dark\:tw-text-white {
     --tw-text-opacity: 1 !important;
     color: rgb(255 255 255 / var(--tw-text-opacity)) !important
@@ -310,9 +353,17 @@
     --tw-text-opacity: 1 !important;
     color: rgb(209 213 219 / var(--tw-text-opacity)) !important
 }
+.tw-dark .dark\:tw-text-gray-100 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(243 244 246 / var(--tw-text-opacity)) !important
+}
 .tw-dark .dark\:tw-text-black {
     --tw-text-opacity: 1 !important;
     color: rgb(0 0 0 / var(--tw-text-opacity)) !important
+}
+.tw-dark .dark\:tw-text-slate-700 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(51 65 85 / var(--tw-text-opacity)) !important
 }
 .tw-dark .dark\:hover\:tw-text-gray-200:hover {
     --tw-text-opacity: 1 !important;
@@ -322,7 +373,18 @@
     --tw-border-opacity: 1 !important;
     border-color: rgb(107 114 128 / var(--tw-border-opacity)) !important
 }
+@media (max-width: 1279px) {
+    .xl\:tw-h-44 {
+        height: 11rem !important
+    }
+}
 @media (max-width: 1023px) {
+    .lg\:tw-h-80 {
+        height: 20rem !important
+    }
+    .lg\:tw-h-44 {
+        height: 11rem !important
+    }
     .lg\:tw-text-lg {
         font-size: 1.125rem !important;
         line-height: 1.75rem !important
@@ -335,27 +397,30 @@
     .md\:tw-hidden {
         display: none !important
     }
+    .md\:tw-h-44 {
+        height: 11rem !important
+    }
     .md\:tw-text-base {
         font-size: 1rem !important;
         line-height: 1.5rem !important
     }
 }
 @media (max-width: 639px) {
-    .sm\:tw-right-auto {
-        right: auto !important
+    .sm\:tw-h-56 {
+        height: 14rem !important
     }
-    .sm\:tw-left-auto {
-        left: auto !important
+    .sm\:tw-h-44 {
+        height: 11rem !important
     }
 }
 @media (max-width: 475px) {
-    .xs\:tw-right-auto {
-        right: auto !important
-    }
-    .xs\:tw-left-auto {
-        left: auto !important
-    }
     .xs\:tw-block {
         display: block !important
+    }
+    .xs\:tw-h-56 {
+        height: 14rem !important
+    }
+    .xs\:tw-h-52 {
+        height: 13rem !important
     }
 }

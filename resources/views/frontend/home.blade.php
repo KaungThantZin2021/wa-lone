@@ -25,7 +25,7 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_971/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/njzpudmx1xer0r6edynk/BicycleRentalatPulauUbin.jpg"
-                                class="d-block w-100" alt="..." style="height: 400px !important; object-fit:cover">
+                                class="d-block w-100 tw-h-96 lg:tw-h-80 md:tw-h-44 sm:tw-h-56 xs:tw-h-56 tw-object-cover" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>First slide label</h5>
                                 <p>Some representative placeholder content for the first slide.</p>
@@ -217,7 +217,7 @@
                         <a href="{{ route('blog.show', $blog->id) }}" class="text-decoration-none text-dark">
                             <div class="card border border-0 tw-transition tw-ease-in-out tw-drop-shadow-xl hover:tw-drop-shadow-sm hover:tw-scale-95 tw-duration-300 mb-3">
                                 <div class="tw-relative">
-                                    <img src="{{ $blog->thumbnailPath() }}" class="card-img tw-h-72 tw-object-cover" alt="...">
+                                    <img src="{{ $blog->thumbnailPath() }}" class="card-img tw-h-64 xl:tw-h-44 lg:tw-h-44 md:tw-h-44 sm:tw-h-44 xs:tw-h-52 tw-object-cover" alt="...">
                                     <span class="tw-absolute tw-top-2 tw-right-2 text-light tw-text-sm bg-primary bg-opacity-50 tw-rounded px-1">{{ $blog->created_at->diffForHumans() }}</span>
                                     <h5 class="card-title tw-absolute tw-bottom-0 tw-left-0 m-2 tw-break-all text-light bg-primary bg-opacity-50 tw-leading-normal tw-rounded p-2">{!! \Str::limit($blog->title, 70, ' ... <b class="hover:tw-underline">See more</b>') !!}</h5>
                                 </div>

@@ -12,9 +12,14 @@ class Blog extends Model
 
     protected $fillable = [
         'title',
+        'thumbnail_type',
+        'thumbnail',
         'description',
-        'thumbnail'
     ];
+
+    const THUMBNAIL_TYPE = ['file', 'url'],
+    THUMBNAIL_FILE = self::THUMBNAIL_TYPE[0],
+    THUMBNAIL_URL = self::THUMBNAIL_TYPE[1];
 
     public function thumbnailPath()
     {
