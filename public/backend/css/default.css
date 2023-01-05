@@ -2,3 +2,8 @@
 /*Original theme color  #5f76e8 */
 /*Bootstrap primary color  #0d6efd */
 /*Side bar selected active linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#0d6efd) */
+
+/* div.dataTables_wrapper > div.dataTables_filter {
+    text-align: right;
+    float: right !important;
+} */

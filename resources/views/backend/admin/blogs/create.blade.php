@@ -46,7 +46,7 @@
         </div>
         <div class="card dark:tw-bg-slate-800">
             <div class="card-body">
-                <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data" id="createBlogForm">
+                <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data" id="blogForm">
                     @csrf
 
                     @include('backend.layouts.flash')
@@ -140,7 +140,7 @@
 @endsection
 
 @section('script')
-{!! JsValidator::formRequest('App\Http\Requests\CreateBlogRequest', '#createBlogForm') !!}
+{!! JsValidator::formRequest('App\Http\Requests\BlogRequest', '#blogForm') !!}
 <script>
     $(document).ready(function() {
         var thumbnail_file_type = $('.file-tag').data('type');

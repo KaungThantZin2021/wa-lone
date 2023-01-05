@@ -2,7 +2,6 @@
 @section('title', 'Edit Blog | ' . config('app.name'))
 @section('blog-selected', 'selected')
 @section('css')
-<link href="https://www.jquery-az.com/boots/css/bootstrap-imageupload/bootstrap-imageupload.css" rel="stylesheet">
 <style>
     .note-editor {
         background: white
@@ -45,14 +44,17 @@
         <div class="mb-3">
             @include('backend.components.buttons.back_button')
         </div>
-        <div class="card">
+        <div class="card dark:tw-bg-slate-800">
             <div class="card-body">
-                <form action="{{ route('admin.blog.update', $blog->id) }}" method="POST" enctype="multipart/form-data" id="createUserForm">
+                <form action="{{ route('admin.blog.update', $blog->id) }}" method="POST" enctype="multipart/form-data" id="blogForm">
                     @csrf
+                    @method('PUT')
+
+                    @include('backend.layouts.flash')
 
                     <div class="form-group">
                         <label for="">Title</label>
-                        <input type="text" name="title" id="" class="form-control dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 @error('title') is-invalid @enderror" placeholder="Title"
+                        <input type="text" name="title" id="" class="form-control dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 dark:tw-text-gray-300 @error('title') is-invalid @enderror" placeholder="Title"
                             aria-describedby="helpId" value="{{ old('title', $blog->title) }}">
                         @error('title')
                             <span class="invalid-feedback" role="alert">
@@ -63,34 +65,51 @@
 
                     <div class="form-group">
                         <label for="">Thumbnail</label>
-                        <!-- bootstrap-imageupload. -->
-                        <div class="imageupload panel panel-default border p-3">
-                            <div class="panel-heading clearfix">
-                                <h3 class="panel-title pull-left">Select Image file</h3>
-                                <div class="btn-group pull-right mb-2">
-                                    <button type="button" class="btn btn-light active">File</button>
-                                    <button type="button" class="btn btn-light">URL</button>
-                                </div>
-                            </div>
-                            <div class="file-tab panel-body">
-                                <label class="btn btn-primary btn-file">
-                                    <i class="fas fa-upload"></i>
-                                    <span> Browse</span>
-                                    <!-- The file is stored here. -->
-                                    <input type="file" name="thumbnail">
-                                </label>
-                                <button type="button" class="btn btn-danger mb-2">Delete image</button>
-                            </div>
-                            <div class="url-tab panel-body">
-                                <div class="input-group">
-                                    <input type="text" class="form-control hasclear" placeholder="Image URL">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-success">Submit</button>
+                        <input type="hidden" name="thumbnail_type" class="thumbnail-type" value="{{ old('thumbnail_type', $blog->thumbnail_type) }}">
+                        <ul class="nav nav-tabs mb-3">
+                            <li class="nav-item">
+                                <a href="#file" data-toggle="tab" aria-expanded="false" class="nav-link file-tag {{ App\Models\Blog::THUMBNAIL_FILE === $blog->thumbnail_type ? 'active' : '' }}" data-type="{{ App\Models\Blog::THUMBNAIL_FILE }}">
+                                    <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                    <span class="d-none d-lg-block">File</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#url" data-toggle="tab" aria-expanded="true" class="nav-link url-tag {{ App\Models\Blog::THUMBNAIL_URL === $blog->thumbnail_type ? 'active' : '' }}" data-type="{{ App\Models\Blog::THUMBNAIL_URL }}">
+                                    <i class="mdi mdi-account-circle d-lg-none d-block mr-1"></i>
+                                    <span class="d-none d-lg-block">URL</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane {{ App\Models\Blog::THUMBNAIL_FILE === $blog->thumbnail_type ? 'show active' : '' }}" id="file">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                      <input type="file" name="thumbnail_file" class="custom-file-input thumbnail-file" value="{{ old('thumbnail_file') }}" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                                      <label class="custom-file-label dark:tw-text-gray-300 dark:tw-bg-slate-700" for="inputGroupFile04">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                      <button class="btn btn-danger cancel-thumbnail-file" type="button" id="inputGroupFileAddon04" style="display: none">Cancel</button>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-danger">Remove</button>
-                                <!-- The URL is stored here. -->
-                                <input type="hidden" name="thumbnail">
+                                <div class="card">
+                                    <div class="card-body bg-light dark:tw-bg-gray-900">
+                                        <img id="thumbnail-file-image-container" class="tw-object-scale-down tw-rounded-lg" src="{{ ((App\Models\Blog::THUMBNAIL_FILE === $blog->thumbnail_type) && $blog->thumbnailPath()) ? $blog->thumbnailPath() : asset('images/upload.png') }}" style="width: 100%; height: 200px;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane {{ App\Models\Blog::THUMBNAIL_URL === $blog->thumbnail_type ? 'show active' : '' }}" id="url">
+                                <div class="input-group mb-3">
+                                    <input type="text" name="thumbnail_url" class="form-control thumbnail-url dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 dark:tw-text-gray-300" value="{{ old('thumbnail_url') }}" placeholder="URL" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success thumbnail-url-submit" type="button" id="button-addon2">Submit</button>
+                                        <button class="btn btn-danger cancel-thumbnail-url" type="button" style="display: none">Cancel</button>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body bg-light dark:tw-bg-gray-900">
+                                        <img id="thumbnail-url-image-container" class="tw-object-scale-down" src="{{ ((App\Models\Blog::THUMBNAIL_URL === $blog->thumbnail_type) && $blog->thumbnailPath()) ? $blog->thumbnailPath() : asset('images/upload.png') }}" style="width: 100%; height: 200px;"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,8 +120,8 @@
                     </div>
 
                     <br>
-                    <button class="btn btn-primary">Submit</button>
                     <a href="{{ route('admin.blog.index') }}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
@@ -122,17 +141,92 @@
 @endsection
 
 @section('script')
-<script src="https://www.jquery-az.com/boots/js/bootstrap-imageupload/bootstrap-imageupload.js"></script>
-
+{!! JsValidator::formRequest('App\Http\Requests\BlogRequest', '#blogForm') !!}
 <script>
-    var $imageupload = $('.imageupload');
-    $imageupload.imageupload({
-        maxWidth: 500,
-        maxHeight: 500,
-        maxFileSizeKb: 3048
-    });
-
     $(document).ready(function() {
+        var thumbnail_file_type = $('.file-tag').data('type');
+        var thumbnail_url_type = $('.url-tag').data('type');
+
+        var thumbnail_type = $('.thumbnail-type');
+
+        var thumbnail_file = $('.thumbnail-file');
+        var cancel_thumbnail_file = $('.cancel-thumbnail-file');
+        var thumbnail_file_label = $('.custom-file-label');
+        var thumbnail_file_image_container = $("#thumbnail-file-image-container");
+
+        var thumbnail_url = $('.thumbnail-url');
+        var cancel_thumbnail_url = $('.cancel-thumbnail-url');
+        var thumbnail_url_image_container = $("#thumbnail-url-image-container");
+
+        var default_img = "{{ asset('images/upload.png') }}";
+
+        $(document).on('click', '.file-tag', function () {
+            if (!thumbnail_url.val()) {
+                thumbnail_type.val(thumbnail_file_type);
+            }
+        });
+
+        $(document).on('click', '.url-tag', function () {
+            if (!thumbnail_file.val()) {
+                thumbnail_type.val(thumbnail_url_type);
+            }
+        });
+
+        $(".thumbnail-file").on("change", function(){
+            var $input = $(this);
+
+            if ($input.val()) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    cancel_thumbnail_file.show()
+                    thumbnail_file_image_container.attr("src", reader.result);
+
+                    thumbnail_type.val(thumbnail_file_type);
+
+                    thumbnail_url.val("");
+                    thumbnail_url_image_container.attr("src", default_img);
+                    cancel_thumbnail_url.hide();
+                }
+                reader.readAsDataURL($input[0].files[0]);
+            };
+
+        });
+
+        $('.cancel-thumbnail-file').on('click', function (e) {
+            e.preventDefault();
+
+            $(this).hide();
+            thumbnail_file.val("");
+            thumbnail_file_label.text('Choose file')
+            thumbnail_file_image_container.attr("src", default_img);
+        });
+
+        $('.thumbnail-url-submit').on('click', function (e) {
+            e.preventDefault();
+
+            if (thumbnail_url.val()) {
+                cancel_thumbnail_url.show();
+                thumbnail_url_image_container.attr("src", thumbnail_url.val());
+
+                thumbnail_type.val(thumbnail_url_type);
+
+                thumbnail_file.val("");
+                thumbnail_file_label.text('Choose file');
+                thumbnail_file_image_container.attr("src", default_img);
+                cancel_thumbnail_file.hide();
+
+            }
+        });
+
+        $('.cancel-thumbnail-url').on('click', function (e) {
+            e.preventDefault();
+
+            $(this).hide();
+            thumbnail_url.val("");
+            thumbnail_url_image_container.attr("src", default_img);
+        });
+
+
         $('#summernote').summernote({
             height: 500,
             placeholder: "Let's make a blog here ..."

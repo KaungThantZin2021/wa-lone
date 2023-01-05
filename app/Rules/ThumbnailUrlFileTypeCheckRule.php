@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\Blog;
 use Illuminate\Contracts\Validation\Rule;
 
 class ThumbnailUrlFileTypeCheckRule implements Rule
@@ -13,7 +14,7 @@ class ThumbnailUrlFileTypeCheckRule implements Rule
      *
      * @return void
      */
-    public function __construct(array $accept_file_type_array)
+    public function __construct(array $accept_file_type_array = ['png', 'jpg', 'jpeg', 'gif'])
     {
         $this->accept_file_type_array = $accept_file_type_array;
     }
@@ -28,6 +29,10 @@ class ThumbnailUrlFileTypeCheckRule implements Rule
     public function passes($attribute, $value)
     {
         $file_ext = pathinfo($value, PATHINFO_EXTENSION);
+
+        if ($file_ext == "") {
+            return true;
+        }
 
         return in_array($file_ext, $this->accept_file_type_array);
     }

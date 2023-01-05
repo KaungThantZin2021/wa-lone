@@ -162,6 +162,13 @@
                     dt.ajax.reload();
                 }
             };
+
+            @if(session('success'))
+            Toast.fire({
+                icon: 'success',
+                title: "{{ session('success') }}"
+            })
+            @endif
         });
     </script>
 

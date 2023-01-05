@@ -1,15 +1,17 @@
 <?php
 namespace App\Http\Controllers\Backend\Admin;
 
+use Throwable;
+// use Yajra\Datatables\Datatables;
 use App\Models\Blog;
 use Illuminate\Support\Str;
-// use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Http\Requests\BlogRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\CreateBlogRequest;
 
 class BlogController extends Controller
 {
@@ -45,7 +47,13 @@ class BlogController extends Controller
                         <a href="" class="btn btn-sm btn-danger rounded m-1 trash" data-trash-url="' . route('admin.blog.destroy', $blog->id) . '" title="Trash"><i class="fas fa-trash"></i></a>
                     </div>';
                 })
-                ->rawColumns(['thumbnail', 'action'])
+                ->editColumn('created_at', function ($blog) {
+                    return $blog->created_at->format('Y-m-d H:i:s') . '<br> (' . $blog->created_at->diffForHumans() . ')';
+                })
+                ->editColumn('updated_at', function ($blog) {
+                    return $blog->updated_at->format('Y-m-d H:i:s') . '<br> (' . $blog->updated_at->diffForHumans() . ')';
+                })
+                ->rawColumns(['thumbnail', 'created_at', 'updated_at', 'action'])
                 ->make(true);
         }
 
@@ -57,33 +65,46 @@ class BlogController extends Controller
         return view('backend.admin.blogs.create');
     }
 
-    public function store(CreateBlogRequest $request)
+    public function store(BlogRequest $request)
     {
-        $thumbnail = null;
+        DB::beginTransaction();
+        try {
+            $thumbnail = null;
 
-        if ($request->thumbnail_type === Blog::THUMBNAIL_FILE) {
-            $file_name = Blog::THUMBNAIL_FILE . '_' . time() . '-' . rand(11111, 99999) . '.' . $request->file('thumbnail_file')->getClientOriginalName();
-            $request->thumbnail_file->storeAs('thumbnails', $file_name);
+            if ($request->thumbnail_type === Blog::THUMBNAIL_FILE) {
+                if ($request->file('thumbnail_file')) {
+                    $file_name = Blog::THUMBNAIL_FILE . '_' . time() . '-' . rand(11111, 99999) . '.' . $request->file('thumbnail_file')->getClientOriginalName();
+                    $request->thumbnail_file->storeAs('thumbnails', $file_name);
 
-            $thumbnail = $file_name;
+                    $thumbnail = $file_name;
+                }
+            }
+
+            if ($request->thumbnail_type === Blog::THUMBNAIL_URL) {
+                if ($request->thumbnail_url) {
+                    $file_name = Blog::THUMBNAIL_URL . '_' . time() . '-' . rand(11111, 99999) . '.' . pathinfo($request->thumbnail_url, PATHINFO_BASENAME);
+                    $file = file_get_contents($request->thumbnail_url);
+                    file_put_contents(storage_path('app/public/thumbnails/'. $file_name), $file);
+
+                    $thumbnail = $file_name;
+                }
+            }
+
+            Blog::create([
+                'title' => $request->title,
+                'thumbnail_type' => $request->thumbnail_type,
+                'thumbnail' => $thumbnail,
+                'description' => $request->description,
+            ]);
+
+            DB::commit();
+            return $this->redirectToIndex('success', 'Created in successfully');
+
+        } catch (Throwable $th) {
+            DB::rollback();
+            Log::error($th);
+            return $this->redirectBackWithErrors($th->getMessage());
         }
-
-        if ($request->thumbnail_type === Blog::THUMBNAIL_URL) {
-            $file_name = Blog::THUMBNAIL_URL . '_' . time() . '-' . rand(11111, 99999) . '.' . pathinfo($request->thumbnail_url, PATHINFO_BASENAME);
-            $file = file_get_contents($request->thumbnail_url);
-            file_put_contents(storage_path('app/public/thumbnails/'. $file_name), $file);
-
-            $thumbnail = $file_name;
-        }
-
-        Blog::create([
-            'title' => $request->title,
-            'thumbnail_type' => $request->thumbnail_type,
-            'thumbnail' => $thumbnail,
-            'description' => $request->description,
-        ]);
-
-        return redirect()->route('admin.blog.index');
     }
 
     public function edit(Blog $blog)
@@ -91,19 +112,63 @@ class BlogController extends Controller
         return view('backend.admin.blogs.edit', compact('blog'));
     }
 
-    public function update(Request $request, Blog $blog)
+    public function update(BlogRequest $request, Blog $blog)
     {
-        $file_name =  $request->thumbnail ? time() . '_' .$request->file('thumbnail')->getClientOriginalName() : $blog->thumbnailPath();
+        DB::beginTransaction();
+        try {
+            $thumbnail = null;
 
-        $request->thumbnail->move(public_path('thumbnails'), $file_name);
+            if ($request->thumbnail_type === Blog::THUMBNAIL_FILE) {
+                if ($request->file('thumbnail_file')) {
+                    if ($blog->thumbnail) {
+                        $thumbnail_file_path = storage_path('app/public/thumbnails/' . $blog->thumbnail);
+                        if (!File::exists($thumbnail_file_path)) throw new Exception('Thumbnail image file not found to delete!');
+                        File::delete($thumbnail_file_path);
+                    }
 
-        $blog::update([
-            'title' => $request->title,
-            'thumbnail' => $file_name,
-            'description' => $request->description,
-        ]);
+                    $file_name = Blog::THUMBNAIL_FILE . '_' . time() . '-' . rand(11111, 99999) . '.' . $request->file('thumbnail_file')->getClientOriginalName();
+                    $request->thumbnail_file->storeAs('thumbnails', $file_name);
 
-        return redirect()->route('admin.blog.index');
+                    $thumbnail = $file_name;
+                }
+            }
+
+            if ($request->thumbnail_type === Blog::THUMBNAIL_URL) {
+                if ($request->thumbnail_url) {
+                    if ($blog->thumbnail) {
+                        $thumbnail_file_path = storage_path('app/public/thumbnails/' . $blog->thumbnail);
+                        if (!File::exists($thumbnail_file_path)) throw new Exception('Thumbnail image file not found to delete!');
+                        File::delete($thumbnail_file_path);
+                    }
+
+                    $file_name = Blog::THUMBNAIL_URL . '_' . time() . '-' . rand(11111, 99999) . '.' . pathinfo($request->thumbnail_url, PATHINFO_BASENAME);
+                    $file = file_get_contents($request->thumbnail_url);
+                    file_put_contents(storage_path('app/public/thumbnails/'. $file_name), $file);
+
+                    $thumbnail = $file_name;
+                }
+            }
+
+            if (!is_null($thumbnail)) {
+                $blog->update([
+                    'thumbnail_type' => $request->thumbnail_type,
+                    'thumbnail' => $thumbnail,
+                ]);
+            }
+
+            $blog->update([
+                'title' => $request->title,
+                'description' => $request->description,
+            ]);
+
+            DB::commit();
+            return $this->redirectToIndex('success', 'Updated in successfully');
+
+        } catch (Throwable $th) {
+            DB::rollback();
+            Log::error($th);
+            return $this->redirectBackWithErrors($th->getMessage());
+        }
     }
 
     public function show(Blog $blog)
@@ -113,39 +178,54 @@ class BlogController extends Controller
 
     public function destroy(Blog $blog)
     {
-        $blog->delete();
+        try {
+            $blog->delete();
 
-        return response()->json([
-            'result' => 1,
-            'message' => 'Deleted in successfully'
-        ]);
+            return successJson('Deleted in successfully');
+        } catch (Throwable $th) {
+            Log::error($th);
+            return failJson($th->getMessage());
+        }
+
     }
 
     public function restore($id)
     {
-        Blog::onlyTrashed()->find($id)->restore();
+        try {
+            Blog::onlyTrashed()->find($id)->restore();
 
-        return response()->json([
-            'result' => 1,
-            'message' => 'Restored in successfully'
-        ]);
+            return successJson('Restored in successfully');
+        } catch (Throwable $th) {
+            Log::error($th);
+            return failJson($th->getMessage());
+        }
     }
 
     public function forceDelete($id)
     {
-        $blog = Blog::onlyTrashed()->find($id);
+        try {
+            $blog = Blog::onlyTrashed()->find($id);
 
-        $thumbnail_file_path = storage_path('app/public/thumbnails/' . $blog->thumbnail);
-
-        if (File::exists($thumbnail_file_path)) {
+            $thumbnail_file_path = storage_path('app/public/thumbnails/' . $blog->thumbnail);
+            if (!File::exists($thumbnail_file_path)) throw new Exception('Thumbnail image file not found to delete!');
             File::delete($thumbnail_file_path);
+
+            $blog->forceDelete();
+
+            return successJson('Permanently Deleted in successfully');
+        } catch (Throwable $th) {
+            Log::error($th);
+            return failJson($th->getMessage());
         }
+    }
 
-        $blog->forceDelete();
+    private function redirectToIndex(string $session_key, string $message)
+    {
+        return redirect()->route('admin.blog.index')->with($session_key, $message);
+    }
 
-        return response()->json([
-            'result' => 1,
-            'message' => 'Permanently Deleted in successfully'
-        ]);
+    private function redirectBackWithErrors(string $error_message)
+    {
+        return redirect()->back()->withErrors(['fail' => $error_message])->withInput();
     }
 }

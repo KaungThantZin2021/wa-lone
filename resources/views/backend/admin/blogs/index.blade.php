@@ -1,7 +1,20 @@
 @extends('backend.admin.layouts.app')
 @section('title', 'Blog | ' . config('app.name'))
 @section('blog-selected', 'selected')
+@section('css')
 
+<style>
+    div.dataTables_wrapper > div.dataTables_filter {
+        text-align: right;
+        float: right !important;
+    }
+
+    /* div.dataTables_wrapper div.dataTables_filter input {
+        background: #334154;
+    } */
+</style>
+
+@endsection
 @section('content')
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
