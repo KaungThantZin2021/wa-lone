@@ -140,7 +140,7 @@
 @endsection
 
 @section('script')
-{!! JsValidator::formRequest('App\Http\Requests\BlogRequest', '#blogForm') !!}
+{!! JsValidator::formRequest('App\Http\Requests\CreateBlogRequest', '#blogForm') !!}
 <script>
     $(document).ready(function() {
         var thumbnail_file_type = $('.file-tag').data('type');

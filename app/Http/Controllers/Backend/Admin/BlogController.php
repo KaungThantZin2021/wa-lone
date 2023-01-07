@@ -1,17 +1,19 @@
 <?php
 namespace App\Http\Controllers\Backend\Admin;
 
-use Throwable;
+use Exception;
 // use Yajra\Datatables\Datatables;
+use Throwable;
 use App\Models\Blog;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use App\Http\Requests\BlogRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\CreateBlogRequest;
+use App\Http\Requests\UpdateBlogRequest;
 
 class BlogController extends Controller
 {
@@ -65,7 +67,7 @@ class BlogController extends Controller
         return view('backend.admin.blogs.create');
     }
 
-    public function store(BlogRequest $request)
+    public function store(CreateBlogRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -112,7 +114,7 @@ class BlogController extends Controller
         return view('backend.admin.blogs.edit', compact('blog'));
     }
 
-    public function update(BlogRequest $request, Blog $blog)
+    public function update(UpdateBlogRequest $request, Blog $blog)
     {
         DB::beginTransaction();
         try {

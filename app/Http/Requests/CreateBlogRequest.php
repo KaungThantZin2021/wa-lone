@@ -6,7 +6,7 @@ use App\Models\Blog;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\ThumbnailUrlFileTypeCheckRule;
 
-class BlogRequest extends FormRequest
+class CreateBlogRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

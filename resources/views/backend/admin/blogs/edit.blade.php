@@ -66,6 +66,7 @@
                     <div class="form-group">
                         <label for="">Thumbnail</label>
                         <input type="hidden" name="thumbnail_type" class="thumbnail-type" value="{{ old('thumbnail_type', $blog->thumbnail_type) }}">
+                        <input type="text" name="thumbnail_check" value="{{ old('thumbnail_check', $blog->thumbnail) ? 1 : 0 }}">
                         <ul class="nav nav-tabs mb-3">
                             <li class="nav-item">
                                 <a href="#file" data-toggle="tab" aria-expanded="false" class="nav-link file-tag {{ App\Models\Blog::THUMBNAIL_FILE === $blog->thumbnail_type ? 'active' : '' }}" data-type="{{ App\Models\Blog::THUMBNAIL_FILE }}">
@@ -141,7 +142,7 @@
 @endsection
 
 @section('script')
-{!! JsValidator::formRequest('App\Http\Requests\BlogRequest', '#blogForm') !!}
+{!! JsValidator::formRequest('App\Http\Requests\UpdateBlogRequest', '#blogForm') !!}
 <script>
     $(document).ready(function() {
         var thumbnail_file_type = $('.file-tag').data('type');
