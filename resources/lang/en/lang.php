@@ -46,4 +46,6 @@ return [
     'shops' => 'Shops',
     'accessories' => 'Accessories',
     'blogs' => 'Blogs',
+
+    'profile' => 'Profile',
 ];

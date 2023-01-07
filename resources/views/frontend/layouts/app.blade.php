@@ -19,6 +19,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.css') }}">
+
     {{-- <link href="https://fonts.cdnfonts.com/css/baloo" rel="stylesheet"> --}}
 
 </head>
@@ -75,6 +77,8 @@
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
+
     <script>
         $(() => {
             $.ajaxSetup({
@@ -85,7 +89,29 @@
 
             $(document).on('click', '#logout', function (e) {
                 e.preventDefault();
-                $('#logoutForm').submit();
+
+                Swal.fire({
+                    text: 'Are you sure to logout?',
+                    imageUrl: 'https://cdn-icons-png.flaticon.com/512/3769/3769878.png',
+                    imageWidth: 50,
+                    imageHeight: 50,
+                    width: 300,
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: '<i class="fas fa-sign-out-alt"></i> Logout',
+                    focusConfirm: false,
+                    customClass: {
+                        popup: 'p-0 m-0 shadow tw-rounded-lg',
+                        actions: 'mt-1 mb-3 p-0',
+                        confirmButton: 'py-1',
+                        cancelButton: 'bg-secondary py-1',
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#logoutForm').submit();
+                    }
+                })
             });
 
             $(document).on('click', '.change-language', function (e) {

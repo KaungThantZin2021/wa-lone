@@ -70,7 +70,7 @@
                         </p>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <li>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user"></i> View Profile</a>
+                                <a class="dropdown-item" href="{{ route('profile') }}"><i class="fas fa-user"></i> View Profile</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">

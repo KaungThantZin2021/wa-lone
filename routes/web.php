@@ -46,4 +46,6 @@ Route::namespace('App\Http\Controllers\Frontend')
 
     Route::get('/blogs', 'BlogController@index')->name('blogs');
     Route::get('/blog/{blog}', 'BlogController@show')->name('blog.show');
+
+    Route::get('/profile', 'HomeController@profile')->name('profile');
 });

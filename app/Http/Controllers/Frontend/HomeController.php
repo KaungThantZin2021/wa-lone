@@ -29,4 +29,10 @@ class HomeController extends Controller
 
         return view('frontend.home', compact('blogs'));
     }
+
+
+    public function profile()
+    {
+        return view('frontend.profile');
+    }
 }

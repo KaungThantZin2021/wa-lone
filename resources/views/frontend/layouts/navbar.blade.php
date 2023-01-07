@@ -34,7 +34,7 @@
 
         <div class="col-lg-4">
             <div class="row">
-                <div class="d-flex justify-content-center"">
+                <div class="d-flex justify-content-center">
                     <div class="tw-hidden md:tw-inline-block">
                         <div class="m-0 p-2 text-center">
                             <div class="btn-group">
@@ -57,15 +57,15 @@
                     </div>
                     <div class="m-0 p-2 d-flex justify-content-center">
                         <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i
-                            class="fas fa-search"></i></a>
-                        <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i
                             class="fas fa-bell"></i></a>
                         <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i
                                 class="fas fa-heart"></i></a>
                         <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i
                                 class="fas fa-shopping-cart"></i></a>
-                        <a href="" class="btn btn-sm btn-outline-primary align-middle rounded"><i
+                        @if (auth()->guard('web')->check())
+                        <a href="{{ route('profile') }}" class="btn btn-sm {{ Request::is('profile') ? 'btn-primary' : 'btn-outline-primary' }} align-middle rounded" title="{{ __('lang.profile') }}"><i
                             class="fas fa-user"></i></a>
+                        @endif
                     </div>
                 </div>
             </div>
