@@ -31,8 +31,6 @@
                             </span>
                             @enderror
                         </div>
-                    </div>
-                    <div class="col-lg-12">
                         <div class="form-group">
                             <label class="text-dark" for="pwd">Password</label>
                             <input class="form-control @error('password') is-invalid @enderror" id="pwd" type="password" name="password"
@@ -42,6 +40,10 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="remember" id="rememberMe">
+                            <label for="rememberMe">Remember me</label>
                         </div>
                     </div>
                     <div class="col-lg-12 text-center">

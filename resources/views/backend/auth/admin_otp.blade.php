@@ -20,6 +20,7 @@
 
                 <input type="hidden" class="@error('email') is-invalid @enderror" name="email" value="{{ $session->email }}" required autocomplete="off">
                 <input type="hidden" class="@error('password') is-invalid @enderror" name="password" value="{{ $session->password }}" required autocomplete="off">
+                <input type="hidden" class="@error('remember') is-invalid @enderror" name="remember" value="{{ $session->remember }}" required autocomplete="off">
 
                 @error('email')
                     <span class="invalid-feedback" role="alert">
