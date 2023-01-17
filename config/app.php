@@ -178,6 +178,7 @@ return [
          */
         Yajra\Datatables\DatatablesServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Ladumor\OneSignal\OneSignalServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -245,6 +246,7 @@ return [
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'OneSignal' => \Ladumor\OneSignal\OneSignal::class,
     ],
 
 ];

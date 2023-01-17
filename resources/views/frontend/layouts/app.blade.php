@@ -35,7 +35,8 @@
 @yield('css')
 
 <body>
-    <div id="mainPageLoader" class="tw-fixed tw-flex tw-items-center tw-justify-center tw-z-50 tw-bg-gray-100" style="width: 100% !important; height: 100% !important;">
+    <div id="mainPageLoader" class="tw-fixed tw-flex tw-items-center tw-justify-center tw-z-50 tw-bg-gray-100"
+        style="width: 100% !important; height: 100% !important;">
         <img src="{{ asset('frontend/images/loader.gif') }}" class="tw-w-24 tw-h-24" alt="">
     </div>
     <div class="container-fluid">
@@ -53,20 +54,23 @@
     </div>
 
     @if (!auth()->guard('web')->check())
-    @if (!Request::is('login') && !Request::is('forget-password') && !Request::is('register'))
-    <div class="toast fade show animate__animated animate__shakeX tw-z-20 tw-fixed tw-bottom-5 tw-right-5 bg-primary bg-opacity-50 border border-0" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="me-auto text-primary">Please Login or Register</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-        <div class="toast-body">
-            <div>
-                <a href="{{ route('login') }}" class="btn btn-sm btn-primary shadow-lg bg-opacity-75 m-0">@lang('lang.login')</a>
-                <a href="{{ route('register') }}" class="btn btn-sm btn-primary shadow-lg bg-opacity-75 m-0">@lang('lang.register')</a>
+        @if (!Request::is('login') && !Request::is('forget-password') && !Request::is('register'))
+            <div class="toast fade show animate__animated animate__shakeX tw-z-20 tw-fixed tw-bottom-5 tw-right-5 bg-primary bg-opacity-50 border border-0"
+                role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto text-primary">Please Login or Register</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <div>
+                        <a href="{{ route('login') }}"
+                            class="btn btn-sm btn-primary shadow-lg bg-opacity-75 m-0">@lang('lang.login')</a>
+                        <a href="{{ route('register') }}"
+                            class="btn btn-sm btn-primary shadow-lg bg-opacity-75 m-0">@lang('lang.register')</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    @endif
+        @endif
     @endif
 
     {{-- <script src="{{ asset('bootstrap/js/popper.min.js') }}"></script> --}}
@@ -75,7 +79,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Laravel Javascript Validation -->
-    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
     <script src="{{ asset('js/sweetalert2.js') }}"></script>
 
@@ -83,11 +87,11 @@
         $(() => {
             $.ajaxSetup({
                 headers: {
-                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
-            $(document).on('click', '#logout', function (e) {
+            $(document).on('click', '#logout', function(e) {
                 e.preventDefault();
 
                 Swal.fire({
@@ -114,27 +118,47 @@
                 })
             });
 
-            $(document).on('click', '.change-language', function (e) {
+            $(document).on('click', '.change-language', function(e) {
                 e.preventDefault();
                 var lang = $(this).data('lang');
 
-                $.post('/change-language', {lang}).done(function (res) {
-                    if (res.result == 1) {
-                        window.location.reload();
-                    }
-                })
-                .fail(function (error) {
-                   console.log(error);
-                });
+                $.post('/change-language', {
+                        lang
+                    }).done(function(res) {
+                        if (res.result == 1) {
+                            window.location.reload();
+                        }
+                    })
+                    .fail(function(error) {
+                        console.log(error);
+                    });
             });
 
             mainPageLoaderHide();
 
             function mainPageLoaderHide() {
-                $('#mainPageLoader').fadeOut('slow', function () {
+                $('#mainPageLoader').fadeOut('slow', function() {
                     $(this).attr("style", "display: none !important");
                 });
             }
+        });
+    </script>
+
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+                appId: "{{ config('one-signal.app_id') }}",
+                allowLocalhostAsSecureOrigin: true,
+                autoResubscribe: true
+            });
+
+            OneSignal.on('subscriptionChange', function(isSubscribe) {
+                OneSignal.getUserId(function(id) {
+                    console.log(id)
+                })
+            })
         });
     </script>
 
