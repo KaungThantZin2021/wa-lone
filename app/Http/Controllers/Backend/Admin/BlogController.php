@@ -5,6 +5,7 @@ use Exception;
 // use Yajra\Datatables\Datatables;
 use Throwable;
 use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -12,8 +13,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Notifications\BlogNotification;
 use App\Http\Requests\CreateBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use Illuminate\Support\Facades\Notification;
 
 class BlogController extends Controller
 {
@@ -92,12 +95,24 @@ class BlogController extends Controller
                 }
             }
 
-            Blog::create([
+            $blog = Blog::create([
                 'title' => $request->title,
                 'thumbnail_type' => $request->thumbnail_type,
                 'thumbnail' => $thumbnail,
                 'description' => $request->description,
             ]);
+
+            $users = User::get();
+
+            $noti_data = [
+                'title' => 'There is a new blog!',
+                'description' => $blog->title,
+                'typeable' => get_class($blog),
+                'typeable_id' => $blog->id,
+                'link' => '',
+            ];
+
+            Notification::send($users, new BlogNotification($noti_data));
 
             DB::commit();
             return $this->redirectToIndex('success', 'Created in successfully');
