@@ -56,8 +56,19 @@
                         </div>
                     </div>
                     <div class="m-0 p-2 d-flex justify-content-center">
-                        <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i
-                            class="fas fa-bell"></i></a>
+                        <a href="{{ route('notifications') }}" class="btn btn-sm {{ Request::is('notifications') || Request::is('notification/*') ? 'btn-primary' : 'btn-outline-primary' }} align-middle rounded me-2 tw-relative">
+                            @php
+                                $noti_count = auth()->guard('web')->user()->notifications->whereNull('read_at')->count();
+                            @endphp
+                            @if ($noti_count > 0)
+                            <i class="fas fa-bell tw-absolute tw-inset-2"></i>
+                            <i class="fas fa-bell tw-absolute tw-inset-2 tw-animate-ping"></i>
+                            <i class="fas fa-bell tw-animate-ping"></i>
+                            <span class="badge rounded-pill bg-danger tw-absolute tw--top-2 tw--right-2 border border-light">{{ $noti_count }}</span>
+                            @else
+                            <i class="fas fa-bell"></i>
+                            @endif
+                        </a>
                         <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i
                                 class="fas fa-heart"></i></a>
                         <a href="" class="btn btn-sm btn-outline-primary align-middle rounded me-2"><i

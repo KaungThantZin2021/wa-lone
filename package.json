@@ -31,6 +31,7 @@
         "datatables.net-buttons-bs4": "^2.2.3",
         "datatables.net-responsive-bs4": "^2.3.0",
         "jquery": "^3.6.0",
+        "jscroll": "^2.4.1",
         "jszip": "^3.10.1",
         "pdfmake": "^0.2.6",
         "popper.js": "^1.16.1",

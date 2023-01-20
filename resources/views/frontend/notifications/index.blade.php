@@ -1,0 +1,75 @@
+@extends('frontend.layouts.app')
+@section('title', __('lang.notifications'))
+@section('content')
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}"
+                            class="text-decoration-none">{{ config('app.name') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@lang('lang.notifications')</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row mb-5 tw-flex tw-justify-center animate__animated animate__fadeInDown">
+            <div class="col-md-6">
+                <div class="infinite-scroll">
+                    @foreach ($notifications as $notification)
+                    <a href="{{ route('notification.show', $notification->id) }}" class="text-decoration-none">
+                        <div class="card tw-relative {{ is_null($notification->read_at) ? 'border-primary border-opacity-50' : 'border-0' }} tw-transition tw-ease-in-out tw-drop-shadow-xl hover:tw-drop-shadow-sm hover:tw-scale-95 tw-duration-300 mb-3">
+                            @if (is_null($notification->read_at))
+                            <span class="tw-absolute tw-inline-flex tw-rounded-full tw-h-3 tw-w-3 bg-primary tw--top-1 tw--right-1"></span>
+                            <span class="tw-absolute tw-inline-flex tw-rounded-full tw-h-3 tw-w-3 bg-primary tw--top-1 tw--right-1 tw-animate-ping"></span>
+                            <span class="tw-absolute tw-inline-flex tw-rounded-full tw-h-5 tw-w-5 bg-primary tw--top-2 tw--right-2 bg-opacity-50 tw-animate-ping"></span>
+                            @endif
+                            <div class="card-body py-2 tw-relative">
+                                <p class="mb-1 tw-text-base xs:tw-text-sm">{{ \Str::limit($notification->data['title'], 30) }}</p>
+                                <p class="text-muted mb-0 xs:tw-text-xs">{{ \Str::limit($notification->data['description'], 80) }}</p>
+                            </div>
+                            <div class="card-footer bg-white mx-3 px-0">
+                                <div class="tw-flex tw-justify-between">
+                                    <div>
+                                        <p class="text-muted tw-text-sm mb-0">Notified at : {{ $notification->created_at->diffForHumans() }}</p>
+                                    </div>
+                                    @if (!is_null($notification->read_at))
+                                    <div>
+                                        <p class="tw-text-green-500 tw-text-sm mb-0">Read at : {{ $notification->read_at->diffForHumans() }}</p>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    @endforeach
+                    {{ $notifications->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+
+<script>
+    $('ul.pagination').hide();
+
+    $(() => {
+        let loader = "{{ asset('images/scroll_loader.gif') }}";
+        $('.infinite-scroll').jscroll({
+            autoTrigger: true,
+            loadingHtml: `
+                <div class="text-center">
+                    <img class="text-center" src="${loader}" width="30px" alt="Loading..." />
+                </div>
+            `,
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.infinite-scroll',
+            callback: function() {
+                $('ul.pagination').remove();
+            }
+        });
+    });
+</script>
+
+@endsection

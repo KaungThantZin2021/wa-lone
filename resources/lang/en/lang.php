@@ -47,5 +47,7 @@ return [
     'accessories' => 'Accessories',
     'blogs' => 'Blogs',
 
+    'notifications' => 'Notifications',
+    'notification_detail' => 'Notification Detail',
     'profile' => 'Profile',
 ];

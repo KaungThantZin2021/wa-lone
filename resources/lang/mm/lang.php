@@ -47,5 +47,7 @@ return [
     'accessories' => 'ဆက်စပ်ပစ္စည်းများ',
     'blogs' => 'ဘလော့များ',
 
+    'notifications' => 'အသိပေးချက်များ',
+    'notification_detail' => 'အသိပေးချက်အသေးစိတ််',
     'profile' => 'ပရိုဖိုင်',
 ];

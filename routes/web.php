@@ -48,4 +48,7 @@ Route::namespace('App\Http\Controllers\Frontend')
     Route::get('/blog/{blog}', 'BlogController@show')->name('blog.show');
 
     Route::get('/profile', 'HomeController@profile')->name('profile');
+
+    Route::get('/notifications', 'NotificationController@index')->name('notifications');
+    Route::get('/notification/{id}', 'NotificationController@show')->name('notification.show');
 });

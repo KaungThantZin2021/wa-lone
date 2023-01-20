@@ -21,6 +21,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/toastr.js', 'public/js')
     .sass('resources/sass/toastr.scss', 'public/css')
     .js('resources/js/sweetalert2.js', 'public/js')
+    .js('resources/js/jscroll.js', 'public/js')
     .sass('resources/sass/sweetalert2.scss', 'public/css')
     .sass('resources/sass/animate.scss', 'public/css')
     .sass('resources/sass/tailwind.scss', 'public/css').options({
