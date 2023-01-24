@@ -13,6 +13,22 @@
         </div>
         <div class="row mb-5 tw-flex tw-justify-center animate__animated animate__fadeInDown">
             <div class="col-md-6">
+                <div class="card bg-transparent border-0 tw-drop-shadow-xl">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                                <input type="date" class="form-control" placeholder="Date Time" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text tw-text-green-500" id="basic-addon1"><i class="fas fa-envelope-open"></i></span>
+                                <input type="date" class="form-control" placeholder="Date Time" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="infinite-scroll">
                     @foreach ($notifications as $notification)
                     <a href="{{ route('notification.show', $notification->id) }}" class="text-decoration-none">
@@ -29,11 +45,11 @@
                             <div class="card-footer bg-white mx-3 px-0">
                                 <div class="tw-flex tw-justify-between">
                                     <div>
-                                        <p class="text-muted tw-text-sm mb-0">Notified at : {{ $notification->created_at->diffForHumans() }}</p>
+                                        <p class="text-muted tw-text-sm mb-0"><i class="far fa-envelope"></i> {{ $notification->created_at }} ({{ $notification->created_at->diffForHumans() }})</p>
                                     </div>
                                     @if (!is_null($notification->read_at))
                                     <div>
-                                        <p class="tw-text-green-500 tw-text-sm mb-0">Read at : {{ $notification->read_at->diffForHumans() }}</p>
+                                        <p class="tw-text-green-500 tw-text-sm mb-0"><i class="far fa-envelope-open"></i> {{ $notification->read_at }} ({{ $notification->read_at->diffForHumans() }})</p>
                                     </div>
                                     @endif
                                 </div>

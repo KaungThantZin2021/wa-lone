@@ -31,3 +31,17 @@ function failJson(string $message = 'Fail', array $data = []) {
         'data' => $data
     ]);
 }
+
+function successMessage(string $message = 'Success') {
+    return [
+        'result' => 1,
+        'message' => $message,
+    ];
+}
+
+function failMessage(string $message = 'Fail') {
+    return [
+        'result' => 0,
+        'message' => $message,
+    ];
+}

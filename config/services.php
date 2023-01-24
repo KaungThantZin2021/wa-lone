@@ -14,6 +14,8 @@ return [
     |
     */
 
+    'default_notification_service_provider' => env('NOTIFICATION_SERVICE_PROVIDER', 'onesignal'),
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

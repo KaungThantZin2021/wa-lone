@@ -173,11 +173,19 @@
     OneSignal.push(function() {
         OneSignal.init({
             appId: "{{ config('one-signal.app_id') }}",
+            // allowLocalhostAsSecureOrigin: true,
+            // autoResubscribe: true
         });
 
         OneSignal.on('subscriptionChange', function(isSubscribe) {
-            OneSignal.getUserId(function(id) {
-                console.log(id)
+            OneSignal.getUserId(function(player_id) {
+                console.log(player_id);
+
+                $.post('/notifications/subscribe', {player_id}).done(function (res) {
+                    console.log(res);
+                }).fail(function (error) {
+                    console.log(error);
+                });
             })
         });
     });

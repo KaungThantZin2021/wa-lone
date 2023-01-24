@@ -129,35 +129,17 @@
 .tw-top-0 {
     top: 0px !important
 }
-.tw--top-1 {
-    top: -0.25rem !important
-}
-.tw-right-0 {
-    right: 0px !important
-}
-.tw--right-1 {
-    right: -0.25rem !important
-}
 .tw--top-2 {
     top: -0.5rem !important
 }
 .tw--right-2 {
     right: -0.5rem !important
 }
-.tw-right-1 {
-    right: 0.25rem !important
+.tw--top-1 {
+    top: -0.25rem !important
 }
-.tw--right-3 {
-    right: -0.75rem !important
-}
-.tw--top-3 {
-    top: -0.75rem !important
-}
-.tw-top-1 {
-    top: 0.25rem !important
-}
-.tw--top-5 {
-    top: -1.25rem !important
+.tw--right-1 {
+    right: -0.25rem !important
 }
 .tw-z-50 {
     z-index: 50 !important
@@ -167,6 +149,9 @@
 }
 .tw-z-10 {
     z-index: 10 !important
+}
+.tw-float-right {
+    float: right !important
 }
 .tw-flex {
     display: flex !important
@@ -290,19 +275,12 @@
     font-size: 1.5rem !important;
     line-height: 2rem !important
 }
-.tw-text-lg {
-    font-size: 1.125rem !important;
-    line-height: 1.75rem !important
-}
 .tw-text-base {
     font-size: 1rem !important;
     line-height: 1.5rem !important
 }
 .tw-font-bold {
     font-weight: 700 !important
-}
-.tw-font-medium {
-    font-weight: 500 !important
 }
 .tw-leading-normal {
     line-height: 1.5 !important
@@ -315,17 +293,13 @@
     --tw-text-opacity: 1 !important;
     color: rgb(0 0 0 / var(--tw-text-opacity)) !important
 }
-.tw-text-gray-400 {
-    --tw-text-opacity: 1 !important;
-    color: rgb(156 163 175 / var(--tw-text-opacity)) !important
-}
-.tw-text-green-400 {
-    --tw-text-opacity: 1 !important;
-    color: rgb(74 222 128 / var(--tw-text-opacity)) !important
-}
 .tw-text-green-500 {
     --tw-text-opacity: 1 !important;
     color: rgb(34 197 94 / var(--tw-text-opacity)) !important
+}
+.tw-text-gray-400 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(156 163 175 / var(--tw-text-opacity)) !important
 }
 .tw-drop-shadow-xl {
     --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08)) !important;
@@ -450,23 +424,6 @@
     }
     .sm\:tw-h-44 {
         height: 11rem !important
-    }
-    .sm\:tw-p-0 {
-        padding: 0px !important
-    }
-    .sm\:tw-p-1 {
-        padding: 0.25rem !important
-    }
-    .sm\:tw-p-2 {
-        padding: 0.5rem !important
-    }
-    .sm\:tw-text-sm {
-        font-size: 0.875rem !important;
-        line-height: 1.25rem !important
-    }
-    .sm\:tw-text-base {
-        font-size: 1rem !important;
-        line-height: 1.5rem !important
     }
 }
 @media (max-width: 475px) {

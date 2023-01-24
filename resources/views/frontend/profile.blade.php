@@ -20,7 +20,11 @@
                             alt="" width="100px" height="100px">
                         <h3 class="my-2">{{ auth()->user()->name }}</h3>
                     </div>
+
                     <div class="card-body">
+
+                        <div class='onesignal-customlink-container'></div>
+
                         @if (auth()->user()->email)
                         <div>
                             <label class="tw-text-gray-600 tw-font-bold"><i class="fas fa-envelope"></i> Email</label>

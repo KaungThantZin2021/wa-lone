@@ -49,6 +49,9 @@ Route::namespace('App\Http\Controllers\Frontend')
 
     Route::get('/profile', 'HomeController@profile')->name('profile');
 
+    Route::post('/notifications/subscribe', 'NotificationController@subscribe');
+    Route::post('/notifications/unsubscribe', 'NotificationController@unsubscribe');
+
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notification/{id}', 'NotificationController@show')->name('notification.show');
 });
