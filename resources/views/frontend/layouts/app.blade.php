@@ -169,26 +169,27 @@
     @if (auth()->guard('web')->check())
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
     <script>
-    window.OneSignal = window.OneSignal || [];
-    OneSignal.push(function() {
-        OneSignal.init({
-            appId: "{{ config('one-signal.app_id') }}",
-            // allowLocalhostAsSecureOrigin: true,
-            // autoResubscribe: true
-        });
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+                appId: "a4b5dd50-d32e-4fe0-b76b-0f3585d93905",
+            });
 
-        OneSignal.on('subscriptionChange', function(isSubscribe) {
-            OneSignal.getUserId(function(player_id) {
-                console.log(player_id);
+            OneSignal.on('subscriptionChange', function (isSubscribed) {
+                console.log("The user's subscription state is now:", isSubscribed);
 
-                $.post('/notifications/subscribe', {player_id}).done(function (res) {
-                    console.log(res);
-                }).fail(function (error) {
-                    console.log(error);
+                OneSignal.getUserId(function(player_id) {
+                    console.log("OneSignal User ID:", player_id);
+                    $.post('/notifications/subscribe', {player_id}).done(function (res) {
+                        console.log(res);
+                    }).fail(function (res, status, error) {
+                        console.log(res);
+                        console.log(status);
+                        console.log(error);
+                    });
                 });
-            })
+            });
         });
-    });
     </script>
     @endif
 

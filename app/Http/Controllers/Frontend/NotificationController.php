@@ -52,16 +52,19 @@ class NotificationController extends Controller
 
             $auth_user = auth()->guard('web')->user();
 
-            ReceiverNotificationToken::where('receivable_id', $auth_user->id)->firstOrCreate([
-                'receivable_id' => $auth_user->id,
-                'receivable_type' => get_class($auth_user),
-                'token' => $request->player_id,
-                'service_provider' => config('services.default_notification_service_provider'),
-                'platform' => ReceiverNotificationToken::WEBSITE,
-                'source_client' => $request->server('HTTP_USER_AGENT'),
-                'ip' => $request->ip(),
-                'expire_at' => Carbon::now()->addYears(2)->format('Y-m-d H:i:s'),
-            ]);
+            ReceiverNotificationToken::firstOrCreate(
+                ['receivable_id'=> $auth_user->id],
+                [
+                    'receivable_id' => $auth_user->id,
+                    'receivable_type' => get_class($auth_user),
+                    'token' => $request->player_id,
+                    'service_provider' => config('services.default_notification_service_provider'),
+                    'platform' => ReceiverNotificationToken::WEBSITE,
+                    'source_client' => $request->server('HTTP_USER_AGENT'),
+                    'ip' => $request->ip(),
+                    'expire_at' => Carbon::now()->addYears(2)->format('Y-m-d H:i:s'),
+                ]
+            );
 
             return successMessage('Successfully Subscribed.');
         } catch (Exception $e) {

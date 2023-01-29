@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Ladumor\OneSignal\OneSignal;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\File;
 use App\Notifications\BlogNotification;
 use App\Http\Requests\CreateBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Models\ReceiverNotificationToken;
 use Illuminate\Support\Facades\Notification;
 
 class BlogController extends Controller
@@ -114,6 +116,10 @@ class BlogController extends Controller
 
             Notification::send($users, new BlogNotification($noti_data));
 
+            $fields['include_player_ids'] = ['152b9b51-1e9a-48b8-9a55-cff3f11d2500'];
+            $message = 'hey!! this is test push.!';
+            OneSignal::sendPush($fields, $message);
+
             DB::commit();
             return $this->redirectToIndex('success', 'Created in successfully');
 
@@ -129,7 +135,8 @@ class BlogController extends Controller
         return view('backend.admin.blogs.edit', compact('blog'));
     }
 
-    public function update(UpdateBlogRequest $request, Blog $blog)
+    // public function update(UpdateBlogRequest $request, Blog $blog)
+    public function update(Request $request, Blog $blog)
     {
         DB::beginTransaction();
         try {
@@ -177,6 +184,31 @@ class BlogController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
             ]);
+
+            $users = User::get();
+
+            $noti_data = [
+                'title' => 'Blog is edited!',
+                'description' => $blog->title,
+                'typeable' => get_class($blog),
+                'typeable_id' => $blog->id,
+                'link' => '',
+            ];
+
+            Notification::send($users, new BlogNotification($noti_data));
+
+            // $receiver_notification_tokens = ReceiverNotificationToken::pluck('token');
+            // $token_array = $receiver_notification_tokens->toArray();
+
+            // $fields['include_player_ids'] = $token_array;
+            // $message = 'Blog is edited!';
+            // OneSignal::sendPush($fields, $message);
+
+            //-----
+
+            // $fields['include_player_ids'] = ['7421c9cc-b020-4652-a0bf-01173bc761a7'];
+            // $message = 'Blog is edited!';
+            // OneSignal::sendPush($fields, $message);
 
             DB::commit();
             return $this->redirectToIndex('success', 'Updated in successfully');
