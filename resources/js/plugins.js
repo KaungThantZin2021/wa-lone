@@ -16,3 +16,5 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import 'datatables.net-buttons/js/buttons.colVis';
 import 'datatables.net-buttons/js/buttons.html5';
 import 'datatables.net-buttons/js/buttons.print';
+
+import 'datatables.net-responsive-bs4/js/responsive.bootstrap4';

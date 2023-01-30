@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use Exception;
-// use Yajra\Datatables\Datatables;
 use Throwable;
 use App\Models\Blog;
 use App\Models\User;
@@ -116,9 +115,17 @@ class BlogController extends Controller
 
             Notification::send($users, new BlogNotification($noti_data));
 
-            $fields['include_player_ids'] = ['152b9b51-1e9a-48b8-9a55-cff3f11d2500'];
-            $message = 'hey!! this is test push.!';
-            OneSignal::sendPush($fields, $message);
+            // $fields['include_player_ids'] = ['152b9b51-1e9a-48b8-9a55-cff3f11d2500'];
+            // $message = 'hey!! this is test push.!';
+            // OneSignal::sendPush($fields, $message);
+
+            $auth_user = auth()->guard('admin_user')->user();
+
+            activity()
+                ->causedBy($auth_user)
+                ->performedOn($blog)
+                ->withProperties(['source' => 'Admin Panel'])
+                ->log('Blog is created by ' . $auth_user->name . '.');
 
             DB::commit();
             return $this->redirectToIndex('success', 'Created in successfully');
@@ -210,6 +217,14 @@ class BlogController extends Controller
             // $message = 'Blog is edited!';
             // OneSignal::sendPush($fields, $message);
 
+            $auth_user = auth()->guard('admin_user')->user();
+
+            activity()
+                ->causedBy($auth_user)
+                ->performedOn($blog)
+                ->withProperties(['source' => 'Admin Panel'])
+                ->log('Blog is edited by ' . $auth_user->name . '.');
+
             DB::commit();
             return $this->redirectToIndex('success', 'Updated in successfully');
 
@@ -230,6 +245,14 @@ class BlogController extends Controller
         try {
             $blog->delete();
 
+            $auth_user = auth()->guard('admin_user')->user();
+
+            activity()
+                ->causedBy($auth_user)
+                ->performedOn($blog)
+                ->withProperties(['source' => 'Admin Panel'])
+                ->log('Blog is trashed by ' . $auth_user->name . '.');
+
             return successJson('Deleted in successfully');
         } catch (Throwable $th) {
             Log::error($th);
@@ -241,7 +264,16 @@ class BlogController extends Controller
     public function restore($id)
     {
         try {
-            Blog::onlyTrashed()->find($id)->restore();
+            $blog = Blog::onlyTrashed()->find($id);
+            $blog->restore();
+
+            $auth_user = auth()->guard('admin_user')->user();
+
+            activity()
+                ->causedBy($auth_user)
+                ->performedOn($blog)
+                ->withProperties(['source' => 'Admin Panel'])
+                ->log('Blog is restored by ' . $auth_user->name . '.');
 
             return successJson('Restored in successfully');
         } catch (Throwable $th) {
@@ -261,7 +293,15 @@ class BlogController extends Controller
 
             $blog->forceDelete();
 
-            return successJson('Permanently Deleted in successfully');
+            $auth_user = auth()->guard('admin_user')->user();
+
+            activity()
+                ->causedBy($auth_user)
+                ->performedOn($blog)
+                ->withProperties(['source' => 'Admin Panel'])
+                ->log('Blog is permanently deleted by ' . $auth_user->name . '.');
+
+            return successJson('Permanently deleted in successfully');
         } catch (Throwable $th) {
             Log::error($th);
             return failJson($th->getMessage());

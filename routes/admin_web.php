@@ -44,4 +44,7 @@ Route::name('admin.')
         Route::post('/blog/{id}/restore', 'BlogController@restore')->name('blog.restore');
         Route::delete('/blog/{id}/force-delete', 'BlogController@forceDelete')->name('blog.force-delete');
         // End Admin User
+
+        // Activity Log
+        Route::resource('/activity-log', 'ActivityLogController')->only('index', 'show');
 });

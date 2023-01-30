@@ -16,14 +16,21 @@
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">User Management</span></li>
                 <li class="sidebar-item  @yield('user-selected')">
                     <a class="sidebar-link" href="{{ route('admin.user.index') }}" aria-expanded="false">
-                        <i data-feather="tag" class="feather-icon"></i><span class="hide-menu">User</span>
+                        <i data-feather="users" class="feather-icon"></i><span class="hide-menu">User</span>
                     </a>
                 </li>
 
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Blog Management</span></li>
                 <li class="sidebar-item  @yield('blog-selected')">
                     <a class="sidebar-link" href="{{ route('admin.blog.index') }}" aria-expanded="false">
-                        <i data-feather="tag" class="feather-icon"></i><span class="hide-menu">Blog</span>
+                        <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Blog</span>
+                    </a>
+                </li>
+
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Log</span></li>
+                <li class="sidebar-item  @yield('activity-log-selected')">
+                    <a class="sidebar-link" href="{{ route('admin.activity-log.index') }}" aria-expanded="false">
+                        <i data-feather="activity" class="feather-icon"></i><span class="hide-menu">Activity Log</span>
                     </a>
                 </li>
 
