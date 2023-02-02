@@ -94,8 +94,6 @@
         var themeToggleBtn = document.getElementById('theme-toggle');
 
         themeToggleBtn.addEventListener('click', function() {
-            console.log(111);
-
             // toggle icons inside button
             themeToggleDarkIcon.classList.toggle('tw-hidden');
             themeToggleLightIcon.classList.toggle('tw-hidden');

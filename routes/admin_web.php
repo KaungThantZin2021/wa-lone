@@ -47,4 +47,16 @@ Route::name('admin.')
 
         // Activity Log
         Route::resource('/activity-log', 'ActivityLogController')->only('index', 'show');
+
+        // Role
+        Route::resource('/role', 'RoleController');
+
+        // Permission Group
+        Route::resource('/permission-group', 'PermissionGroupController');
+        Route::post('/create-permission', 'PermissionGroupController@createPermission');
+        Route::post('/edit-permission', 'PermissionGroupController@editPermission');
+        Route::delete('/delete-permission', 'PermissionGroupController@deletePermission');
+
+        // Permission
+        // Route::resource('/permission', 'PermissionController');
 });

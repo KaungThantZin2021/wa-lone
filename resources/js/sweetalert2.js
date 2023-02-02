@@ -50,6 +50,32 @@ const DeleteAlert = Swal.mixin({
 });
 window.DeleteAlert = DeleteAlert;
 
+const HtmlAlert = Swal.mixin({
+    focusConfirm: false,
+    showCancelButton: true,
+    reverseButtons: true,
+    customClass: {
+        popup: 'p-0 shadow dark:tw-text-white dark:tw-bg-slate-700',
+        actions: 'mt-1 mb-3 p-0',
+        confirmButton: 'py-2 bg-primary',
+        cancelButton: 'bg-secondary py-2',
+    }
+});
+window.HtmlAlert = HtmlAlert;
+
+const ErrorAlert = Swal.mixin({
+    icon: 'error',
+    width: 350,
+    showCloseButton: true,
+    showCancelButton: false,
+    showConfirmButton: false,
+    customClass: {
+        popup: 'shadow dark:tw-text-white dark:tw-bg-slate-700',
+        closeButton: 'border border-0',
+    }
+});
+window.ErrorAlert = ErrorAlert;
+
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',

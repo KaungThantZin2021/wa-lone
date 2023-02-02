@@ -17,6 +17,7 @@
         "laravel/ui": "^3.4",
         "proengsoft/laravel-jsvalidation": "^4.7",
         "spatie/laravel-activitylog": "^3.17",
+        "spatie/laravel-permission": "^5.8",
         "webpatser/laravel-uuid": "^3.0",
         "yajra/laravel-datatables-oracle": "^9.21"
     },

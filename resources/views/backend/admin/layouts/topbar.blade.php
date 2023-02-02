@@ -1,6 +1,6 @@
 <header class="topbar" data-navbarbg="skin6">
     <nav class="navbar top-navbar navbar-expand-md dark:tw-bg-slate-700">
-        <div class="navbar-header" data-logobg="skin6">
+        <div class="navbar-header dark:tw-bg-slate-700" data-logobg="skin6">
             <!-- This is for the sidebar toggle which is visible on mobile only -->
             <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
                     class="ti-menu ti-close"></i></a>
@@ -41,7 +41,7 @@
         <!-- ============================================================== -->
         <!-- End Logo -->
         <!-- ============================================================== -->
-        <div class="navbar-collapse collapse dark:tw-border-b-black" id="navbarSupportedContent">
+        <div class="navbar-collapse collapse dark:tw-border-b-black dark:tw-bg-slate-700" id="navbarSupportedContent">
             <!-- ============================================================== -->
             <!-- toggle and nav items -->
             <!-- ============================================================== -->
@@ -54,7 +54,7 @@
                         <span><i data-feather="bell" class="svg-icon"></i></span>
                         <span class="badge badge-primary notify-no rounded-circle">5</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
+                    <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown dark:tw-bg-slate-700">
                         <ul class="list-style-none">
                             <li>
                                 <div class="message-center notifications position-relative">
@@ -130,7 +130,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i data-feather="settings" class="svg-icon"></i>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dark:tw-bg-slate-700" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
@@ -189,7 +189,7 @@
                                 class="tw-text-gray-600 dark:tw-text-white">{{ auth()->guard('admin_user')->user()->name }}</span> <i data-feather="chevron-down"
                                 class="svg-icon"></i></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                    <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY dark:tw-bg-slate-700">
                         <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
                                 class="svg-icon mr-2 ml-1"></i>
                             My Profile</a>

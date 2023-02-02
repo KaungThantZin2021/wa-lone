@@ -1,6 +1,6 @@
 @extends('backend.admin.layouts.app')
-@section('title', 'Activity Log | ' . config('app.name'))
-@section('activity-log-selected', 'selected')
+@section('title', 'Role | ' . config('app.name'))
+@section('role-selected', 'selected')
 @section('css')
 
 <style>
@@ -21,21 +21,16 @@
     <!-- ============================================================== -->
     <div class="page-breadcrumb">
         <div class="row">
-            <div class="col-7 align-self-center">
-                <h3 class="page-title text-truncate font-weight-medium mb-1 tw-text-black dark:tw-text-gray-300">Activity Log</h3>
+            <div class="col-12 align-self-center">
+                <h3 class="page-title text-truncate font-weight-medium mb-1 tw-text-black dark:tw-text-gray-300">Role</h3>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
-                            <li class="breadcrumb-item"><a href="index.html">Admin</a>
-                            </li>
-                            <li class="breadcrumb-item"><a href="index.html">Activity Log</a>
-                            </li>
+                            <li class="breadcrumb-item"><a href="{{ url('admin') }}">Admin</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.role.index') }}">Role</a></li>
                         </ol>
                     </nav>
                 </div>
-            </div>
-            <div class="col-5 align-self-center">
-
             </div>
         </div>
     </div>
@@ -48,19 +43,19 @@
     <div class="container-fluid">
         <div class="mb-3">
             @include('backend.components.buttons.back_button')
+            <a href="{{ route('admin.role.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create Role</a>
         </div>
         <div class="card">
             <div class="card-body dark:tw-bg-slate-800">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="activity-logs-table" style="width: 100%; !important">
+                    <table class="table table-bordered" id="roleTable" style="width: 100%; !important">
                         <thead>
                             <tr class="bg-primary">
                                 <th></th>
-                                <th class="text-light">Source</th>
-                                <th class="text-light">Description</th>
-                                <th class="text-light">Causer</th>
-                                <th class="text-light">Subject</th>
-                                <th class="text-light">Date</th>
+                                <th class="text-light">Name</th>
+                                <th class="text-light">Guard Name</th>
+                                <th class="text-light">Created At</th>
+                                <th class="text-light">Updated At</th>
                                 <th class="text-light">Action</th>
                             </tr>
                         </thead>
@@ -88,7 +83,7 @@
 
 <script>
     $(() => {
-        var table = $('#activity-logs-table').DataTable({
+        var table = $('#roleTable').DataTable({
             processing: true,
             serverSide: true,
             dom: 'Bfrtip',
@@ -104,7 +99,7 @@
                 [10, 25, 50, 100],
                 ['10 rows', '25 rows', '50 rows', '100 rows']
             ],
-            ajax: "{{ route('admin.activity-log.index') }}",
+            ajax: "{{ route('admin.role.index') }}",
             columns: [
                 {
                     data: 'plus-icon',
@@ -113,28 +108,23 @@
                     defaultContent: null
                 },
                 {
-                    data: 'source',
-                    name: 'source',
+                    data: 'name',
+                    name: 'name',
                     class: 'text-secondary'
                 },
                 {
-                    data: 'description',
-                    name: 'description',
+                    data: 'guard_name',
+                    name: 'guard_name',
                     class: 'text-secondary'
                 },
                 {
-                    data: 'causer',
-                    name: 'causer',
+                    data: 'created_at',
+                    name: 'created_at',
                     class: 'text-secondary'
                 },
                 {
-                    data: 'subject',
-                    name: 'subject',
-                    class: 'text-secondary'
-                },
-                {
-                    data: 'date',
-                    name: 'date',
+                    data: 'updated_at',
+                    name: 'updated_at',
                     class: 'text-secondary'
                 },
                 {
@@ -144,7 +134,7 @@
                 }
             ],
             order: [
-                [5, 'desc']
+                [3, 'desc']
             ],
             responsive: {
                 details: {

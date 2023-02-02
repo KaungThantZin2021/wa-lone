@@ -34,6 +34,18 @@
                     </a>
                 </li>
 
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Role and Permission</span></li>
+                <li class="sidebar-item  @yield('role-selected')">
+                    <a class="sidebar-link" href="{{ route('admin.role.index') }}" aria-expanded="false">
+                        <i class="fas fa-id-card-alt"></i><span class="hide-menu">Role</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  @yield('permission-group-selected')">
+                    <a class="sidebar-link" href="{{ route('admin.permission-group.index') }}" aria-expanded="false">
+                        <i class="fas fa-id-card"></i><span class="hide-menu">Permission Group</span>
+                    </a>
+                </li>
+
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Applications</span></li>
 
                 <li class="sidebar-item"> <a class="sidebar-link" href="ticket-list.html" aria-expanded="false"><i

@@ -150,6 +150,13 @@
 .tw-z-10 {
     z-index: 10 !important
 }
+.tw-m-0 {
+    margin: 0px !important
+}
+.tw-my-0 {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important
+}
 .tw-flex {
     display: flex !important
 }
@@ -188,6 +195,9 @@
 }
 .tw-w-20 {
     width: 5rem !important
+}
+.tw-w-10 {
+    width: 2.5rem !important
 }
 @keyframes tw-bounce {
     0%, 100% {
@@ -253,6 +263,13 @@
     --tw-bg-opacity: 1 !important;
     background-color: rgb(239 246 255 / var(--tw-bg-opacity)) !important
 }
+.tw-bg-transparent {
+    background-color: transparent !important
+}
+.tw-bg-red-500 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(239 68 68 / var(--tw-bg-opacity)) !important
+}
 .tw-object-cover {
     -o-object-fit: cover !important;
        object-fit: cover !important
@@ -260,6 +277,13 @@
 .tw-object-scale-down {
     -o-object-fit: scale-down !important;
        object-fit: scale-down !important
+}
+.tw-p-0 {
+    padding: 0px !important
+}
+.tw-py-0 {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important
 }
 .tw-text-right {
     text-align: right !important
@@ -297,33 +321,17 @@
     --tw-text-opacity: 1 !important;
     color: rgb(34 197 94 / var(--tw-text-opacity)) !important
 }
-.tw-text-gray-50 {
+.tw-text-slate-800 {
     --tw-text-opacity: 1 !important;
-    color: rgb(249 250 251 / var(--tw-text-opacity)) !important
+    color: rgb(30 41 59 / var(--tw-text-opacity)) !important
 }
 .tw-text-gray-400 {
     --tw-text-opacity: 1 !important;
     color: rgb(156 163 175 / var(--tw-text-opacity)) !important
 }
-.tw-text-gray-100 {
+.tw-text-green-50 {
     --tw-text-opacity: 1 !important;
-    color: rgb(243 244 246 / var(--tw-text-opacity)) !important
-}
-.tw-text-gray-200 {
-    --tw-text-opacity: 1 !important;
-    color: rgb(229 231 235 / var(--tw-text-opacity)) !important
-}
-.tw-text-slate-600 {
-    --tw-text-opacity: 1 !important;
-    color: rgb(71 85 105 / var(--tw-text-opacity)) !important
-}
-.tw-text-slate-800 {
-    --tw-text-opacity: 1 !important;
-    color: rgb(30 41 59 / var(--tw-text-opacity)) !important
-}
-.tw-text-slate-900 {
-    --tw-text-opacity: 1 !important;
-    color: rgb(15 23 42 / var(--tw-text-opacity)) !important
+    color: rgb(240 253 244 / var(--tw-text-opacity)) !important
 }
 .tw-drop-shadow-xl {
     --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08)) !important;
@@ -362,6 +370,10 @@
     --tw-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05)) !important;
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important
 }
+.tw-dark .dark\:tw-border-gray-500 {
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(107 114 128 / var(--tw-border-opacity)) !important
+}
 .tw-dark .dark\:tw-border-b-black {
     --tw-border-opacity: 1 !important;
     border-bottom-color: rgb(0 0 0 / var(--tw-border-opacity)) !important
@@ -398,13 +410,21 @@
     --tw-text-opacity: 1 !important;
     color: rgb(209 213 219 / var(--tw-text-opacity)) !important
 }
+.tw-dark .dark\:tw-text-gray-200 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(229 231 235 / var(--tw-text-opacity)) !important
+}
 .tw-dark .dark\:tw-text-black {
     --tw-text-opacity: 1 !important;
     color: rgb(0 0 0 / var(--tw-text-opacity)) !important
 }
-.tw-dark .dark\:tw-text-gray-200 {
-    --tw-text-opacity: 1 !important;
-    color: rgb(229 231 235 / var(--tw-text-opacity)) !important
+.tw-dark .dark\:tw-placeholder-gray-500::-moz-placeholder {
+    --tw-placeholder-opacity: 1 !important;
+    color: rgb(107 114 128 / var(--tw-placeholder-opacity)) !important
+}
+.tw-dark .dark\:tw-placeholder-gray-500::placeholder {
+    --tw-placeholder-opacity: 1 !important;
+    color: rgb(107 114 128 / var(--tw-placeholder-opacity)) !important
 }
 .tw-dark .dark\:hover\:tw-text-gray-200:hover {
     --tw-text-opacity: 1 !important;
@@ -413,6 +433,10 @@
 .tw-dark .dark\:focus\:tw-border-gray-500:focus {
     --tw-border-opacity: 1 !important;
     border-color: rgb(107 114 128 / var(--tw-border-opacity)) !important
+}
+.tw-dark .dark\:focus\:tw-border-gray-400:focus {
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(156 163 175 / var(--tw-border-opacity)) !important
 }
 @media (max-width: 1279px) {
     .xl\:tw-h-44 {
