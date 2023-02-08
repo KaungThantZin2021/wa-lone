@@ -50,6 +50,8 @@ Route::name('admin.')
 
         // Role
         Route::resource('/role', 'RoleController');
+        Route::get('/give-permission-to-role-form/{role}', 'RoleController@givePermissionToRoleForm')->name('give-permission-to-role-form');
+        Route::post('/give-permission-to-role/{role}', 'RoleController@givePermissionToRole')->name('give-permission-to-role');
 
         // Permission Group
         Route::resource('/permission-group', 'PermissionGroupController');

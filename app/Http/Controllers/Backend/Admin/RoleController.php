@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use Illuminate\Http\Request;
+use App\Models\PermissionGroup;
 use Yajra\DataTables\DataTables;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -26,6 +27,7 @@ class RoleController extends Controller
                 })
                 ->addColumn('action', function ($each) {
                     return '<div class="d-flex justify-content-center">
+                        <a href="' . route('admin.give-permission-to-role-form', $each->id) . '" class="btn btn-sm btn-success rounded m-1" title="Detail"><i class="fas fa-shield-alt"></i></a>
                         <a href="" class="btn btn-sm btn-info rounded m-1" title="Detail"><i class="fas fa-info-circle"></i></a>
                     </div>';
                 })
@@ -49,5 +51,19 @@ class RoleController extends Controller
         ]);
 
         return redirect()->route('admin.role.index')->with('success', 'Role created successfully.');
+    }
+
+    public function givePermissionToRoleForm(Request $request, Role $role)
+    {
+        $permission_groups = PermissionGroup::get();
+
+        return view('backend.admin.role.give_permission_to_role', compact('role', 'permission_groups'));
+    }
+
+    public function givePermissionToRole(Request $request, Role $role)
+    {
+        $role->givePermissionTo($request->permissions ?? []);
+
+        return redirect()->route('admin.role.index')->with('success', 'Give permission to role successfully.');
     }
 }
