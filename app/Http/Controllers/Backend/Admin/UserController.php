@@ -13,7 +13,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return Datatables::of(User::query())->make();
+            return Datatables::of(User::query())
+                ->addColumn('plus-icon', function () {
+                    return null;
+                })
+                ->make();
         }
         // return view('backend.admin.users.index');
         return view('backend.admin.users.index');

@@ -35,3 +35,5 @@
 <script src="{{ asset('backend/vendor/summernote/summernote.min.js') }}"></script>
 
 <script src="{{ asset('js/sweetalert2.js') }}"></script>
+
+<script src="{{ asset('js/select2.js') }}"></script>

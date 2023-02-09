@@ -1,114 +1,104 @@
 @extends('backend.admin.layouts.app')
-@section('title', 'Admin Users')
-@section('admin-user-active', 'nav-active')
+@section('title', 'Admin User | ' . config('app.name'))
+@section('admin-user-selected', 'selected')
+@section('css')
 
+<style>
+    div.dataTables_wrapper > div.dataTables_filter {
+        text-align: right;
+        float: right !important;
+    }
+
+    /* div.dataTables_wrapper div.dataTables_filter input {
+        background: #334154;
+    } */
+</style>
+
+@endsection
 @section('content')
-<div>
-    <div class="page-header">
-        <div>
-            @include('backend.components.buttons.back_button')
-            <a href="{{ route('admin.admin-user.create') }}" class="btn btn-outline-success"><i class="fas fa-user-plus"></i> Create User</a>
-        </div>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">admin</a></li>
-                <li class="breadcrumb-item active" aria-current="page">user</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="row">
-        {{-- <div class="grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Admin Users</h4>
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="admin-users-table" style="width:100%;">
-                            <thead>
-                                <tr class="bg-primary">
-                                    <th class="text-light"></th>
-                                    <th class="text-light">Name</th>
-                                    <th class="text-light">Phone</th>
-                                    <th class="text-light">Email</th>
-                                    <th class="text-light">NRC Number</th>
-                                    <th class="text-light">Gender</th>
-                                    <th class="text-light">Profile Photo</th>
-                                    <th class="text-light">IP</th>
-                                    <th class="text-light">Device</th>
-                                    <th class="text-light">Browser</th>
-                                    <th class="text-light">Platform</th>
-                                    <th class="text-light">Login At</th>
-                                    <th class="text-light">Created At</th>
-                                    <th class="text-light">Updated At</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
-                    </div>
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <h3 class="page-title text-truncate font-weight-medium mb-1 tw-text-black dark:tw-text-gray-300">Role</h3>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 p-0">
+                            <li class="breadcrumb-item"><a href="{{ url('admin') }}">Admin</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.role.index') }}">Role</a></li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
-        </div> --}}
-
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <div class="mb-3">
+            @include('backend.components.buttons.back_button')
+            <a href="{{ route('admin.admin-user.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create Admin User</a>
+        </div>
         <div class="card">
-            <div class="card-body">
-                <h4>Admin Users</h4>
-                <table class="table table-bordered table-responsive" id="admin-users-table" style="width:100%; !important">
-                    <thead>
-                        <tr class="bg-primary">
-                            <th class="text-light"></th>
-                            <th class="text-light">Name</th>
-                            <th class="text-light">Phone</th>
-                            <th class="text-light">Email</th>
-                            <th class="text-light">NRC Number</th>
-                            <th class="text-light">Gender</th>
-                            <th class="text-light">Profile Photo</th>
-                            <th class="text-light">IP</th>
-                            <th class="text-light">Device</th>
-                            <th class="text-light">Browser</th>
-                            <th class="text-light">Platform</th>
-                            <th class="text-light">Login At</th>
-                            <th class="text-light">Created At</th>
-                            <th class="text-light">Updated At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
+            <div class="card-body dark:tw-bg-slate-800">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="roleTable" style="width: 100%; !important">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th></th>
+                                <th class="text-light">Profile Photo</th>
+                                <th class="text-light">Name</th>
+                                <th class="text-light">Phone</th>
+                                <th class="text-light">Email</th>
+                                <th class="text-light">Role</th>
+                                <th class="text-light">NRC</th>
+                                <th class="text-light">Gender</th>
+                                <th class="text-light">Login At</th>
+                                <th class="text-light">Created At</th>
+                                <th class="text-light">Updated At</th>
+                                <th class="text-light">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ======================================================== ====== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center text-muted">
+        All Rights Reserved by Adminmart. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
 @endsection
 
 @section('script')
 
 <script>
     $(() => {
-        var table = $('#admin-users-table').DataTable({
+        var table = $('#roleTable').DataTable({
             processing: true,
             serverSide: true,
-            mark: true,
             dom: 'Bfrtip',
             buttons: [
                 {
                     extend: 'refresh'
                 },
                 {
-                    extend: 'pdfHtml5',
-                    text: '<i class="fas fa-file-pdf"></i> PDF',
-                    className: 'btn btn-secondary',
-                    filename: 'Users Report',
-                },
-                {
-                    extend: 'excelHtml5',
-                    text: '<i class="fas fa-file-excel"></i> Excel',
-                    className: 'btn btn-outline-success bg-dark border border-success',
-                    filename: 'Users Report',
-                },
-                {
-                    extend: 'pageLength',               
+                    extend: 'pageLength',
                 }
             ],
             lengthMenu: [
@@ -117,76 +107,71 @@
             ],
             ajax: "{{ route('admin.admin-user.index') }}",
             columns: [
-                { 
-                    data: 'plus-icon', 
+                {
+                    data: 'plus-icon',
                     name: 'plus-icon',
+                    orderable: false,
                     defaultContent: null
                 },
-                { 
-                    data: 'name', 
-                    name: 'name',
-                    class: 'text-secondary'
-                },
-                { 
-                    data: 'email',
-                    name: 'email',
-                    class: 'text-secondary'
-                },
-                { 
-                    data: 'phone',
-                    name: 'phone',
-                    class: 'text-secondary'
-                },
-                { 
-                    data: 'nrc_no',
-                    name: 'nrc_no',
-                    class: 'text-secondary'
-                },
-                { 
-                    data: 'gender',
-                    name: 'gender',
-                    class: 'text-secondary'
-                },
-                { 
+                {
                     data: 'profile_photo',
                     name: 'profile_photo',
                     class: 'text-secondary'
                 },
-                { 
-                    data: 'ip',
-                    name: 'ip',
+                {
+                    data: 'name',
+                    name: 'name',
                     class: 'text-secondary'
                 },
-                { 
-                    data: 'device',
-                    name: 'device',
+                {
+                    data: 'phone',
+                    name: 'phone',
+                    class: 'text-secondary',
+                    defaultContent: null
+                },
+                {
+                    data: 'email',
+                    name: 'email',
                     class: 'text-secondary'
                 },
-                { 
-                    data: 'browser',
-                    name: 'browser',
+                {
+                    data: 'role',
+                    name: 'role',
                     class: 'text-secondary'
                 },
-                { 
-                    data: 'platform',
-                    name: 'platform',
+                {
+                    data: 'nrc_no',
+                    name: 'nrc_no',
                     class: 'text-secondary'
                 },
-                { 
+                {
+                    data: 'gender',
+                    name: 'gender',
+                    class: 'text-secondary'
+                },
+                {
                     data: 'login_at',
                     name: 'login_at',
                     class: 'text-secondary'
                 },
-                { 
+                {
                     data: 'created_at',
                     name: 'created_at',
                     class: 'text-secondary'
                 },
-                { 
+                {
                     data: 'updated_at',
                     name: 'updated_at',
                     class: 'text-secondary'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    class: 'text-secondary'
                 }
+            ],
+            order: [
+                [8, 'desc']
             ],
             responsive: {
                 details: {

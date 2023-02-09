@@ -241,9 +241,6 @@
 .tw-rounded-full {
     border-radius: 9999px !important
 }
-.tw-rounded-md {
-    border-radius: 0.375rem !important
-}
 .tw-rounded-t {
     border-top-left-radius: 0.25rem !important;
     border-top-right-radius: 0.25rem !important

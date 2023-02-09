@@ -20,6 +20,13 @@
                     </a>
                 </li>
 
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Admin User Management</span></li>
+                <li class="sidebar-item  @yield('admin-user-selected')">
+                    <a class="sidebar-link" href="{{ route('admin.admin-user.index') }}" aria-expanded="false">
+                        <i data-feather="users" class="feather-icon"></i><span class="hide-menu">Admin User</span>
+                    </a>
+                </li>
+
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Blog Management</span></li>
                 <li class="sidebar-item  @yield('blog-selected')">
                     <a class="sidebar-link" href="{{ route('admin.blog.index') }}" aria-expanded="false">

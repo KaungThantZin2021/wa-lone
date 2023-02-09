@@ -18,6 +18,11 @@
 
 <link rel="stylesheet" href="{{ asset('css/sweetalert2.css') }}">
 
+<link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"/> --}}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 
 
 
