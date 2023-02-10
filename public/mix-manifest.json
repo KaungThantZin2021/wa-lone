@@ -10,5 +10,6 @@
     "/css/animate.css": "/css/animate.css",
     "/css/sweetalert2.css": "/css/sweetalert2.css",
     "/css/toastr.css": "/css/toastr.css",
-    "/css/tailwind.css": "/css/tailwind.css"
+    "/css/tailwind.css": "/css/tailwind.css",
+    "/js/select2.min.js": "/js/select2.min.js"
 }

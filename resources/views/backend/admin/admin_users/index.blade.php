@@ -22,12 +22,12 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 align-self-center">
-                <h3 class="page-title text-truncate font-weight-medium mb-1 tw-text-black dark:tw-text-gray-300">Role</h3>
+                <h3 class="page-title text-truncate font-weight-medium mb-1 tw-text-black dark:tw-text-gray-300">Admin User</h3>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item"><a href="{{ url('admin') }}">Admin</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.role.index') }}">Role</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.admin-user.index') }}">Admin User</a></li>
                         </ol>
                     </nav>
                 </div>

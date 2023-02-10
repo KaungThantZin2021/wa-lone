@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Traits\Uuids;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class AdminUser extends Authenticatable
 {
-    use Uuids, HasFactory;
+    use Uuids, HasFactory, HasRoles;
 
     /**
      * The attributes that are mass assignable.

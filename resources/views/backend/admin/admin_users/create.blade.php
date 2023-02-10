@@ -33,13 +33,14 @@
             @include('backend.components.buttons.back_button')
         </div>
         <div class="card dark:tw-bg-slate-800">
+            @include('backend.layouts.flash')
             <div class="card-body">
-                <form action="{{ route('admin.admin-user.store', $admin_user->id) }}" method="POST">
+                <form action="{{ route('admin.admin-user.store') }}" method="POST">
                     @csrf
 
                     <div class="form-group">
                         <label for="">Name</label>
-                        <input type="text" name="name" class="form-control dark:tw-text-gray-300 dark:tw-placeholder-gray-500 dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 @error('name') is-invalid @enderror" placeholder="Name"
+                        <input type="text" name="name" value="{{ old('name') }}" class="form-control dark:tw-text-gray-300 dark:tw-placeholder-gray-500 dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 @error('name') is-invalid @enderror" placeholder="Name"
                             aria-describedby="helpId">
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -50,7 +51,7 @@
 
                     <div class="form-group">
                         <label for="">Phone</label>
-                        <input type="number" name="phone" class="form-control dark:tw-text-gray-300 dark:tw-placeholder-gray-500 dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 @error('phone') is-invalid @enderror" placeholder="Phone"
+                        <input type="number" name="phone" value="{{ old('phone') }}" class="form-control dark:tw-text-gray-300 dark:tw-placeholder-gray-500 dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 @error('phone') is-invalid @enderror" placeholder="Phone"
                             aria-describedby="helpId">
                         @error('phone')
                             <span class="invalid-feedback" role="alert">
@@ -61,7 +62,7 @@
 
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="email" name="email" class="form-control dark:tw-text-gray-300 dark:tw-placeholder-gray-500 dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 @error('email') is-invalid @enderror" placeholder="Email"
+                        <input type="email" name="email" value="{{ old('email') }}" class="form-control dark:tw-text-gray-300 dark:tw-placeholder-gray-500 dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 @error('email') is-invalid @enderror" placeholder="Email"
                             aria-describedby="helpId">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -86,7 +87,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Confirm Password</label>
-                                <input type="password_confirmation" name="confirm_password" class="form-control dark:tw-text-gray-300 dark:tw-placeholder-gray-500 dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 @error('confirm_password') is-invalid @enderror" placeholder="Confirm Password"
+                                <input type="password" name="confirm_password" class="form-control dark:tw-text-gray-300 dark:tw-placeholder-gray-500 dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 @error('confirm_password') is-invalid @enderror" placeholder="Confirm Password"
                                     aria-describedby="helpId">
                                 @error('confirm_password')
                                     <span class="invalid-feedback" role="alert">
@@ -100,7 +101,6 @@
                     <div class="form-group">
                         <label for="">Roles</label>
                         <select class="custom-select role @error('roles') is-invalid @enderror" name="roles[]" multiple="multiple">
-                            <option value=""> -- Choose Roles --- </option>
                             @forelse ($roles as $role)
                             <option value="{{ $role->name }}">{{ $role->name }}</option>
                             @empty
@@ -138,6 +138,7 @@
 <script>
     $(document).ready(function() {
         $('.role').select2({
+            placeholder: '--- Choose Roles ---',
             theme: 'bootstrap4',
             allowClear: true
         });

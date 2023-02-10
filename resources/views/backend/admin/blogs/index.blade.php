@@ -42,8 +42,10 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
         <div class="mb-3">
-            <a href="{{ route('admin.blog.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create Blog</a>
 
+            @can('create_blog')
+            <a href="{{ route('admin.blog.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create Blog</a>
+            @endcan
 
             <div class="d-inline-block">
                 <div class="custom-control custom-switch p-2 ml-5">

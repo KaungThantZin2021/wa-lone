@@ -39,18 +39,34 @@ class BlogController extends Controller
                 })
                 ->addColumn('action', function ($blog) use ($request) {
 
+                    $detail_btn = '<a href="' . route('admin.blog.show', $blog->id) . '" class="btn btn-sm btn-info rounded m-1" title="Detail"><i class="fas fa-info-circle"></i></a>';
+                    $edit_btn = '';
+                    $trash_btn = '';
+                    $restore_btn = '';
+                    $delete_btn = '';
+
+                    if ($this->getAuthAdminUser()->can('edit_blog')) {
+                        $edit_btn = '<a href="' . route('admin.blog.edit', $blog->id) . '" class="btn btn-sm btn-warning rounded m-1" title="Edit"><i class="fas fa-edit"></i></a>';
+                    }
+
+                    if ($this->getAuthAdminUser()->can('delete_blog')) {
+                        $trash_btn = '<a href="" class="btn btn-sm btn-danger rounded m-1 trash" data-trash-url="' . route('admin.blog.destroy', $blog->id) . '" title="Trash"><i class="fas fa-trash"></i></a>';
+                        $restore_btn = '<a href="" class="btn btn-sm btn-secondary rounded m-1 restore" data-restore-url="' . route('admin.blog.restore', $blog->id) . '" title="Restore"><i class="fas fa-undo"></i></a>';
+                        $delete_btn = '<a href="" class="btn btn-sm btn-danger rounded m-1 delete" data-delete-url="' . route('admin.blog.force-delete', $blog->id) . '" title="Delete Permanently"><i class="fas fa-trash"></i></a>';
+                    }
+
                     if ($request->trash) {
                         return '<div class="d-flex justify-content-center">
-                            <a href="' . route('admin.blog.show', $blog->id) . '" class="btn btn-sm btn-info rounded m-1" title="Detail"><i class="fas fa-info-circle"></i></a>
-                            <a href="" class="btn btn-sm btn-secondary rounded m-1 restore" data-restore-url="' . route('admin.blog.restore', $blog->id) . '" title="Restore"><i class="fas fa-undo"></i></a>
-                            <a href="" class="btn btn-sm btn-danger rounded m-1 delete" data-delete-url="' . route('admin.blog.force-delete', $blog->id) . '" title="Delete Permanently"><i class="fas fa-trash"></i></a>
+                            ' . $detail_btn . '
+                            ' . $restore_btn . '
+                            ' . $delete_btn . '
                         </div>';
                     }
 
                     return '<div class="d-flex justify-content-center">
-                        <a href="' . route('admin.blog.show', $blog->id) . '" class="btn btn-sm btn-info rounded m-1" title="Detail"><i class="fas fa-info-circle"></i></a>
-                        <a href="' . route('admin.blog.edit', $blog->id) . '" class="btn btn-sm btn-warning rounded m-1" title="Edit"><i class="fas fa-edit"></i></a>
-                        <a href="" class="btn btn-sm btn-danger rounded m-1 trash" data-trash-url="' . route('admin.blog.destroy', $blog->id) . '" title="Trash"><i class="fas fa-trash"></i></a>
+                        ' . $detail_btn . '
+                        ' . $edit_btn . '
+                        ' . $trash_btn . '
                     </div>';
                 })
                 ->editColumn('created_at', function ($blog) {

@@ -27,12 +27,14 @@
                     </a>
                 </li>
 
+                @can('view_blog')
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Blog Management</span></li>
                 <li class="sidebar-item  @yield('blog-selected')">
                     <a class="sidebar-link" href="{{ route('admin.blog.index') }}" aria-expanded="false">
                         <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Blog</span>
                     </a>
                 </li>
+                @endcan
 
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Log</span></li>
                 <li class="sidebar-item  @yield('activity-log-selected')">

@@ -10,4 +10,9 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function getAuthAdminUser()
+    {
+        return auth()->guard('admin_user')->user();
+    }
 }
