@@ -2,7 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/js/plugins.js": "/js/plugins.js",
     "/js/toastr.js": "/js/toastr.js",
-    "/js/select2.js": "/js/select2.js",
+    "/js/sweetalert2.js": "/js/sweetalert2.js",
     "/js/jscroll.js": "/js/jscroll.js",
     "/css/app.css": "/css/app.css",
     "/css/plugins.css": "/css/plugins.css",

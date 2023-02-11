@@ -101,11 +101,9 @@
                     <div class="form-group">
                         <label for="">Roles</label>
                         <select class="custom-select role @error('roles') is-invalid @enderror" name="roles[]" multiple="multiple">
-                            @forelse ($roles as $role)
+                            @foreach ($roles as $role)
                             <option value="{{ $role->name }}">{{ $role->name }}</option>
-                            @empty
-                            <option value="">There is no role.</option>
-                            @endforelse
+                            @endforeach
                         </select>
                         @error('roles')
                             <span class="invalid-feedback" role="alert">
