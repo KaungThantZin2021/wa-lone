@@ -48,7 +48,7 @@
         <div class="card">
             <div class="card-body dark:tw-bg-slate-800">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="roleTable" style="width: 100%; !important">
+                    <table class="table table-bordered" id="adminUserTable" style="width: 100%; !important">
                         <thead>
                             <tr class="bg-primary">
                                 <th></th>
@@ -89,7 +89,7 @@
 
 <script>
     $(() => {
-        var table = $('#roleTable').DataTable({
+        var table = $('#adminUserTable').DataTable({
             processing: true,
             serverSide: true,
             dom: 'Bfrtip',

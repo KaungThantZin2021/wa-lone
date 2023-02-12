@@ -29,23 +29,33 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
         <div class="mb-3">
+            @include('backend.components.buttons.back_button')
             <a href="{{ route('admin.user.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create User</a>
         </div>
         <div class="card">
             <div class="card-body table-responsive dark:tw-bg-slate-800">
-                <table class="table table-bordered" id="users-table" style="width: 100%; !important">
-                    <thead>
-                        <tr class="bg-primary">
-                            <th></th>
-                            <th class="text-light">ID</th>
-                            <th class="text-light">Name</th>
-                            <th class="text-light">Email</th>
-                            <th class="text-light">Created At</th>
-                            <th class="text-light">Updated At</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="userTable" style="width: 100%; !important">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th></th>
+                                <th class="text-light">Profile Photo</th>
+                                <th class="text-light">Name</th>
+                                <th class="text-light">Phone</th>
+                                <th class="text-light">Email</th>
+                                <th class="text-light">Gender</th>
+                                <th class="text-light">Provider</th>
+                                <th class="text-light">IP</th>
+                                <th class="text-light">User Agent</th>
+                                <th class="text-light">Login At</th>
+                                <th class="text-light">Created At</th>
+                                <th class="text-light">Updated At</th>
+                                <th class="text-light">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -66,26 +76,14 @@
 @section('script')
 
 <script>
-    $(document).ready(function () {
-        var table = $('#users-table').DataTable({
+    $(() => {
+        var table = $('#userTable').DataTable({
             processing: true,
             serverSide: true,
             dom: 'Bfrtip',
             buttons: [
                 {
                     extend: 'refresh'
-                },
-                {
-                    extend: 'pdfHtml5',
-                    text: '<i class="fas fa-file-pdf"></i> PDF',
-                    className: 'btn btn-secondary',
-                    filename: 'Users Report',
-                },
-                {
-                    extend: 'excelHtml5',
-                    text: '<i class="fas fa-file-excel"></i> Excel',
-                    className: 'btn btn-success',
-                    filename: 'Users Report',
                 },
                 {
                     extend: 'pageLength',
@@ -103,14 +101,70 @@
                     orderable: false,
                     defaultContent: null
                 },
-                { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },
-                { data: 'email', name: 'email' },
-                { data: 'created_at', name: 'created_at' },
-                { data: 'updated_at', name: 'updated_at' }
+                {
+                    data: 'profile_photo',
+                    name: 'profile_photo',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'name',
+                    name: 'name',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'phone',
+                    name: 'phone',
+                    class: 'text-secondary',
+                    defaultContent: null
+                },
+                {
+                    data: 'email',
+                    name: 'email',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'gender',
+                    name: 'gender',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'provider',
+                    name: 'provider',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'ip',
+                    name: 'ip',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'user_agent',
+                    name: 'user_agent',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'login_at',
+                    name: 'login_at',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'updated_at',
+                    name: 'updated_at',
+                    class: 'text-secondary'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    class: 'text-secondary'
+                }
             ],
             order: [
-                [4, 'desc']
+                [8, 'desc']
             ],
             responsive: {
                 details: {

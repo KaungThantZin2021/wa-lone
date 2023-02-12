@@ -40,6 +40,9 @@
 
 <script src="{{ asset('js/sweetalert2.js') }}"></script>
 
+<script src="{{ asset('js/manual/moment.min.js') }}"></script>
+<script src="{{ asset('js/manual/daterangepicker.js') }}"></script>
+
 {{-- <script src="{{ asset('js/select2.js') }}"></script> --}}
 
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> --}}

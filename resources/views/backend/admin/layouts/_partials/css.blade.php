@@ -16,6 +16,8 @@
 
 <link rel="stylesheet" href="{{ asset('css/sweetalert2.css') }}">
 
+<link rel="stylesheet" href="{{ asset('css/manual/daterangepicker.css') }}">
+
 {{-- <link rel="stylesheet" href="{{ asset('css/select2.css') }}"> --}}
 
 {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
