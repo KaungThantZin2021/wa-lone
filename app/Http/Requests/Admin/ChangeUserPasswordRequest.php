@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateUserRequest extends FormRequest
+class ChangeUserPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,8 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'phone' => 'numeric|nullable|unique:users,phone',
-            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|max:12',
             'confirm_password' => 'required|required_with:password|same:password|min:8|max:12',
-            'gender' => 'required',
-            'dob' => 'required|date_format:Y-m-d',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'dob.required' => 'The date of birth field is required.',
-            'dob.date_format' => 'The date of birth field does not match the format Y-m-d.',
         ];
     }
 }

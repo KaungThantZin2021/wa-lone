@@ -33,6 +33,8 @@ Route::name('admin.')
 
         // User
         Route::resource('/user', 'UserController');
+        Route::get('/user/{user}/change-password', 'UserController@changePassword')->name('user.change-password');
+        Route::patch('/user/{user}/update-password', 'UserController@updatePassword')->name('user.update-password');
 
         //Admin User
         Route::resource('/admin-user', 'AdminUserController');

@@ -1,5 +1,5 @@
 @extends('backend.admin.layouts.app')
-@section('title', 'Create User | ' . config('app.name'))
+@section('title', 'Change User Password | ' . config('app.name'))
 @section('user-selected', 'selected')
 
 @section('content')
@@ -9,13 +9,13 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 align-self-center">
-                <h3 class="page-title text-truncate font-weight-medium mb-1 tw-text-black dark:tw-text-gray-300">Create User</h3>
+                <h3 class="page-title text-truncate font-weight-medium mb-1 tw-text-black dark:tw-text-gray-300">Change User ({{ $user->name }})'s Password</h3>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item"><a href="{{ url('admin') }}">Admin</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">User</a></li>
-                            <li class="breadcrumb-item">Create</li>
+                            <li class="breadcrumb-item">Change Password</li>
                         </ol>
                     </nav>
                 </div>
@@ -35,9 +35,9 @@
         <div class="card dark:tw-bg-slate-800">
 
             <div class="card-body">
-                {!! Form::open(['route' => 'admin.user.store', 'id' => 'createUserForm']) !!}
+                {!! Form::model($user, ['route' => ['admin.user.update-password', $user->id], 'id' => 'changeUserPasswordForm', 'method' => 'patch']) !!}
 
-                @include('backend.admin.users.partials._form', ['form_type' => 'create'])
+                @include('backend.admin.users.partials._form', ['form_type' => 'change-password'])
 
                 {!! Form::close() !!}
             </div>
@@ -58,20 +58,5 @@
 @endsection
 
 @section('script')
-{!! JsValidator::formRequest('App\Http\Requests\Admin\CreateUserRequest', '#createUserForm') !!}
-
-<script>
-    $(() => {
-        $('input[name="dob"]').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            minYear: 1901,
-            maxYear: parseInt(moment().format('YYYY'),10),
-            locale: {
-                format: 'YYYY-MM-DD'
-            },
-            drops: 'up'
-        });
-    });
-</script>
+{!! JsValidator::formRequest('App\Http\Requests\Admin\ChangeUserPasswordRequest', '#changeUserPasswordForm') !!}
 @endsection
