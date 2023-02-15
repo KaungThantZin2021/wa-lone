@@ -14,49 +14,57 @@
         <div class="row mb-5 tw-flex tw-justify-center animate__animated animate__fadeInDown">
             <div class="col-md-4 col-sm-12">
                 <div class="card border border-0 tw-drop-shadow-xl mb-3">
-                    <div class="card-header py-3 text-center">
-                        <img class="rounded-circle border border-2 border-primary p-1"
-                            src="https://ui-avatars.com/api/?format=svg&background=random&name={{ auth()->user()->name }}"
+                    <div class="card-header py-3 tw-relative tw-h-52 text-center tw-bg-cover tw-bg-center"
+                        style="background-image: url({{ is_null(currentUser()->cover_photo)
+                        ? 'https://ui-avatars.com/api/?format=svg&background=random&name=' . str_replace(' ', '%20', currentUser()->name)
+                        : currentUser()->originalCoverPhotoPath() }})">
+                        <div class="tw-absolute tw-left-4 tw--bottom-8 rounded-circle bg-white">
+                            <img class="rounded-circle border border-2 border-primary p-1 m-1"
+                            src="{{ is_null(currentUser()->profile_photo)
+                                ? 'https://ui-avatars.com/api/?format=svg&background=random&name=' . currentUser()->name
+                                : currentUser()->originalProfilePhotoPath()
+                            }}"
                             alt="" width="100px" height="100px">
-                        <h3 class="my-2">{{ auth()->user()->name }}</h3>
+                        </div>
                     </div>
 
                     <div class="card-body">
+                        <h3 class="my-3">{{ currentUser()->name }}</h3>
 
                         <div class='onesignal-customlink-container'></div>
 
-                        @if (auth()->user()->email)
+                        @if (currentUser()->email)
                         <div>
                             <label class="tw-text-gray-600 tw-font-bold"><i class="fas fa-envelope"></i> Email</label>
-                            <p class="text-muted">{{ auth()->user()->email }}</p>
+                            <p class="text-muted">{{ currentUser()->email }}</p>
                             <hr>
                         </div>
                         @endif
-                        @if (auth()->user()->phone)
+                        @if (currentUser()->phone)
                         <div>
                             <label class="tw-text-gray-600 tw-font-bold"><i class="fas fa-phone"></i> Phone</label>
-                            <p class="text-muted">{{ auth()->user()->phone }}</p>
+                            <p class="text-muted">{{ currentUser()->phone }}</p>
                             <hr>
                         </div>
                         @endif
                         <div>
                             <label class="tw-text-gray-600 tw-font-bold"><i class="fas fa-venus-mars"></i> Gender</label>
-                            <p class="text-muted">{{ ucfirst(auth()->user()->gender) }}</p>
+                            <p class="text-muted">{{ ucfirst(currentUser()->gender) }}</p>
                             <hr>
                         </div>
                         <div>
                             <label class="tw-text-gray-600 tw-font-bold"><i class="fas fa-birthday-cake"></i> Date of birth</label>
-                            <p class="text-muted">{{ auth()->user()->dob }}</p>
+                            <p class="text-muted">{{ currentUser()->dob }}</p>
                             <hr>
                         </div>
                         <div>
                             <label class="tw-text-gray-600 tw-font-bold"><i class="fas fa-user-clock"></i> login at</label>
-                            <p class="text-muted">{{ auth()->user()->login_at }} ({{ Carbon\Carbon::parse(auth()->user()->login_at)->diffForHumans() }})</p>
+                            <p class="text-muted">{{ currentUser()->login_at }} ({{ Carbon\Carbon::parse(currentUser()->login_at)->diffForHumans() }})</p>
                             <hr>
                         </div>
                         <div>
                             <label class="tw-text-gray-600 tw-font-bold"><i class="fas fa-user-check"></i> Created at</label>
-                            <p class="text-muted">{{ auth()->user()->created_at }} ({{ auth()->user()->created_at->diffForHumans() }})</p>
+                            <p class="text-muted">{{ currentUser()->created_at }} ({{ currentUser()->created_at->diffForHumans() }})</p>
                         </div>
                     </div>
                     <div class="card-footer">

@@ -27,7 +27,9 @@ class User extends Authenticatable
         'provider_id',
         'provider',
         'gender',
-        'dob'
+        'dob',
+        'profile_photo',
+        'cover_photo'
     ];
 
     /**
@@ -48,4 +50,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profilePhotoPath()
+    {
+        return asset('crop/' . $this->profile_photo);
+    }
+
+    public function originalProfilePhotoPath()
+    {
+        return asset('user_files/' . $this->profile_photo);
+    }
+
+    public function originalCoverPhotoPath()
+    {
+        return asset('user_files/' . $this->cover_photo);
+    }
 }

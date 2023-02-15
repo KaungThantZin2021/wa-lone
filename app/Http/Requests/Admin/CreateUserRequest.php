@@ -31,6 +31,8 @@ class CreateUserRequest extends FormRequest
             'confirm_password' => 'required|required_with:password|same:password|min:8|max:12',
             'gender' => 'required',
             'dob' => 'required|date_format:Y-m-d',
+            'profile_photo' => 'mimes:png,jpg,jpeg,gif',
+            'cover_photo' => 'mimes:png,jpg,jpeg,gif',
         ];
     }
 
@@ -39,6 +41,8 @@ class CreateUserRequest extends FormRequest
         return [
             'dob.required' => 'The date of birth field is required.',
             'dob.date_format' => 'The date of birth field does not match the format Y-m-d.',
+            'profile_photo.mimes' => 'The profile photo file must be png, jpg, jpeg, gif.',
+            'cover_photo.mimes' => 'The cover photo file must be png, jpg, jpeg, gif.',
         ];
     }
 }

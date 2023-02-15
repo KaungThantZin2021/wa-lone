@@ -181,6 +181,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Ladumor\OneSignal\OneSignalServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -248,6 +249,7 @@ return [
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'OneSignal' => \Ladumor\OneSignal\OneSignal::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

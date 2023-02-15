@@ -26,6 +26,10 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+{{-- cropme --}}
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropme@latest/dist/cropme.min.css"> --}}
+
 </head>
 
 <body>
@@ -122,6 +126,9 @@
     </script>
 
     @include('backend.admin.layouts._partials.script')
+
+    {{-- cropme --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/cropme@latest/dist/cropme.min.js"></script> --}}
 
     <script>
         $(() => {

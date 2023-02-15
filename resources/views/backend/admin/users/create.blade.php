@@ -35,7 +35,7 @@
         <div class="card dark:tw-bg-slate-800">
 
             <div class="card-body">
-                {!! Form::open(['route' => 'admin.user.store', 'id' => 'createUserForm']) !!}
+                {!! Form::open(['route' => 'admin.user.store', 'files' => true, 'id' => 'createUserForm']) !!}
 
                 @include('backend.admin.users.partials._form', ['form_type' => 'create'])
 
@@ -72,6 +72,78 @@
             },
             drops: 'up'
         });
+
+        $('#profilePhotoInput').change(function () {
+            var $input = $(this);
+
+            if ($input.val()) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $('#profilePhoto').attr("src", reader.result);
+
+                }
+                reader.readAsDataURL($input[0].files[0]);
+            };
+        });
+
+        $('#coverPhotoInput').change(function () {
+            var $input = $(this);
+
+            if ($input.val()) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $('#coverPhoto').attr("src", reader.result);
+
+                }
+                reader.readAsDataURL($input[0].files[0]);
+            };
+        });
+
+        // var myImage = $('#myImage').cropme({
+        //     container: {
+        //         width: 500,
+        //         height: 500
+        //     },
+        //     viewport: {
+        //         width: 300,
+        //         height: 300,
+        //         type: 'circle',
+        //         border: {
+        //             enable: true,
+        //             width: 2,
+        //             color: '#fff'
+        //         }
+        //     },
+        //     zoom: {
+        //         min: 0.01,
+        //         max: 3,
+        //         enable: true,
+        //         mouseWheel: true,
+        //         slider: true
+        //     },
+        //     rotation: {
+        //         enable: true,
+        //         slider: true,
+        //         position: 'right'
+        //     },
+        //     transformOrigin: 'image'
+        // });
+
+        // $('.crop').click(function (e) {
+        //     e.preventDefault();
+
+        //     var position = myImage.cropme('position');
+
+        //     console.log(position);
+
+        //     $('#xCoordinate').val(position.x);
+        //     $('#yCoordinate').val(position.y);
+
+        //     // myImage.cropme('crop')
+        //     // .then(function (output) {
+        //     //     console.log(output);
+        //     // });
+        // });
     });
 </script>
 @endsection
