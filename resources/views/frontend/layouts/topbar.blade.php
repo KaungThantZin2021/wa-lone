@@ -60,7 +60,9 @@
                 <div class="d-flex justify-content-center p-0 m-0">
                     <div class="me-2 my-0">
                         <img class="rounded-circle"
-                            src="https://ui-avatars.com/api/?format=svg&background=random&name={{ auth()->user()->name }}"
+                            src="{{ is_null(currentUser()->profile_photo)
+                                ? 'https://ui-avatars.com/api/?format=svg&background=fff&color=0c6dfc&name=' . currentUser()->name
+                                : currentUser()->originalProfilePhotoPath() }}"
                             alt="" width="30px" height="30px">
                     </div>
                     <div class="py-1">
