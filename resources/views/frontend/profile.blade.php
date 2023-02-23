@@ -14,20 +14,6 @@
         <div class="row mb-5 tw-flex tw-justify-center animate__animated animate__fadeInDown">
             <div class="col-md-4 col-sm-12">
                 <div class="card border border-0 tw-drop-shadow-xl mb-3">
-                    {{-- <div class="card-header py-3 tw-relative tw-h-52 text-center tw-bg-cover tw-bg-center" id=""
-                        style="background-image: url({{ is_null(currentUser()->cover_photo)
-                        ? 'https://ui-avatars.com/api/?format=svg&background=random&name=' . str_replace(' ', '%20', currentUser()->name)
-                        : currentUser()->originalCoverPhotoPath() }})">
-                        <div class="tw-absolute tw-left-4 tw--bottom-8 rounded-circle bg-white">
-                            <img class="rounded-circle border border-2 border-primary p-1 m-1" id="profilePhoto"
-                            src="{{ is_null(currentUser()->profile_photo)
-                                ? 'https://ui-avatars.com/api/?format=svg&background=random&name=' . currentUser()->name
-                                : currentUser()->originalProfilePhotoPath()
-                            }}"
-                            alt="" width="100px" height="100px">
-                        </div>
-                    </div> --}}
-
                     <div class="p-0 m-0 tw-relative">
                         <img class="tw-w-full tw-h-52 tw-object-cover tw-rounded-t-md" id="coverPhoto"
                         src="{{ is_null(currentUser()->cover_photo)
@@ -102,8 +88,16 @@
 @section('script')
 <script>
     $(() => {
-        new Viewer(document.getElementById('profilePhoto'));
-        new Viewer(document.getElementById('coverPhoto'));
+        new Viewer(document.getElementById('profilePhoto'), {
+            title: false,
+            navbar: false,
+            toolbar: false
+        });
+        new Viewer(document.getElementById('coverPhoto'), {
+            title: false,
+            navbar: false,
+            toolbar: false
+        });
     });
 </script>
 @endsection
