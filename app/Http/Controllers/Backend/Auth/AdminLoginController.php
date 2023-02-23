@@ -169,7 +169,7 @@ class AdminLoginController extends Controller
             session()->put($this->otp_key, [
                 'email' => $session->email,
                 'password' => $session->password,
-                'remember' => $request->remember,
+                'remember' => $session->remember,
                 'otp' => $result['data']['otp']
             ]);
 
