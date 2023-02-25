@@ -39,7 +39,12 @@ Route::name('admin.')
         //Admin User
         Route::resource('/admin-user', 'AdminUserController');
 
-        //Admin User
+        //Slider
+        Route::resource('/slider', 'SliderController');
+        Route::post('/slider/{id}/restore', 'SliderController@restore')->name('slider.restore');
+        Route::delete('/slider/{id}/force-delete', 'SliderController@forceDelete')->name('slider.force-delete');
+
+        //Blog
         Route::resource('/blog', 'BlogController');
         Route::post('/blog/{id}/restore', 'BlogController@restore')->name('blog.restore');
         Route::delete('/blog/{id}/force-delete', 'BlogController@forceDelete')->name('blog.force-delete');

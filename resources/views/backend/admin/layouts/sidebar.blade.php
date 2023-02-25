@@ -27,6 +27,15 @@
                     </a>
                 </li>
 
+                {{-- @can('view_slider') --}}
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Slider Management</span></li>
+                <li class="sidebar-item  @yield('slider-selected')">
+                    <a class="sidebar-link" href="{{ route('admin.slider.index') }}" aria-expanded="false">
+                        <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Slider</span>
+                    </a>
+                </li>
+                {{-- @endcan --}}
+
                 @can('view_blog')
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Blog Management</span></li>
                 <li class="sidebar-item  @yield('blog-selected')">

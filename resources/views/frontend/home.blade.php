@@ -15,38 +15,26 @@
             <div class="col-md-8 col-sm-12">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
+                        @foreach ($sliders as $key => $slider)
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"
+                            aria-current="true" aria-label="{{ $slider->title }}"></button>
+                        @endforeach
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_971/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/njzpudmx1xer0r6edynk/BicycleRentalatPulauUbin.jpg"
-                                class="d-block w-100 tw-h-96 lg:tw-h-80 md:tw-h-44 sm:tw-h-56 xs:tw-h-56 tw-object-cover" alt="...">
+                        @foreach ($sliders as $key => $slider)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                            <img src="{{ $slider->sliderPath() }}"
+                                class="d-block w-100 tw-h-96 lg:tw-h-80 md:tw-h-44 sm:tw-h-56 xs:tw-h-56 tw-object-cover" alt="{{ $slider->title }}">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
+                                @if ($slider->title)
+                                <h5><span class="text-light bg-primary bg-opacity-50 tw-rounded p-1">{{ $slider->title }}</span></h5>
+                                @endif
+                                @if ($slider->description)
+                                <p class="mt-3"><span class="text-light bg-primary bg-opacity-50 tw-rounded p-1">{{ $slider->description }}</span></p>
+                                @endif
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <img src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_971/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/njzpudmx1xer0r6edynk/BicycleRentalatPulauUbin.jpg"
-                                class="d-block w-100" alt="..." style="height: 400px !important; object-fit:cover">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Second slide label</h5>
-                                <p>Some representative placeholder content for the second slide.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_971/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/njzpudmx1xer0r6edynk/BicycleRentalatPulauUbin.jpg"
-                                class="d-block w-100" alt="..." style="height: 400px !important; object-fit:cover">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Third slide label</h5>
-                                <p>Some representative placeholder content for the third slide.</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                         data-bs-slide="prev">

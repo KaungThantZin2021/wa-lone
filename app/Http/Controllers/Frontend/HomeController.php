@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Blog;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,8 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         $blogs = Blog::orderBy('id', 'DESC')->limit(6)->get();
+        $sliders = Slider::get();
 
-        return view('frontend.home', compact('blogs'));
+        return view('frontend.home', compact('blogs', 'sliders'));
     }
 
 
