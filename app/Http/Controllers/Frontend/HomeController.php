@@ -27,9 +27,11 @@ class HomeController extends Controller
     public function index()
     {
         $blogs = Blog::orderBy('id', 'DESC')->limit(6)->get();
-        $sliders = Slider::get();
+        $bicycle_sliders = Slider::where('type', 'bicycle')->orderBy('created_at', 'DESC')->get();
+        $motor_cycle_sliders = Slider::where('type', 'motor_cycle')->orderBy('created_at', 'DESC')->get();
+        $car_sliders = Slider::where('type', 'car')->orderBy('created_at', 'DESC')->get();
 
-        return view('frontend.home', compact('blogs', 'sliders'));
+        return view('frontend.home', compact('blogs', 'bicycle_sliders', 'motor_cycle_sliders', 'car_sliders'));
     }
 
 

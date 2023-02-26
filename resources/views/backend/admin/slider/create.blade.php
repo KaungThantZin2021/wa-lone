@@ -65,7 +65,3 @@
     <!-- End footer -->
     <!-- ============================================================== -->
 @endsection
-
-@section('script')
-{!! JsValidator::formRequest('App\Http\Requests\CreateSliderRequest', '#sliderForm') !!}
-@endsection

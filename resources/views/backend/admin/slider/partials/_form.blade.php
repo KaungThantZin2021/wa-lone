@@ -38,6 +38,12 @@
 <button class="btn btn-primary">Submit</button>
 <a href="{{ route('admin.slider.index') }}" class="btn btn-secondary">Cancel</a>
 
+@if ($form_type == 'create')
+    @push('script')
+    {!! JsValidator::formRequest('App\Http\Requests\CreateSliderRequest', '#sliderForm') !!}
+    @endpush
+@endif
+
 @section('script')
 <script>
     $(() => {

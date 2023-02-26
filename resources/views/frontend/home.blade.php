@@ -13,15 +13,15 @@
         </div>
         <div class="row mb-5 animate__animated animate__fadeInDown">
             <div class="col-md-8 col-sm-12">
-                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselBicycle" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        @foreach ($sliders as $key => $slider)
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"
+                        @foreach ($bicycle_sliders as $key => $slider)
+                        <button type="button" data-bs-target="#carouselBicycle" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"
                             aria-current="true" aria-label="{{ $slider->title }}"></button>
                         @endforeach
                     </div>
                     <div class="carousel-inner">
-                        @foreach ($sliders as $key => $slider)
+                        @foreach ($bicycle_sliders as $key => $slider)
                         <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                             <img src="{{ $slider->sliderPath() }}"
                                 class="d-block w-100 tw-h-96 lg:tw-h-80 md:tw-h-44 sm:tw-h-56 xs:tw-h-56 tw-object-cover" alt="{{ $slider->title }}">
@@ -36,14 +36,14 @@
                         </div>
                         @endforeach
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselBicycle"
                         data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="carousel-control-prev-icon bg-primary bg-opacity-25 tw-rounded" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselBicycle"
                         data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="carousel-control-next-icon bg-primary bg-opacity-25 tw-rounded" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
@@ -53,32 +53,23 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div id="carouselMotorCycle" class="carousel slide carousel-fade" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="https://cdn.dribbble.com/users/8066256/screenshots/15918044/cycle-sell-post-design_4x.jpg"
-                                        class="d-block w-100" alt="..."
-                                        style="height: 200px !important; object-fit:cover">
+                                @foreach ($motor_cycle_sliders as $key => $slider)
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    <img src="{{ $slider->sliderPath() }}"
+                                        class="d-block w-100 tw-h-48 lg:tw-h-40 md:tw-h-44 sm:tw-h-56 xs:tw-h-56 tw-object-cover" alt="...">
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="https://cdn.dribbble.com/users/3488450/screenshots/14969137/media/b41bfb478d26a25643d46b98a2604afa.png?compress=1&resize=400x300"
-                                        class="d-block w-100" alt="..."
-                                        style="height: 200px !important; object-fit:cover">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://www.promaticsindia.com/blog/wp-content/uploads/2018/07/World%E2%80%99s-top-bike-sharing-Programs-and-Apps.jpg"
-                                        class="d-block w-100" alt="..."
-                                        style="height: 200px !important; object-fit:cover">
-                                </div>
+                                @endforeach
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselMotorCycle"
                                 data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="carousel-control-prev-icon bg-primary bg-opacity-25 tw-rounded" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselMotorCycle"
                                 data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="carousel-control-next-icon bg-primary bg-opacity-25 tw-rounded" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
@@ -87,34 +78,23 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div id="carouselCar" class="carousel slide carousel-fade" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT-d8cgqC44RIS83OmHNugQwMc7b7MGAk7MGas2SWg7332ZprpvhyQMwtpqL8L-XxWPOs&usqp=CAU"
-                                        class="d-block w-100" alt="..."
-                                        style="height: 200px !important; object-fit:cover">
+                                @foreach ($car_sliders as $key => $slider)
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    <img src="{{ $slider->sliderPath() }}"
+                                        class="d-block w-100 tw-h-48 lg:tw-h-40 md:tw-h-44 sm:tw-h-56 xs:tw-h-56 tw-object-cover" alt="...">
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="https://e7.pngegg.com/pngimages/647/843/png-clipart-trek-bicycle-corporation-bicycle-shop-logo-electra-bicycle-company-giant-bike-text-trademark.png"
-                                        class="d-block w-100" alt="..."
-                                        style="height: 200px !important; object-fit:cover">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl_Y1lToB3urd0a0ri1F3oCHylN6KM17vvJQ&usqp=CAU"
-                                        class="d-block w-100" alt="..."
-                                        style="height: 200px !important; object-fit:cover">
-                                </div>
+                                @endforeach
                             </div>
-                            <!--
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
-                    -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCar" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon bg-primary bg-opacity-25 tw-rounded" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselCar" data-bs-slide="next">
+                                <span class="carousel-control-next-icon bg-primary bg-opacity-25 tw-rounded" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
                 </div>
