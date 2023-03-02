@@ -69,7 +69,9 @@
                                 <th class="text-light">Action</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody id="images">
+
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -93,6 +95,13 @@
 
 <script>
     $(document).ready(function () {
+        var viewerSetting = {
+            rotatable: false,
+            scalable: false,
+            zoomable: false,
+        };
+        var viewer = new Viewer(document.getElementById('images'), viewerSetting);
+
         var table = $('#sliderTable').DataTable({
             processing: true,
             serverSide: true,
@@ -135,7 +144,11 @@
                 { data: 'created_at', name: 'created_at' },
                 { data: 'updated_at', name: 'updated_at' },
                 { data: 'action', name: 'action' }
-            ]
+            ],
+            drawCallback: function () {
+                viewer.destroy();
+                viewer = new Viewer(document.getElementById('images'), viewerSetting);
+            }
         });
 
         $(document).on('click', '.trash', function (e) {

@@ -43,10 +43,9 @@
 <script src="{{ asset('js/manual/moment.min.js') }}"></script>
 <script src="{{ asset('js/manual/daterangepicker.js') }}"></script>
 
-{{-- <script src="{{ asset('js/select2.js') }}"></script> --}}
-
-{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> --}}
 <script src="{{ asset('js/manual/select2.min.js') }}"></script>
+
+<script src="{{ asset('plugins/viewer/dist/viewer.js') }}"></script>
 
 {{-- Bootstrap 4.6 --}}
 {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}

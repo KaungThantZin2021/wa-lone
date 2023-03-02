@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\ThumbnailUrlFileTypeCheckRule;
 
-class CreateSliderRequest extends FormRequest
+class SliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +25,8 @@ class CreateSliderRequest extends FormRequest
     {
         return [
             'type' => 'required',
-            'slider_image' => 'required|mimes:png,jpg,jpeg,gif|max:2048',
+            'slider_image_exist' => 'required',
+            'slider_image' => 'required_if:slider_image_exist,0|mimes:png,jpg,jpeg,gif|max:2048',
         ];
     }
 }

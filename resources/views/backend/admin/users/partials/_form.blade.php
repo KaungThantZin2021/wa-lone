@@ -58,16 +58,7 @@
 </div>
 @endif
 
-{{-- <div class="">
-    <img src="" id="myImage"/>
-    <input type="file" name="profile_photo" id="profileInput">
-
-
-    <input type="number" name="x" id="xCoordinate">
-    <input type="number" name="y" id="yCoordinate">
-    <a href="#" class="btn btn-success crop">Click</a>
-</div> --}}
-
+@if ($form_type != 'change-password')
 <div class="form-group">
     {!! Form::label('profile_photo', 'Profile Photo') !!}
     <div class="input-group mb-3">
@@ -97,6 +88,7 @@
 
     <img src="" id="coverPhoto" class="tw-w-24"/>
 </div>
+@endif
 
 <button class="btn btn-primary">Submit</button>
 <a href="{{ route('admin.user.index') }}" class="btn btn-secondary">Cancel</a>

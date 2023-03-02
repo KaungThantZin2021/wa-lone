@@ -18,13 +18,11 @@
 
 <link rel="stylesheet" href="{{ asset('css/manual/daterangepicker.css') }}">
 
-{{-- <link rel="stylesheet" href="{{ asset('css/select2.css') }}"> --}}
-
-{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css"> --}}
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css"> --}}
 <link rel="stylesheet" href="{{ asset('css/manual/select2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/manual/select2-bootstrap4.min.css') }}">
 
+<link rel="stylesheet" href="{{ asset('plugins/viewer/dist/viewer.css') }}">
 
 {{-- Bootstrap 4.6 --}}
 {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
