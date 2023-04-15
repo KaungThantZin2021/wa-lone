@@ -31,6 +31,11 @@ Route::name('admin.')
     ->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
 
+        // Category
+        Route::resource('/category', 'CategoryController');
+        Route::post('/category/{id}/restore', 'CategoryController@restore')->name('category.restore');
+        Route::delete('/category/{id}/force-delete', 'CategoryController@forceDelete')->name('category.force-delete');
+
         // User
         Route::resource('/user', 'UserController');
         Route::get('/user/{user}/change-password', 'UserController@changePassword')->name('user.change-password');

@@ -26,6 +26,7 @@ class CreateBlogRequest extends FormRequest
     public function rules()
     {
         return [
+            'category' => 'required',
             'title' => 'required',
             'thumbnail_type' => 'required',
             'thumbnail_file' => 'required_if:thumbnail_type,' . Blog::THUMBNAIL_FILE . '|mimes:png,jpg,jpeg,gif|max:2048',

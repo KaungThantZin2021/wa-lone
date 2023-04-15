@@ -13,6 +13,15 @@
 
                 <li class="list-divider"></li>
 
+                @can('view_category')
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Category Management</span></li>
+                <li class="sidebar-item @yield('category-selected')">
+                    <a class="sidebar-link" href="{{ route('admin.category.index') }}" aria-expanded="false">
+                        <i data-feather="users" class="feather-icon"></i><span class="hide-menu">Category</span>
+                    </a>
+                </li>
+                @endcan
+
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">User Management</span></li>
                 <li class="sidebar-item  @yield('user-selected')">
                     <a class="sidebar-link" href="{{ route('admin.user.index') }}" aria-expanded="false">

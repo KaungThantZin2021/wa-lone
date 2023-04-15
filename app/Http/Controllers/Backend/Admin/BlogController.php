@@ -274,7 +274,6 @@ class BlogController extends Controller
             Log::error($th);
             return failJson($th->getMessage());
         }
-
     }
 
     public function restore($id)

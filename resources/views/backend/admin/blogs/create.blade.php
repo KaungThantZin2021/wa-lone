@@ -50,6 +50,21 @@
                     @include('backend.layouts.flash')
 
                     <div class="form-group">
+                        <label>Category</label>
+                        <select class="custom-select category @error('category') is-invalid @enderror" name="category">
+                            <option value="">--- Choose Category ---</option>
+                            <option value="bicycle">Bicycle</option>
+                            <option value="moto_bike">Moto Bike</option>
+                            <option value="car">Car</option>
+                        </select>
+                        @error('category')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
                         <label for="">Title</label>
                         <input type="text" name="title" id="" class="form-control dark:tw-bg-slate-700 dark:focus:tw-border-gray-500 dark:tw-text-gray-300 @error('title') is-invalid @enderror" placeholder="Title"
                             aria-describedby="helpId" value="{{ old('title') }}">
@@ -141,6 +156,12 @@
 {!! JsValidator::formRequest('App\Http\Requests\CreateBlogRequest', '#blogForm') !!}
 <script>
     $(document).ready(function() {
+        $('.category').select2({
+            placeholder: '--- Choose Category ---',
+            theme: 'bootstrap4',
+            allowClear: true
+        });
+
         var thumbnail_file_type = $('.file-tag').data('type');
         var thumbnail_url_type = $('.url-tag').data('type');
 

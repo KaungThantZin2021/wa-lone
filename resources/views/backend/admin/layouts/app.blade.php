@@ -135,7 +135,10 @@
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
+                },
+                // error : function(jqXHR, textStatus, errorThrown) {
+                //     alert("Error: " + textStatus + ": " + errorThrown);
+                // },
             });
 
             if (document.getElementById('previous-btn')) {
