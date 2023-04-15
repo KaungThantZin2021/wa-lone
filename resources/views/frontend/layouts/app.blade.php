@@ -86,7 +86,7 @@
     <script src="{{ asset('js/sweetalert2.js') }}"></script>
 
     <script src="{{ asset('plugins/viewer/dist/viewer.js') }}"></script>
-    
+
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
     <script src="{{ asset('js/jscroll.js') }}"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script> --}}
@@ -198,6 +198,7 @@
     @endif
 
     @yield('script')
+    @stack('script')
 </body>
 
 </html>

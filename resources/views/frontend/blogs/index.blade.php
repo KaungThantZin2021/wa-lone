@@ -14,7 +14,20 @@
         <div class="row mb-5 animate__animated animate__fadeInDown">
             <div class="">
                 <h1 class="text-center mb-3 animate__animated animate__pulse">@lang('lang.blogs')</h1>
-                <div class="row d-flex justify-content-center">
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="blogCategories">Categories</label>
+                            <select class="form-control" name="" id="blogCategories">
+                            <option>All</option>
+                            <option>Bicycle</option>
+                            <option>Motor Cycle</option>
+                            <option>Car</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center blogs-area">
                     @forelse ($blogs as $blog)
                     <div class="col-md-4">
                         <a href="{{ route('blog.show', $blog->id) }}" class="text-decoration-none text-dark">
@@ -36,8 +49,45 @@
                         </div>
                     </div>
                     @endforelse
+                    <div class="d-flex justify-content-center">
+                        {{ $blogs->links() }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script>
+    // $(() => {
+    //     var blogsArea = $('.blogs-area');
+    //     $.post('blog/see-more').done(function (res,dd) {
+    //         if (res.result == 1) {
+
+    //             console.log(res);
+
+    //             var blogs = res.data.map(function (each) {
+    //                 return `<div class="col-md-4">
+    //                             <a href="${each.detail_url}" class="text-decoration-none text-dark">
+    //                                 <div class="card border border-0 tw-transition tw-ease-in-out tw-drop-shadow-xl hover:tw-drop-shadow-sm hover:tw-scale-95 tw-duration-300 mb-3">
+    //                                     <div class="tw-relative">
+    //                                         <img src="${each.thumbnail_path}" class="card-img tw-h-64 xl:tw-h-44 lg:tw-h-44 md:tw-h-44 sm:tw-h-44 xs:tw-h-52 tw-object-cover" alt="...">
+    //                                         <span class="tw-absolute tw-top-2 tw-right-2 text-light tw-text-sm bg-primary bg-opacity-50 tw-rounded px-1">${each.date}</span>
+    //                                         <h5 class="card-title tw-absolute tw-bottom-0 tw-left-0 m-2 tw-break-all text-light bg-primary bg-opacity-50 tw-leading-normal tw-rounded p-2">${each.title}</h5>
+    //                                     </div>
+    //                                 </div>
+    //                             </a>
+    //                         </div>`;
+    //             });
+
+
+    //             blogsArea.append(blogs);
+    //         }
+    //     })
+    //     .fail(function (error) {
+    //         console.log(error);
+    //     });
+    // });
+</script>
 @endsection

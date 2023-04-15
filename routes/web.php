@@ -45,6 +45,7 @@ Route::namespace('App\Http\Controllers\Frontend')
     Route::post('/change-language', 'PageController@changeLanguage');
 
     Route::get('/blogs', 'BlogController@index')->name('blogs');
+    // Route::post('blog/see-more', 'BlogController@seeMore');
     Route::get('/blog/{blog}', 'BlogController@show')->name('blog.show');
 
     Route::get('/profile', 'HomeController@profile')->name('profile');
