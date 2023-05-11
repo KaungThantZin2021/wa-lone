@@ -13,16 +13,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SliderRequest;
-
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('permission:view_slider', ['only' => ['index']]);
-    // }
+    public function __construct()
+    {
+        $this->middleware('permission:view_slider', ['only' => ['index']]);
+    }
 
     public function index(Request $request)
     {

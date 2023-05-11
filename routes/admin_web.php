@@ -70,4 +70,7 @@ Route::name('admin.')
 
         // Permission
         // Route::resource('/permission', 'PermissionController');
+
+        // Showroom
+        Route::resource('/showroom', 'ShowroomController');
 });

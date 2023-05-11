@@ -54,6 +54,15 @@
                 </li>
                 @endcan
 
+                @can('view_showroom')
+                <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Showroom Management</span></li>
+                <li class="sidebar-item  @yield('showroom-selected')">
+                    <a class="sidebar-link" href="{{ route('admin.showroom.index') }}" aria-expanded="false">
+                        <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Showroom</span>
+                    </a>
+                </li>
+                @endcan
+
                 <li class="nav-small-cap"><span class="hide-menu dark:tw-text-gray-300">Log</span></li>
                 <li class="sidebar-item  @yield('activity-log-selected')">
                     <a class="sidebar-link" href="{{ route('admin.activity-log.index') }}" aria-expanded="false">

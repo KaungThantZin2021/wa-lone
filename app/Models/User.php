@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Uuids;
+use App\Models\Showroom;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -50,6 +52,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The showrooms that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function showrooms(): BelongsToMany
+    {
+        return $this->belongsToMany(Showroom::class, 'showroom_users_table', 'user_id', 'showroom_id');
+    }
 
     public function profilePhotoPath()
     {
