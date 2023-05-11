@@ -50,6 +50,9 @@ Route::namespace('App\Http\Controllers\Frontend')
 
     Route::get('/profile', 'HomeController@profile')->name('profile');
 
+    Route::get('/my-showroom', 'ShowroomController@index')->name('my-showroom');
+    Route::resource('/showroom', 'ShowroomController');
+
     Route::post('/notifications/subscribe', 'NotificationController@subscribe');
     Route::post('/notifications/unsubscribe', 'NotificationController@unsubscribe');
 

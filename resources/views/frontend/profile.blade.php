@@ -70,13 +70,34 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <div class="row py-2">
+                        {{-- <div class="row py-2">
                             <div class="col-6 d-grid gap-1">
                                 <a href="/" class="btn btn-primary"><i class="fas fa-user-edit"></i> Edit Profile</a>
                             </div>
                             <div class="col-6 d-grid gap-1">
                                 <a href="#" class="btn btn-danger" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             </div>
+                        </div> --}}
+
+                        <div class="row">
+                            <a href="" class="tw-no-underline tw-group tw-p-0 tw-mb-1">
+                                <div class="tw-flex tw-justify-between tw-text-sm tw-bg-blue-400 tw-bg-opacity-30 tw-rounded tw-px-4 py-2 tw-transition-transform">
+                                    <span><i class="fas fa-edit"></i> <span class="tw-ml-1">Edit</span></span>
+                                    <span class="tw-transition-transform group-hover:tw-translate-x-2"><i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </a>
+                            <a href="{{ route('showroom.create') }}" class="tw-no-underline tw-group tw-p-0 tw-mb-1">
+                                <div class="tw-flex tw-justify-between tw-text-sm tw-bg-blue-400 tw-bg-opacity-30 tw-rounded tw-px-4 py-2 tw-transition-transform">
+                                    <span><i class="fas fa-shop"></i> <span class="tw-ml-1">Build your own showroom</span></span>
+                                    <span class="tw-transition-transform group-hover:tw-translate-x-2"><i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </a>
+                            <a href="#" class="tw-no-underline tw-group tw-p-0" id="logout">
+                                <div class="tw-flex tw-justify-between tw-text-sm tw-bg-blue-400 tw-bg-opacity-30 tw-rounded tw-px-4 py-2 tw-transition-transform">
+                                    <span class="group-hover:tw-text-red-600"><i class="fas fa-sign-out"></i> <span class="tw-ml-1">Logout</span></span>
+                                    <span class="tw-transition-transform group-hover:tw-translate-x-2 group-hover:tw-text-red-600"><i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
