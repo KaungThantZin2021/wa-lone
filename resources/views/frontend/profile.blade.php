@@ -86,6 +86,12 @@
                                     <span class="tw-transition-transform group-hover:tw-translate-x-2"><i class="fas fa-arrow-right"></i></span>
                                 </div>
                             </a>
+                            <a href="{{ route('my-showroom') }}" class="tw-no-underline tw-group tw-p-0 tw-mb-1">
+                                <div class="tw-flex tw-justify-between tw-text-sm tw-bg-blue-400 tw-bg-opacity-30 tw-rounded tw-px-4 py-2 tw-transition-transform">
+                                    <span><i class="fas fa-shop"></i> <span class="tw-ml-1">My showroom</span></span>
+                                    <span class="tw-transition-transform group-hover:tw-translate-x-2"><i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </a>
                             <a href="{{ route('showroom.create') }}" class="tw-no-underline tw-group tw-p-0 tw-mb-1">
                                 <div class="tw-flex tw-justify-between tw-text-sm tw-bg-blue-400 tw-bg-opacity-30 tw-rounded tw-px-4 py-2 tw-transition-transform">
                                     <span><i class="fas fa-shop"></i> <span class="tw-ml-1">Build your own showroom</span></span>
